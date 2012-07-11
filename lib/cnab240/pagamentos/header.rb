@@ -37,5 +37,11 @@ module Cnab240::Pagamentos
 		string :indicativo_forma_pagamento, :length => 2
 		string :cnab_g004_2, :length => 6
 		string :ocorrencias, :length => 10
+
+		private 
+		
+		def auto_fill
+			
+		end
 	end
 end

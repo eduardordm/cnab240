@@ -3,9 +3,7 @@ require 'spec_helper'
 describe Cnab240::Pagamentos::Trailer do
 
 	it "deve conter campos trailer" do
-		lote = Cnab240::Pagamentos::Lote.new
-
-		trailer = lote.trailer
+		trailer = Cnab240::Pagamentos::Trailer.new
 
 		trailer.should respond_to(:controle_banco)
 		trailer.should respond_to(:controle_lote)
@@ -25,8 +23,8 @@ describe Cnab240::Pagamentos::Trailer do
 	end
 
 	it "trailer deve ter 240 caracteres" do
-		lote = Cnab240::Pagamentos::Lote.new
-		lote.trailer.linha.length.should be(240)
+		trailer = Cnab240::Pagamentos::Trailer.new
+		trailer.linha.length.should be(240)
 	end
 
 end

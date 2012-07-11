@@ -6,6 +6,8 @@ require "cnab240/core_ext/attribute_accessors"
 require "cnab240/core_ext/bindata"
 require "cnab240/core_ext/default_mixin"
 
+require "cnab240/arquivo/lote"
+
 require "cnab240/segmentos/segmento_a"
 require "cnab240/segmentos/segmento_b"
 require "cnab240/segmentos/segmento_c"
@@ -16,10 +18,17 @@ require "cnab240/arquivo/trailer"
 
 require "cnab240/pagamentos/header"
 require "cnab240/pagamentos/trailer"
-require "cnab240/pagamentos/lote"
 
 
 module Cnab240
+
+	ESTRUTURA = {
+		:pagamento => {
+			:header => Cnab240::Pagamentos::Header,
+			:trailer => Cnab240::Pagamentos::Trailer,
+			:segmentos => [:a, :b, :c]
+		}
+	}
 
 	mod_attr_accessor :defaults
 	@@defaults = {}

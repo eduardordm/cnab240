@@ -3,9 +3,7 @@ require 'spec_helper'
 describe Cnab240::Pagamentos::Header do
 
 	it "deve conter campos header" do
-		lote = Cnab240::Pagamentos::Lote.new
-
-		header = lote.header
+		header = Cnab240::Pagamentos::Header.new
 
 		header.should respond_to(:controle_banco)
 		header.should respond_to(:controle_lote)
@@ -48,8 +46,8 @@ describe Cnab240::Pagamentos::Header do
 
 
 	it "header deve ter 240 caracteres" do
-		lote = Cnab240::Pagamentos::Lote.new
-		lote.header.linha.length.should be(240)
+		header = Cnab240::Pagamentos::Header.new
+		header.linha.length.should be(240)
 	end
 
 end

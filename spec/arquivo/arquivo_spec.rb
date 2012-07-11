@@ -15,8 +15,8 @@ describe Arquivo do
 		arquivo.should respond_to(:lotes)
 
 		(1..10).each do |n|
-			lote = Cnab240::Pagamentos::Lote.new
-			lote.should be_an_instance_of(Cnab240::Pagamentos::Lote)
+			lote = Cnab240::Lote.new(:pagamento)
+			lote.should be_an_instance_of(Cnab240::Lote)
 			arquivo.lotes << lote
 			arquivo.lotes.length.should be(n)
 		end
@@ -27,8 +27,8 @@ describe Arquivo do
 		arquivo.should respond_to(:lotes)
 
 		(1..10).each do |n|
-			lote = Cnab240::Pagamentos::Lote.new
-			lote.should be_an_instance_of(Cnab240::Pagamentos::Lote)
+			lote = Cnab240::Lote.new(:pagamento)
+			lote.should be_an_instance_of(Cnab240::Lote)
 			arquivo.lotes << lote
 		end
 
