@@ -23,7 +23,7 @@ module Cnab240
 		end
 
 		def <<(s)
-			segmentos[s] = eval("Segmento#{s.upcase}.new")
+			segmentos[s] = eval("Segmento#{s.to_s.upcase}.new")
 			add_segmento_accessors(s)
 		end
 
