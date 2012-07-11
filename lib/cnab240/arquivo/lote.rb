@@ -45,10 +45,10 @@ module Cnab240
 		def add_segmento_accessors(segmento)
 			instance_eval <<-RUBY, __FILE__, __LINE__ + 1
 				def segmento_#{segmento.to_s.downcase} 
-	        		segmentos[:#{segmento}]
+	        		segmentos[:#{segmento.to_s.downcase}] 
 	      		end
 	      		def segmento_#{segmento.to_s.downcase}=(s)
-	        		segmentos[:#{segmento}] = s
+	        		segmentos[:#{segmento.to_s.downcase}] = s
 	      		end
       		RUBY
 		end
