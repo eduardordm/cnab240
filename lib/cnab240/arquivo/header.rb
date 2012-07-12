@@ -4,8 +4,8 @@ module Cnab240::Arquivo
 		include Cnab240::DefaultMixin
 
 		string :controle_banco, :length => 3, :pad_byte => '0'
-		string :controle_lote, :value => '0000', :pad_byte => '0'
-		string :controle_registro, :value => '0', :pad_byte => '0'
+		string :controle_lote, :value => '0000'
+		string :controle_registro, :value => '0'
 
 		string :cnab_g004_1, :length => 9, :pad_byte => ' '
 
@@ -27,7 +27,7 @@ module Cnab240::Arquivo
 		string :arquivo_data_geracao, :length => 8, :pad_byte => '0'
 		string :arquivo_hora_geracao,:length => 6, :pad_byte => '0'
 		string :arquivo_sequencia, :length => 6, :pad_byte => '0'
-		string :arquivo_layout, :value => '085', :pad_byte => '0'
+		string :arquivo_layout, :value => '085'
 		string :arquivo_densidade, :length => 5, :pad_byte => '0'
 
 		string :reservado_banco, :length => 20, :pad_byte => ' '

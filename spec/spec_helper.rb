@@ -5,4 +5,6 @@ require 'cnab240'
 
 RSpec.configure do |config|
   
+  
+
 end

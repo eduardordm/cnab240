@@ -24,9 +24,38 @@ module Cnab240::Arquivo
 		end
 
 		def string
-			a.join("\n")
+			linhas.join("\n")
 		end
 
+		def save_to_file(filename)
+			File.delete(filename) # LoL
+			File.open(filename, 'w') {|f| f.write(string) }
+		end
+
+		def self.load_from_file(filename) # usar IO, blah, tanto faz :D
+			arquivos = []
+			line_number = 0
+			File.open(filename, "r").each_line do |line|
+				line.gsub!("\n", "")
+				line_number = line_number + 1
+				raise "Invalid line length: #{line.length} expected 240 at line number #{line_number}\n\t Line: [#{line}]" unless line.length == 240
+				case line[7]
+				when '0' # header de arquivo
+					arquivos << Arquivo.new
+					arquivos.last.header = Header.read(line)
+				when '1'
+				when '2'
+				when '3'
+				when '4'
+				when '5'
+				when '9'
+					arquivos.last.header = Trailer.read(line)
+				else
+					raise 'Invalid tipo de registro: #{line[7]}.'
+				end
+			end
+			arquivos
+		end
 	end
 
 end

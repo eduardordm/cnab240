@@ -30,9 +30,11 @@ module Cnab240
 		def linhas
 			seg_array = Array.new
 			estrutura = ESTRUTURA[operacao]
+			seg_array << @header.linha
 			estrutura[:segmentos].each do |s|
 				seg_array << @segmentos[s].linha
 			end
+			seg_array << @trailer.linha
 			seg_array
 		end
 

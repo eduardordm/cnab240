@@ -38,4 +38,9 @@ describe Cnab240::Arquivo::Header do
 
 		header.should respond_to(:cnab_g004_3)
 	end
+
+	it "header deve ter 240 caracteres" do
+		header = Cnab240::Arquivo::Header.new
+		header.linha.length.should be(240)
+	end
 end

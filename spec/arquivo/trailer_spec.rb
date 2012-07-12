@@ -19,4 +19,9 @@ describe Cnab240::Arquivo::Trailer do
 		header.should respond_to(:cnab_g004_2)
 	end
 
+	it "trailer deve ter 240 caracteres" do
+		trailer = Cnab240::Arquivo::Trailer.new
+		trailer.linha.length.should be(240)
+	end
+
 end
