@@ -28,7 +28,10 @@ module Cnab240::Arquivo
 		end
 
 		def save_to_file(filename)
-			File.delete(filename) # LoL
+			begin
+				File.delete(filename) # LoL
+			rescue
+			end
 			File.open(filename, 'w') {|f| f.write(string) }
 		end
 
