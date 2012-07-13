@@ -47,6 +47,7 @@ module Cnab240::Arquivo
 					arquivos << Arquivo.new
 					arquivos.last.header = Header.read(line)
 				when '1'
+					 
 				when '2'
 				when '3'
 				when '4'

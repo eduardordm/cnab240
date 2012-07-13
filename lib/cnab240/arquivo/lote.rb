@@ -4,21 +4,26 @@ module Cnab240
 		attr_accessor :segmentos
 		attr_accessor :trailer
 		attr_accessor :operacao
+		attr_accessor :tipo
 
-		def initialize(op = nil)
+		def initialize(options = {})
 			@segmentos = {}
+			
+			@operacao ||= options[:operacao]
+			@tipo ||= options[:tipo]
 
-			unless @operacao = op
-				return
-			end
-		
+			raise "Operacao nao suportada: #{operacao}" if ESTRUTURA[operacao].nil?
+
 			estrutura = ESTRUTURA[operacao]
 
 			@header = estrutura[:header].new
 			@trailer = estrutura[:trailer].new
 
 			estrutura[:segmentos].each do |s|
-				self << s
+				raise "Tipo nao suportado: [#{s}][#{tipo}]" if estrutura[s][tipo].nil?
+				if estrutura[s][tipo] == true
+					self << s 
+				end
 			end
 		end
 
@@ -32,7 +37,7 @@ module Cnab240
 			estrutura = ESTRUTURA[operacao]
 			seg_array << @header.linha
 			estrutura[:segmentos].each do |s|
-				seg_array << @segmentos[s].linha
+				seg_array << @segmentos[s].linha unless @segmentos[s].nil?
 			end
 			seg_array << @trailer.linha
 			seg_array

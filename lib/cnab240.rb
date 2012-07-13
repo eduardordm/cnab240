@@ -26,8 +26,33 @@ module Cnab240
 		:pagamento => {
 			:header => Cnab240::Pagamentos::Header,
 			:trailer => Cnab240::Pagamentos::Trailer,
-			:segmentos => [:a, :b, :c]
+			:segmentos => [:a, :b, :c],
+			:a => {
+				:remessa => true,
+				:retorno => true
+			},
+			:b => {
+				:remessa => true,
+				:retorno => true
+			},
+			:c => {
+				:remessa => false,
+				:retorno => false
+			}
+		},
+
+		:pagamento_titulo_cobranca => {
+			:header => Cnab240::Pagamentos::Header,
+			:trailer => Cnab240::Pagamentos::Trailer,
+			:segmentos => [:j, :j52]	
+		},
+
+		:pagamento_titulo_cobranca => {
+			:header => Cnab240::Pagamentos::Header,
+			:trailer => Cnab240::Pagamentos::Trailer,
+			:segmentos => [:o, :n, :w, :z]	
 		}
+
 	}
 
 	mod_attr_accessor :defaults
