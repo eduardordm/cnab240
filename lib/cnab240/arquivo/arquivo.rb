@@ -42,7 +42,7 @@ module Cnab240::Arquivo
 				line.gsub!("\n", "")
 				line_number = line_number + 1
 				raise "Invalid line length: #{line.length} expected 240 at line number #{line_number}\n\t Line: [#{line}]" unless line.length == 240
-				case line[7]
+				case line[7..7] # ruby 1.8.7 requires this fuck
 				when '0' # header de arquivo
 					arquivos << Arquivo.new
 					arquivos.last.header = Header.read(line)
@@ -54,7 +54,7 @@ module Cnab240::Arquivo
 				when '9'
 					arquivos.last.header = Trailer.read(line)
 				else
-					raise 'Invalid tipo de registro: #{line[7]}.'
+					raise "Invalid tipo de registro: #{line[7]} at line #{line_number} \n\t Line: [#{line}]"
 				end
 			end
 			arquivos
