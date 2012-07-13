@@ -1,0 +1,46 @@
+require 'spec_helper'
+
+include Cnab240
+
+describe SegmentoJ52 do
+
+	it "deve instanciar segmento" do
+		segmento = SegmentoJ52.new
+		segmento.should be_an_instance_of(SegmentoJ52)
+	end
+
+	it "deve conter campos" do
+		segmento = SegmentoJ52.new
+
+		segmento.should respond_to(:controle_banco)
+		segmento.should respond_to(:controle_lote)
+		segmento.should respond_to(:controle_registro)
+
+		segmento.should respond_to(:servico_numero_registro)
+		segmento.should respond_to(:servico_codigo_segmento)
+		segmento.should respond_to(:servico_tipo_movimento)
+		segmento.should respond_to(:servico_codigo_movimento)
+
+		segmento.should respond_to(:cod_registro_opcional)
+	
+		segmento.should respond_to(:sacado_tipo_inscricao)
+		segmento.should respond_to(:sacado_numero_inscricao)
+		segmento.should respond_to(:sacado_nome)
+
+		segmento.should respond_to(:cedente_tipo_inscricao)
+		segmento.should respond_to(:cedente_numero_inscricao)
+		segmento.should respond_to(:cedente_nome)
+
+		segmento.should respond_to(:sacador_tipo_inscricao)
+		segmento.should respond_to(:sacador_numero_inscricao)
+		segmento.should respond_to(:sacador_nome)
+
+		segmento.should respond_to(:cnab_g004_1)
+	end
+
+	it "deve ter 240 caracteres" do
+		segmento = SegmentoJ52.new
+		segmento.linha.length.should be(240)
+	end
+
+end

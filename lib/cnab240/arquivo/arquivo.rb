@@ -47,11 +47,15 @@ module Cnab240::Arquivo
 					arquivos << Arquivo.new
 					arquivos.last.header = Header.read(line)
 				when '1'
-					 
+					# raise NotImplementedError.new("Tipo de registro not implemented")
 				when '2'
+					# raise NotImplementedError.new("Tipo de registro not implemented")
 				when '3'
+					# raise NotImplementedError.new("Tipo de registro not implemented")
 				when '4'
+					# raise NotImplementedError.new("Tipo de registro not implemented")
 				when '5'
+					# raise NotImplementedError.new("Tipo de registro not implemented")
 				when '9'
 					arquivos.last.header = Trailer.read(line)
 				else

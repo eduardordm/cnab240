@@ -11,6 +11,13 @@ require "cnab240/arquivo/lote"
 require "cnab240/segmentos/segmento_a"
 require "cnab240/segmentos/segmento_b"
 require "cnab240/segmentos/segmento_c"
+require "cnab240/segmentos/segmento_j"
+require "cnab240/segmentos/segmento_j52"
+require "cnab240/segmentos/segmento_o"
+require "cnab240/segmentos/segmento_n"
+require "cnab240/segmentos/segmento_w1"
+require "cnab240/segmentos/segmento_w"
+require "cnab240/segmentos/segmento_z"
 
 require "cnab240/arquivo/arquivo"
 require "cnab240/arquivo/header"
@@ -18,42 +25,15 @@ require "cnab240/arquivo/trailer"
 
 require "cnab240/pagamentos/header"
 require "cnab240/pagamentos/trailer"
+require "cnab240/pagamentos/titulos/header"
+require "cnab240/pagamentos/titulos/trailer"
+require "cnab240/pagamentos/tributos/header"
+require "cnab240/pagamentos/tributos/trailer"
+
+require "cnab240/arquivo/estrutura"
 
 
 module Cnab240
-
-	ESTRUTURA = {
-		:pagamento => {
-			:header => Cnab240::Pagamentos::Header,
-			:trailer => Cnab240::Pagamentos::Trailer,
-			:segmentos => [:a, :b, :c],
-			:a => {
-				:remessa => true,
-				:retorno => true
-			},
-			:b => {
-				:remessa => true,
-				:retorno => true
-			},
-			:c => {
-				:remessa => false,
-				:retorno => false
-			}
-		},
-
-		:pagamento_titulo_cobranca => {
-			:header => Cnab240::Pagamentos::Header,
-			:trailer => Cnab240::Pagamentos::Trailer,
-			:segmentos => [:j, :j52]	
-		},
-
-		:pagamento_titulo_cobranca => {
-			:header => Cnab240::Pagamentos::Header,
-			:trailer => Cnab240::Pagamentos::Trailer,
-			:segmentos => [:o, :n, :w, :z]	
-		}
-
-	}
 
 	mod_attr_accessor :defaults
 	@@defaults = {}
