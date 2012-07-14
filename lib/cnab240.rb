@@ -2,9 +2,9 @@ require "cnab240/version"
 
 require 'bindata'
 
-require "cnab240/core_ext/attribute_accessors"
-require "cnab240/core_ext/bindata"
-require "cnab240/core_ext/default_mixin"
+require "cnab240/ext/attribute_accessors"
+require "cnab240/ext/bindata"
+require "cnab240/ext/default_mixin"
 
 require "cnab240/arquivo/lote"
 

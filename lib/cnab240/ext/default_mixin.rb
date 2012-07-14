@@ -1,5 +1,6 @@
 module Cnab240
 	module DefaultMixin
+
 		def initialize_instance
 			super
 			Cnab240.defaults.each do |k, v|
