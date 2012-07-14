@@ -29,6 +29,7 @@ module Cnab240
 
 		def <<(s)
 			segmentos[s] = eval("Segmento#{s.to_s.upcase}.new")
+			segmentos[s].lote = self
 			add_segmento_accessors(s)
 		end
 

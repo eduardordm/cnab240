@@ -2,6 +2,7 @@ module Cnab240
 	class SegmentoW1 < BinData::Record
 
 		include Cnab240::DefaultMixin
+		include Cnab240::SegmentoMixin
 		
 		string :identificador_tributo, :length => 2, :pad_byte => ' '
 		string :receita, :length => 6, :pad_byte => ' '
