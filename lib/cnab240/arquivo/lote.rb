@@ -21,18 +21,26 @@ module Cnab240
 
 			yield self if block_given?
 
-			estrutura[:segmentos].each do |s|
-				raise "Tipo nao suportado: [#{s}][#{tipo}]" if estrutura[s][tipo].nil?
-				if estrutura[s][tipo] == true
-					self << s 
+			if tipo != :none
+				estrutura[:segmentos].each do |s|
+					raise "Tipo nao suportado: [#{s}][#{tipo}]" if (estrutura[s][tipo].nil?) && tipo != :any
+					if (tipo == :any) || (estrutura[s][tipo] == true)
+						self << s 
+					end
 				end
 			end
+		end
+
+		def read_segmento(s, line)
+			segmento = self << s
+			segmentos[s] = segmento.read(line)
 		end
 
 		def <<(s)
 			segmentos[s] = eval("Segmento#{s.to_s.upcase}.new")
 			segmentos[s].lote = self
 			add_segmento_accessors(s)
+			segmentos[s]
 		end
 
 		def linhas

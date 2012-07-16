@@ -9,7 +9,7 @@ module Cnab240
 		string :controle_registro, :length => 1, :initial_value => '3', :pad_byte => '0'
 
 		string :servico_numero_registro, :length => 5, :pad_byte => '0'
-		string :servico_codigo_segmento, :value => 'C', :pad_byte => ' '
+		string :servico_codigo_segmento, :length => 1, :initial_value => 'C', :pad_byte => ' '
 		
 		string :cnab240_g004_1, :length => 3, :pad_byte => ' '
 

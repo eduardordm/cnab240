@@ -37,13 +37,40 @@ describe Arquivo do
 		end
 	end
 
-	it "deve ler e escrever em arquivo" do
+	it "deve ler e escrever, mantendo classe de lote" do
 		arquivo = Cnab240::Arquivo::Arquivo.new
 		(1..10).each do |n|
 			arquivo.lotes  << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 		end
 		arquivo.save_to_file("spec/tmp/arquivo.test")
-		arquivo = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")
+
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0]
+
+		arquivo_read.lotes.length.should be 10
+
+		arquivo_read.lotes.each_with_index do |lote_read, i| 
+			lote_read.header.servico_operacao.should eq arquivo.lotes[i].header.servico_operacao
+			lote_read.should be_an_instance_of(arquivo.lotes[i].class)
+			lote_read.segmentos.length.should be arquivo.lotes[i].segmentos.length
+		end
 	end
+
+	it "arquivos devem ser identicos" do
+		arquivo = Cnab240::Arquivo::Arquivo.new
+		(1..10).each do |n|
+			arquivo.lotes  << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+		end
+		arquivo.save_to_file("spec/tmp/arquivo.test")
+
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0]
+		
+		header_r = arquivo_read.header
+		header = arquivo.header
+
+		arquivo_read.header.linha.should eq arquivo.header.linha
+		arquivo_read.trailer.linha.should eq arquivo.trailer.linha
+
+	end
+
 
 end

@@ -7,10 +7,10 @@ module Cnab240::Pagamentos
 		string :controle_lote, :length => 4, :pad_byte => '0'
 		string :controle_registro, :length => 1, :initial_value => '1', :pad_byte => '0'
 
-		string :servico_operacao, :value => 'C', :pad_byte => ' '
+		string :servico_operacao, :length => 1, :initial_value => 'C', :pad_byte => ' '
 		string :servico_tipo, :length => 2 , :pad_byte => '0'
 		string :servico_forma, :length => 2, :pad_byte => '0'
-		string :servico_layout, :value => '044', :pad_byte => '0'
+		string :servico_layout, :length => 3, :initial_value => '044', :pad_byte => '0'
 
 		string :cnab_g004_1, :length => 1, :pad_byte => ' '
 

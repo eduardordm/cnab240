@@ -33,4 +33,13 @@ describe SegmentoN3 do
 		segmento.linha.length.should be(120)
 	end
 
+	it "deve manter coesao" do 
+		c = Cnab240::SegmentoN3
+		obj = c.new
+		linha1 = obj.linha
+		obj2 = c.read(linha1)
+		linha2 = obj2.linha
+		linha1.should eq linha2
+	end
+
 end

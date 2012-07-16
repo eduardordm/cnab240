@@ -1,6 +1,7 @@
 module Cnab240
 
 	ESTRUTURA = {
+		:segmentos_implementados => [:a, :b, :c, :j, :j52, :o, :n, :w, :z],
 		:pagamento => {
 			:header => Cnab240::Pagamentos::Header,
 			:trailer => Cnab240::Pagamentos::Trailer,

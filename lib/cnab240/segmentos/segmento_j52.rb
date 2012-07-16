@@ -9,11 +9,11 @@ module Cnab240
 		string :controle_registro, :length => 1, :initial_value => '3', :pad_byte => '0'
 
 		string :servico_numero_registro, :length => 5, :pad_byte => '0'
-		string :servico_codigo_segmento, :value => 'J', :pad_byte => ' '
+		string :servico_codigo_segmento, :length => 1, :initial_value => 'J', :pad_byte => ' '
 		string :servico_tipo_movimento, :length => 1, :pad_byte => '0'
 		string :servico_codigo_movimento, :length => 2, :pad_byte => '0'
 
-		string :cod_registro_opcional, :value => '52'
+		string :cod_registro_opcional, :length => 2, :initial_value => '52'
 	
 		string :sacado_tipo_inscricao, :length => 1, :pad_byte => '0'
 		string :sacado_numero_inscricao, :length => 15, :pad_byte => '0'

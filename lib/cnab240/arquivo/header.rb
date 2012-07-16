@@ -1,13 +1,13 @@
 module Cnab240::Arquivo
 	class Header < BinData::Record
 		
-		include Cnab240::DefaultMixin
+	 include Cnab240::DefaultMixin
 
 		string :controle_banco, :length => 3, :pad_byte => '0'
-		string :controle_lote, :value => '0000'
-		string :controle_registro, :value => '0'
+		string :controle_lote, :length => 4, :initial_value => '0000', :pad_byte => '0'
+		string :controle_registro, :length => 1, :initial_value => '0', :pad_byte => '0'
 
-		string :cnab_g004_1, :length => 9, :pad_byte => ' '
+		string :cnab_g004_1, :length => 9, :initial_value => ' ', :pad_byte => ' '
 
 		string :empresa_tipo, :length => 1, :pad_byte => '0'
 		string :empresa_numero, :length => 14, :pad_byte => '0'
@@ -27,7 +27,7 @@ module Cnab240::Arquivo
 		string :arquivo_data_geracao, :length => 8, :pad_byte => '0'
 		string :arquivo_hora_geracao,:length => 6, :pad_byte => '0'
 		string :arquivo_sequencia, :length => 6, :pad_byte => '0'
-		string :arquivo_layout, :value => '085'
+		string :arquivo_layout, :length => 3, :initial_value => '085'
 		string :arquivo_densidade, :length => 5, :pad_byte => '0'
 
 		string :reservado_banco, :length => 20, :pad_byte => ' '

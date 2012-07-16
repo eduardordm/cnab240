@@ -38,4 +38,13 @@ describe SegmentoO do
 		segmento.linha.length.should be(240)
 	end
 
+	it "deve manter coesao" do 
+		c = Cnab240::SegmentoO
+		obj = c.new
+		linha1 = obj.linha
+		obj2 = c.read(linha1)
+		linha2 = obj2.linha
+		linha1.should eq linha2
+	end
+
 end
