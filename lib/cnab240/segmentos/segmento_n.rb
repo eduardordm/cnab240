@@ -19,9 +19,42 @@ module Cnab240
 		string :data_pagamento, :length => 8, :pad_byte => '0'
 		string :valor_pagamento, :length => 15, :pad_byte => '0'
 
-		string :informacoes_complementares, :length => 120, :pad_byte => ' '
+	#	string :informacoes_complementares, :length => 120, :pad_byte => ' '
+		choice :n_complemento, :selection => :get_n do
+			string 0, :length => 120, :pad_byte => ' '
+            segmento_n1 1
+            segmento_n1 2
+            segmento_n3 3
+            segmento_n4 4
+            segmento_n5 5
+            segmento_n6 6
+            segmento_n7 7
+            segmento_n8 8
+    	end 
 
-		string :ocorrencias, :length => 10, :pad_byte => ' '
+		string :ocorrencias, :length => 10, :pad_byte => ' ' 
+
+		def get_n
+			servico_forma_nX = {
+				'00' => 0,
+				'17' => 1,
+				'16' => 2,
+				'18' => 3,
+				'22' => 4,
+				'23' => 4,
+				'24' => 4,
+				'25' => 5,
+				'27' => 6,
+				'26' => 7,
+				'21' => 8
+   			}
+   			begin
+   				servico_forma = lote.header.servico_forma
+   			rescue
+   				servico_forma = '00'
+   			end
+			return servico_forma_nX[servico_forma]
+		end
 
 	end
 end

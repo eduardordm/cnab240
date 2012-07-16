@@ -19,6 +19,8 @@ module Cnab240
 			@header = estrutura[:header].new
 			@trailer = estrutura[:trailer].new
 
+			yield self if block_given?
+
 			estrutura[:segmentos].each do |s|
 				raise "Tipo nao suportado: [#{s}][#{tipo}]" if estrutura[s][tipo].nil?
 				if estrutura[s][tipo] == true

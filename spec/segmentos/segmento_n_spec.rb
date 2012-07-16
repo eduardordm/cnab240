@@ -26,7 +26,7 @@ describe SegmentoN do
 		segmento.should respond_to(:data_pagamento)
 		segmento.should respond_to(:valor_pagamento)
 
-		segmento.should respond_to(:informacoes_complementares)
+		segmento.should respond_to(:n_complemento)
 
 		segmento.should respond_to(:ocorrencias)
 	end
@@ -34,6 +34,30 @@ describe SegmentoN do
 	it "deve ter 240 caracteres" do
 		segmento = SegmentoN.new
 		segmento.linha.length.should be(240)
+	end
+
+	it "n_complemento deve respeitar choice header (N5)" do
+		lote = Cnab240::Lote.new(:operacao => :pagamento_titulo_tributos, :tipo => :remessa) do |l|
+			l.header.servico_forma = '25'
+		end
+		lote.segmento_n.should be_an_instance_of(Cnab240::SegmentoN)
+		
+		segmento = lote.segmento_n.n_complemento
+
+		segmento.should respond_to(:receita)
+		segmento.should respond_to(:tipo_identificacao_contribuinte)
+		segmento.should respond_to(:identificacao_contribuinte)
+		segmento.should respond_to(:identificacao_tributo)
+		
+		segmento.should respond_to(:exercicio)
+		segmento.should respond_to(:renavam)
+		segmento.should respond_to(:uf)
+		segmento.should respond_to(:municipio)
+		segmento.should respond_to(:placa)
+		segmento.should respond_to(:opcao_pagamento)
+
+		segmento.should respond_to(:cnab)
+
 	end
 
 end
