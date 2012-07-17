@@ -72,5 +72,12 @@ describe Arquivo do
 
 	end
 
+	it "deve carregar arquivo grande" do
+#		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/B330002984PSL.REM")[0]
+#		arquivo_read.save_to_file("spec/tmp/arquivo.test")
+#		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0
+#		arquivo_read.string.should eq arquivo_read2.string
+	end
+
 
 end

@@ -39,6 +39,8 @@ module Cnab240::Arquivo
 			arquivos = []
 			line_number = 0
 			File.open(filename, "r").each_line do |line|
+				line = line.force_encoding("US-ASCII").encode("UTF-8", :invalid=>:replace)
+				line.gsub!("\r", "")
 				line.gsub!("\n", "")
 				line_number = line_number + 1
 				raise "Invalid line length: #{line.length} expected 240 at line number #{line_number}\n\t Line: [#{line}]" unless line.length == 240
@@ -48,7 +50,11 @@ module Cnab240::Arquivo
 					arquivos.last.header = Header.read(line)
 				when '1'
 					case line[13..15]
-					when '044'
+					when '041' 
+						arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
+							l.header = Cnab240::Pagamentos::Header.read(line)
+						end	
+					when '044' 
 						arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
 							l.header = Cnab240::Pagamentos::Header.read(line)
 						end
@@ -61,10 +67,10 @@ module Cnab240::Arquivo
 							l.header = Cnab240::PagamentosTributos::Header.read(line)
 						end
 					else
-						raise "Invalid tipo de lote: #{line[13..15]} at line #{line_number}"
+						raise "Tipo de lote nao suportado: #{line[13..15]} na linha #{line_number}"
 					end
 				when '2'
-					raise NotImplementedError.new("Tipo de registro not implemented")
+					raise NotImplementedError.new("Tipo de registro nao suportado")
 				when '3' 
 					raise "Invalid segmento de lote: #{line[13..13]} at line #{line_number}" unless ESTRUTURA[:segmentos_implementados].include? line[13..13].downcase.intern
 					case line[13..13]

@@ -2,7 +2,14 @@
 
 [![Build Status](https://secure.travis-ci.org/eduardordm/cnab240.png)](http://travis-ci.org/eduardordm/cnab240)
 
-Esta é uma implementação do Layout Padrão Febraban 240 posições, baseada no BinData. 
+Esta é uma implementação do Layout Padrão Febraban 240 posições, e algumas variações.
+
+## Variações suportadas:
+
+Layout Padrão FEBRABAN 240 posições V8.6 
+Layout Padrão FEBRABAN 240 posições V8.4 (Planejado)
+Layout FEBRABAN 240 posições V4.0 (Itaú - Somente pagamentos SISDEB)
+
 
 ## Instalação
 
@@ -20,15 +27,9 @@ Ou adicione no seu chiqueiro:
 
 ## Como usar
 
-TODO: ...
+Por enquanto sem documentação, veja os testes.
 
 ## Contribuindo
 
-Adicione testes, abra o pull request. 
-
-Regras:
-
-1. Sem bikeshedding.
-2. Sem bikeshedding.
-3. Sem bikeshedding.
+Adicione testes, abra o pull request. Sem bikeshedding, por favor. Se alguem tiver interesse remover a dependencia do BinData, seria muito bom. BinData tem bugs alucinantes quando usamos valores fixos.
 
