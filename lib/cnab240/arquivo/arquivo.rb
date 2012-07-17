@@ -39,7 +39,7 @@ module Cnab240::Arquivo
 			arquivos = []
 			line_number = 0
 			File.open(filename, "r").each_line do |line|
-				line = line.force_encoding("US-ASCII").encode("UTF-8", :invalid=>:replace)
+				line = line.force_encoding("US-ASCII").encode("UTF-8", :invalid=>:replace) if line.respond_to?(:force_encoding)
 				line.gsub!("\r", "")
 				line.gsub!("\n", "")
 				line_number = line_number + 1
