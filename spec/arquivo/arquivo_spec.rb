@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-include Cnab240::Pagamentos
+include Cnab240::V86::Pagamentos
 include Cnab240::Arquivo
 
 describe Arquivo do
@@ -17,7 +17,7 @@ describe Arquivo do
 		(1..10).each do |n|
 			lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 			lote.should be_an_instance_of(Cnab240::Lote)
-			arquivo.lotes << lote
+			arquivo << lote
 			arquivo.lotes.length.should be(n)
 		end
 	end
@@ -29,7 +29,7 @@ describe Arquivo do
 		(1..10).each do |n|
 			lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 			lote.should be_an_instance_of(Cnab240::Lote)
-			arquivo.lotes << lote
+			arquivo << lote
 		end
 
 		arquivo.linhas do |linha|
@@ -40,7 +40,7 @@ describe Arquivo do
 	it "deve ler e escrever, mantendo classe de lote" do
 		arquivo = Cnab240::Arquivo::Arquivo.new
 		(1..10).each do |n|
-			arquivo.lotes  << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+			arquivo  << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 		end
 		arquivo.save_to_file("spec/tmp/arquivo.test")
 
@@ -58,7 +58,7 @@ describe Arquivo do
 	it "arquivos devem ser identicos" do
 		arquivo = Cnab240::Arquivo::Arquivo.new
 		(1..10).each do |n|
-			arquivo.lotes  << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+			arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 		end
 		arquivo.save_to_file("spec/tmp/arquivo.test")
 
@@ -73,9 +73,10 @@ describe Arquivo do
 	end
 
 	it "deve carregar arquivo grande" do
-#		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/B330002984PSL.REM")[0]
+
+	#	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/B330002984PSL.REM")[0]
 #		arquivo_read.save_to_file("spec/tmp/arquivo.test")
-#		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0
+#		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0]
 #		arquivo_read.string.should eq arquivo_read2.string
 	end
 
