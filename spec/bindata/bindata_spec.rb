@@ -21,7 +21,7 @@ describe "Bindata" do
 
 		class Dummy2 < BinData::Record
 			string :f1, :length => 3, :pad_byte => '1'
-			string :f2, :value => '0000', :pad_byte => '0'
+			string :f2, :value => '0000', :pad_byte => '0', :read_length => 4
 			string :f3, :length => 9, :pad_byte => 'X'
 		end
 
@@ -33,7 +33,22 @@ describe "Bindata" do
 		s2 = StringIO.new
 		d2.write(s2)
 		
-		 # s1.string.should eq s2.string # TODO: Fix bindata
+		s1.string.should eq s2.string 
+	end
+
+	it "should pad left" do
+		class Dummy3 < BinData::Record
+			lstring :f2, :length => 4,  :pad_byte => '0'
+		end
+
+		d1 = Dummy3.new
+		d1.f2 = '1'
+		s1 = StringIO.new
+		d1.write(s1)
+
+		d2 = Dummy3.read(s1.string)
+		d2.f2.should eq('0001')
+
 	end
 
 

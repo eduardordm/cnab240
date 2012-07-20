@@ -2,8 +2,10 @@ require "cnab240/version"
 
 require 'bindata'
 
+
 require "cnab240/ext/attribute_accessors"
 require "cnab240/ext/bindata"
+require "cnab240/ext/lstring"
 require "cnab240/ext/default_mixin"
 require "cnab240/ext/segmento_mixin"
 
@@ -48,8 +50,9 @@ require "cnab240/pagamentos/v40/header"
 require "cnab240/pagamentos/v40/trailer"
 
 require "cnab240/arquivo/estrutura"
-
 require "cnab240/arquivo/builder"
+
+require "cnab240/helper/pagamento_itau"
 
 
 module Cnab240
@@ -60,6 +63,8 @@ module Cnab240
 	mod_attr_accessor :fallback
 	@@fallback = "V86"
 
+	mod_attr_accessor :auto_fill_enabled
+	@@auto_fill_enabled = true
 
 	# Yield self for configuration block:
 	#

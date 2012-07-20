@@ -14,6 +14,7 @@ module Cnab240::Arquivo
 		end
 
 		def linhas
+			self.auto_fill if Cnab240.auto_fill_enabled
 			a = Array.new
 			a << @header.linha
 			@lotes.each do |lote|
@@ -44,6 +45,12 @@ module Cnab240::Arquivo
 
 		def self.load_from_file(filename) 
 			Cnab240::Builder.new(filename).arquivos
+		end
+
+		protected
+
+		def auto_fill
+
 		end
 
 	end
