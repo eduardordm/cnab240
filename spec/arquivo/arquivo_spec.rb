@@ -72,6 +72,16 @@ describe Arquivo do
 
 	end
 
+	it "auto fill do arquivo - soma de registros" do
+		arquivo = Cnab240::Arquivo::Arquivo.new
+		(1..2).each do |n|
+			arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+		end
+		arquivo.auto_fill
+		arquivo.trailer.totais_qtde_lotes.should eq '000002'
+		arquivo.trailer.totais_qtde_registros.should eq '000010'
+	end
+
 	it "deve carregar arquivo grande" do
 
 	#	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/B330002984PSL.REM")[0]

@@ -8,6 +8,7 @@ require "cnab240/ext/bindata"
 require "cnab240/ext/lstring"
 require "cnab240/ext/default_mixin"
 require "cnab240/ext/segmento_mixin"
+require "cnab240/ext/filler"
 
 require "cnab240/arquivo/lote"
 

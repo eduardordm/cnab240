@@ -1,48 +1,58 @@
 module Cnab240
 	class PagamentoItau
+
+		include Cnab240::Filler
 	
-		attr_accessor :arquivo
-	
-		attr_accessor :campos_arquivo		
+		attr_accessor :arquivo	
 
 		def initialize(campos = {})
-			@campos_arquivo = campos
 			@arquivo = Cnab240::Arquivo::Arquivo.new('V40')
-			arquivo.header.controle_banco = '341'
-			arquivo.header.banco_nome = 'BANCO ITAU'
-			arquivo.header.arquivo_codigo = '1'
+			# header e trailer arquivo
+			campos[:controle_banco] = '341'
+			campos[:banco_nome] = 'BANCO ITAU'
+			campos[:arquivo_codigo] = '1'
+			campos[:arquivo_data_geracao] = Time.now.strftime("%d%m%Y") 
+			campos[:arquivo_hora_geracao] = Time.now.strftime("%H%M") 
 
-			t = Time.now
-			arquivo.header.arquivo_data_geracao = t.strftime("%d%m%Y") 
-			arquivo.header.arquivo_hora_geracao = t.strftime("%H%M") 
-
-			campos.each do |k,v|
-				arquivo.header.send("#{k}=", v) if arquivo.header.respond_to?("#{k}=")
-				arquivo.trailer.send("#{k}=", v) if arquivo.trailer.respond_to?("#{k}=") 
-			end 
-
+			fill campos, arquivo.header, arquivo.trailer
 		end
 
 
 		def add(campos = {})
 			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V40')
-			
-			campos_arquivo.each do |k,v|
-				lote.header.send("#{k}=", v) if lote.header.respond_to?("#{k}=")
-				lote.trailer.send("#{k}=", v) if lote.trailer.respond_to?("#{k}=") 
-			end 
 
-			campos.each do |k,v|
-				lote.header.send("#{k}=", v) if lote.header.respond_to?("#{k}=")
-				lote.segmento_a.send("#{k}=", v) if lote.segmento_a.respond_to?("#{k}=")
-				lote.trailer.send("#{k}=", v) if lote.trailer.respond_to?("#{k}=") 
-			end 
+			# header e trailer lote
+			campos[:controle_banco] = '341'
+			campos[:servico_operacao] = 'D'
+			campos[:servico_tipo] = '05'
+			campos[:servico_forma] = '50'
+			campos[:servico_codigo_movimento] = '000'
+			campos[:servico_numero_registro] = '00001'
+			campos[:credito_moeda_tipo] = 'REA'
+			campos[:totais_qtde_registros] = '000003'
+			campos[:favorecido_banco] = '341'
+
+			campos[:controle_lote] = @arquivo.lotes.length.to_s
+
+			if campos[:valor] 
+				campos[:credito_valor_pagamento] = campos[:valor]
+				campos[:credito_valor_real] = campos[:valor]
+			end
+
+			if campos[:data] 
+				campos[:credito_data_pagamento]  = campos[:data]
+				campos[:credito_data_real] = campos[:data]
+			end
+
+			fill campos, lote.header, lote.trailer, lote.segmento_a
 		end
 
 		def string
+			arquivo.string
 		end
 
-		def save_to_file
+		def save_to_file(filename)
+			arquivo.save_to_file(filename)
 		end
 
 	end
