@@ -6,7 +6,7 @@ describe Cnab240::V86::SegmentoA do
 
 	it "deve instanciar segmento" do
 		segmento = Cnab240::V86::SegmentoA.new
-		segmento.should be_an_instance_of(SegmentoA)
+		segmento.should be_an_instance_of(Cnab240::V86::SegmentoA)
 	end
 
 	it "deve conter campos" do
