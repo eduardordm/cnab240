@@ -32,14 +32,20 @@ require "cnab240/segmentos/v86/segmento_w"
 require "cnab240/segmentos/v86/segmento_z"
 
 require "cnab240/segmentos/v40/segmento_a"
+require "cnab240/segmentos/v80/segmento_a"
 
 require "cnab240/arquivo/arquivo"
 
+require "cnab240/arquivo/v80/header"
+require "cnab240/arquivo/v80/trailer"
 require "cnab240/arquivo/v86/header"
 require "cnab240/arquivo/v86/trailer"
 require "cnab240/arquivo/v40/header"
 require "cnab240/arquivo/v40/trailer"
 
+
+require "cnab240/pagamentos/v80/header"
+require "cnab240/pagamentos/v80/trailer"
 require "cnab240/pagamentos/v86/header"
 require "cnab240/pagamentos/v86/trailer"
 require "cnab240/pagamentos/v86/titulos/header"
@@ -53,6 +59,7 @@ require "cnab240/pagamentos/v40/trailer"
 require "cnab240/arquivo/estrutura"
 require "cnab240/arquivo/builder"
 
+require "cnab240/helper/debito_itau"
 require "cnab240/helper/pagamento_itau"
 
 

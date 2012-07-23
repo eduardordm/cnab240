@@ -1,5 +1,5 @@
 module Cnab240
-	class PagamentoItau
+	class DebitoItau
 
 		include Cnab240::Filler
 	
@@ -19,7 +19,7 @@ module Cnab240
 
 
 		def add(campos = {})
-			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V40')
 
 			# header e trailer lote
 			campos[:controle_banco] = '341'

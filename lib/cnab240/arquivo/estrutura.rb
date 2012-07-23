@@ -1,5 +1,18 @@
 module Cnab240
 
+	ESTRUTURA_V80 = {
+		:segmentos_implementados => [:a],
+		:pagamento => {
+			:header => Cnab240::V80::Pagamentos::Header,
+			:trailer => Cnab240::V80::Pagamentos::Trailer,
+			:segmentos => [:a],
+			:a => {
+				:remessa => true,
+				:retorno => true
+			}
+		}
+	}
+
 	ESTRUTURA_V40 = {
 		:segmentos_implementados => [:a],
 		:pagamento => {
@@ -78,7 +91,8 @@ module Cnab240
 
 	ESTRUTURA = {
 		'V40' => ESTRUTURA_V40,
-		'V86' => ESTRUTURA_V86,
+		'V80' => ESTRUTURA_V80,
+		'V86' => ESTRUTURA_V86
 	}
 	
 end

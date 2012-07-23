@@ -17,6 +17,7 @@ Somente pagamentos. Veja pasta docs/
 
 - Layout Padrão FEBRABAN 240 posições V8.6 
 - Layout FEBRABAN 240 posições V4.0 (Itaú - SISDEB)
+- Layout FEBRABAN 240 posições V8.0 (Itaú - SISPAG)
 
 
 ## Instalação
@@ -81,7 +82,7 @@ Ler do arquivo:
 Voce pode usar os helpers que vao preencher os campos automaticamente, se possivel:
 
 ```ruby
-		pagamento = PagamentoItau.new({ 
+		debito = DebitoItau.new({ 
 			# header de arquivo
 			:empresa_tipo => '1',
 			:empresa_convenio => '1234',
@@ -94,7 +95,7 @@ Voce pode usar os helpers que vao preencher os campos automaticamente, se possiv
 			:arquivo_sequencia => '1'
 		})
 
-		pagamento.add({
+		debito.add({
 			# header do lote
 			:empresa_tipo => '2', # tipo empresa creditada
 			:empresa_numero => '999999999999', # cpf cnpj creditado
@@ -119,7 +120,7 @@ Voce pode usar os helpers que vao preencher os campos automaticamente, se possiv
 			:numero_inscricao => '12345678901234' # cpf ou cnpj do debitado
 		})
 
-		pagamento.save_to_file("spec/tmp/arquivo_itau.test")
+		debito.save_to_file("spec/tmp/arquivo_itau.test")
 ```
 		
 ## Considerações
