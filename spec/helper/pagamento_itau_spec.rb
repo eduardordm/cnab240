@@ -46,6 +46,10 @@ describe PagamentoItau do
 
 			
 		pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO ITAU'
+
+		pagamento.save_to_file("spec/tmp/arquivo_itau.test")
+
+		pagamento.string
 	end
 
 end

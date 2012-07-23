@@ -35,7 +35,8 @@ Ou adicione no seu chiqueiro:
 
 ## Como usar
 
-Por enquanto sem muita documentação (veja os testes).
+Por enquanto sem muita documentação (veja os testes). Voce vai precisar ler os documentos da pasta docs para se situar, sao muitos campos com nomes bem parecidos. Utilize a documentação dos bancos/febraban como referência.
+
 
 Em algum lugar voce pode criar um arquivo de inicialização (não é obrigatório):
 
@@ -74,14 +75,59 @@ Ler do arquivo:
 	arquivos = Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test") # array de objetos Arquivo
 	puts arquivos[0].header
 ```
+
+### Usando Helpers
+
+Voce pode usar os helpers que vao preencher os campos automaticamente, se possivel:
+
+```ruby
+		pagamento = PagamentoItau.new({ 
+			# header de arquivo
+			:empresa_tipo => '1',
+			:empresa_convenio => '1234',
+			:empresa_tipo => '2',
+			:empresa_numero => '01234567891234',
+			:empresa_nome => 'EMPRESA FULANA',
+			:empresa_agencia_codigo => '',
+			:empresa_conta_numero => '',
+			:empresa_agencia_conta_dv => '',
+			:arquivo_sequencia => '1'
+		})
+
+		pagamento.add({
+			# header do lote
+			:empresa_tipo => '2', # tipo empresa creditada
+			:empresa_numero => '999999999999', # cpf cnpj creditado
+			:empresa_convenio => '12345', # convenio junto ao banco
+			:empresa_agencia_codigo => '2290', # agencia creditada
+			:empresa_conta_numero => '33595', # conta creditada
+			:empresa_agencia_conta_dv => '9', # dv conta agencia
+			:empresa_nome => 'ZECA URUBU',
+			:endereco_logradouro => 'AV BRASIL',
+			:endereco_numero => '123',
+			:endereco_cidade => 'RIO DE JANEIRO',
+			:endereco_cep => '12123412',
+			:endereco_estado => 'RJ',
+			# segmento a
+			:favorecido_agencia_codigo => '1234', # agencia do debitado
+			:favorecido_conta_numero => '12345', # conta do debitado
+			:favorecido_agencia_conta_dv => '1', # dv agencia e conta
+			:favorecido_nome => 'EMPRESA X', # nome do debitado
+			:credito_seu_numero => '1234',
+			:data => '30122012',
+			:valor => '100',
+			:numero_inscricao => '12345678901234' # cpf ou cnpj do debitado
+		})
+
+		pagamento.save_to_file("spec/tmp/arquivo_itau.test")
+```
 		
 ## Considerações
 
-- Tudo string. O arquivo é de strings, a implementação também.
+- Tudo string. O arquivo é de strings, a implementação também;
+- Padding é automático.
 
 ## Contribuindo
 
 Adicione testes, abra o pull request. Sem bikeshedding, wizardry ou craftismos pro meu lado!!! O código aqui deve ser de simples entendimento. 
-
-Meta code coverage: 100% para layout e marshalling. O resto, só se for muito importante.
 
