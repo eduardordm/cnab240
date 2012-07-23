@@ -38,7 +38,7 @@ module Cnab240::V80
 		string :codigo_finalidade_complementar, :length => 2, :pad_byte => ' '
 		string :finalidade_ted, :length => 5, :pad_byte => ' '
 		string :brancos_3, :length => 5, :pad_byte => ' '
-		lstring :aviso, :length => 1, :pad_byte => '0'
+		lstring :aviso, :length => 1, :pad_byte => ' '
 		string :ocorrencias, :length => 10, :pad_byte => ' '
 
 	end

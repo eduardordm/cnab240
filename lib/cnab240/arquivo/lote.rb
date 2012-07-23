@@ -29,9 +29,7 @@ module Cnab240
 			if tipo != :none
 				estrutura[:segmentos].each do |s|
 					raise "Tipo nao suportado: [#{s}][#{tipo}]" if (estrutura[s][tipo].nil?) && tipo != :any
-					if (tipo == :any) || (estrutura[s][tipo] == true)
-						self << s 
-					end
+					self << s  if (tipo == :any) || (estrutura[s][tipo] == true)
 				end
 			end
 		end
