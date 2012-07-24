@@ -23,7 +23,6 @@ describe PagamentoItau do
 			:header => {
 				:empresa_tipo => '2', # tipo empresa creditada
 				:empresa_numero => '999999999999', # cpf cnpj creditado
-				:empresa_convenio => '12345', # convenio junto ao banco
 				:empresa_agencia_codigo => '2290', # agencia creditada
 				:empresa_conta_numero => '33595', # conta creditada
 				:empresa_agencia_conta_dv => '9', # dv conta agencia
@@ -33,7 +32,6 @@ describe PagamentoItau do
 				:endereco_cidade => 'RIO DE JANEIRO',
 				:endereco_cep => '12123412',
 				:endereco_estado => 'RJ',
-
 				:servico_tipo => '98', # pagamentos - diversos
 				:servico_forma => '03', # doc, ted, etc
 			},
@@ -41,29 +39,16 @@ describe PagamentoItau do
 			:trailer => {},
 
 			:segmento_a => {
-				:servico_codigo_segmento => '',
-				:servico_tipo_movimento => '',
-
-				:favorecido_banco => '',
-				:favorecido_agencia_conta=> '',
-
-				:credito_seu_numero => '',
-				:credito_data_pagamento => '',
-
-				:credito_valor_pagamento => '',
-				:credito_nosso_numero => '',
-
-				:numero_documento => '',
-				:numero_inscricao => '',
-
-				:favorecido_agencia_codigo => '1234', # agencia do debitado
-				:favorecido_conta_numero => '12345', # conta do debitado
-				:favorecido_agencia_conta_dv => '1', # dv agencia e conta
-				:favorecido_nome => 'EMPRESA X', # nome do debitado
+				:favorecido_banco => '001',
+				:favorecido_agencia_conta => '2290124',
 				:credito_seu_numero => '1234',
-				:data => '30122012',
-				:valor => '100',
-				:numero_inscricao => '12345678901234' # cpf ou cnpj do debitado
+				:credito_data_pagamento => '31122012',
+				:credito_valor_pagamento => '100',
+				:numero_inscricao => '12312312312312',
+				:favorecido_nome => 'EMPRESA X', 
+				:credito_seu_numero => '1234',
+				:credito_data_pagamento => '30122012',
+				:credito_valor_pagamento => '100',
 			}
 		})
 

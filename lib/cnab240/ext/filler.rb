@@ -9,5 +9,13 @@ module Cnab240
 			end
 		end
 
+		def fill!(hash, *objects)
+			objects.each do |object|
+				hash.each do |k,v|
+					object.send("#{k}=", v) 
+				end
+			end	
+		end
+
 	end
 end

@@ -8,7 +8,6 @@ describe DebitoItau do
 		
 		debito = DebitoItau.new({ 
 			# header de arquivo
-			:empresa_tipo => '1',
 			:empresa_convenio => '1234',
 			:empresa_tipo => '2',
 			:empresa_numero => '01234567891234',

@@ -34,19 +34,11 @@ module Cnab240
 			campos[:segmento_a][:servico_numero_registro] ||= '1'
 			campos[:segmento_a][:servico_tipo_movimento] ||= '000'
 			campos[:segmento_a][:credito_moeda_tipo] ||= 'REA'
-			campos[:trailer][:totais_qtde_registros] = '000003'
+			campos[:trailer][:totais_qtde_registros] ||= '000003'
 
-			if campos[:segmento_a][:valor] 
-				campos[:segmento_a][:credito_valor_pagamento] ||= campos[:valor]
-			end
-
-			if campos[:segmento_a][:data] 
-				campos[:segmento_a][:credito_data_pagamento]  ||= campos[:data]
-			end
-
-			fill campos[:header], lote.header
-			fill campos[:segmento_a], lote.segmento_a
-			fill campos[:trailer], lote.trailer
+			fill! campos[:header], lote.header
+			fill! campos[:segmento_a], lote.segmento_a
+			fill! campos[:trailer], lote.trailer
 		end
 
 		def string
