@@ -9,7 +9,7 @@ module Cnab240
 		attr_accessor :arquivo
 
 		def initialize(options = {})
-			@segmentos = {}
+			@segmentos = []
 			
 			@operacao ||= options[:operacao]
 			@tipo ||= options[:tipo]
@@ -25,36 +25,27 @@ module Cnab240
 			@trailer = estrutura[:trailer].new
 
 			yield self if block_given?
-
-			if tipo != :none
-				estrutura[:segmentos].each do |s|
-					raise "Tipo nao suportado: [#{s}][#{tipo}]" if (estrutura[s][tipo].nil?) && tipo != :any
-					self << s  if (tipo == :any) || (estrutura[s][tipo] == true)
-				end
-			end
 		end
 
 		def read_segmento(s, line)
-			segmento = self << s
-			segmentos[s] = segmento.read(line)
+			segmentos << segmento.read(line)
 		end
 
 		def <<(s)
 			versao = arquivo.versao unless arquivo.nil?
 			versao ||= @versao
 
-			segmentos[s] = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")
-			segmentos[s].lote = self
-			add_segmento_accessors(s)
-			segmentos[s]
+			segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")
+			seg.lote = self
+			seg
 		end
 
 		def linhas
 			seg_array = Array.new
 			estrutura = ESTRUTURA[@versao][operacao]
 			seg_array << @header.linha
-			estrutura[:segmentos].each do |s|
-				seg_array << @segmentos[s].linha unless @segmentos[s].nil?
+			segmentos.each do |s|
+				seg_array << s.linha 
 			end
 			seg_array << @trailer.linha
 			seg_array
@@ -62,19 +53,6 @@ module Cnab240
 
 		def string
 			linhas.join("\n")
-		end
-
-		private 
-
-		def add_segmento_accessors(segmento)
-			instance_eval <<-RUBY, __FILE__, __LINE__ + 1
-				def segmento_#{segmento.to_s.downcase} 
-	        		segmentos[:#{segmento.to_s.downcase}] 
-	      		end
-	      		def segmento_#{segmento.to_s.downcase}=(s)
-	        		segmentos[:#{segmento.to_s.downcase}] = s
-	      		end
-      		RUBY
 		end
 
 	end

@@ -20,7 +20,7 @@ module Cnab240
 
 		def add(campos = {})
 			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V40')
-
+			lote << :a
 			campos[:controle_banco] ||= '341'
 			campos[:servico_operacao] ||= 'D'
 			campos[:servico_tipo] ||= '05'
@@ -40,7 +40,7 @@ module Cnab240
 				campos[:credito_data_pagamento] ||= campos[:data]
 			end
 
-			fill campos, lote.header, lote.trailer, lote.segmento_a
+			fill campos, lote.header, lote.trailer, lote.segmentos[0]
 		end
 
 		def string

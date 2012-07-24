@@ -7,7 +7,8 @@ module Cnab240
 
 		def initialize(campos = {})
 			@arquivo = Cnab240::Arquivo::Arquivo.new('V80')
-			# header e trailer arquivo
+			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+
 			campos[:controle_banco] ||= '341'
 			campos[:arquivo_codigo] ||= '1'
 			campos[:banco_nome] ||= 'BANCO ITAU'
@@ -15,30 +16,26 @@ module Cnab240
 			campos[:arquivo_hora_geracao] ||= Time.now.strftime("%H%M") 
 
 			fill campos, arquivo.header, arquivo.trailer
+
+			campos[:servico_operacao] ||= 'C'
+			campos[:controle_lote] ||= '0001'
+
+			fill campos, lote.header, lote.trailer
+
 		end
 
 
-		def add(campos = {})
-			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+		def <<(campos)
+			lote = @arquivo.lotes.last
+			lote << :a
+			campos[:controle_banco] ||= '341'
+			campos[:controle_lote] ||= @arquivo.lotes.length.to_s
+			campos[:servico_numero_registro] ||= lote.segmentos.length.to_s
+			campos[:servico_tipo_movimento] ||= '000'
+			campos[:credito_moeda_tipo] ||= 'REA'
+			campos[:totais_qtde_registros] ||= (lote.segmentos.length + 2).to_s
 
-			campos[:header] ||= {}
-			campos[:trailer] ||= {}
-			campos[:segmento_a] ||= {}
-
-			campos[:header][:controle_banco] ||= '341'
-			campos[:header][:servico_operacao] ||= 'C'
-			campos[:header][:controle_lote] ||= @arquivo.lotes.length.to_s
-
-			campos[:segmento_a][:controle_banco] ||= '341'
-			campos[:segmento_a][:controle_lote] ||= @arquivo.lotes.length.to_s
-			campos[:segmento_a][:servico_numero_registro] ||= '1'
-			campos[:segmento_a][:servico_tipo_movimento] ||= '000'
-			campos[:segmento_a][:credito_moeda_tipo] ||= 'REA'
-			campos[:trailer][:totais_qtde_registros] ||= '000003'
-
-			fill! campos[:header], lote.header
-			fill! campos[:segmento_a], lote.segmento_a
-			fill! campos[:trailer], lote.trailer
+			fill campos, lote.segmentos.last
 		end
 
 		def string

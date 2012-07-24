@@ -4,7 +4,7 @@ module Cnab240::V80
 		include Cnab240::DefaultMixin
 		include Cnab240::SegmentoMixin
 		
-		lstring :controle_banco, :length => 3, :pad_byte => '0'
+		lstring :controle_banco, :length => 3, :pad_byte => '0' 
 		lstring :controle_lote, :length => 4, :pad_byte => '0'
 		string :controle_registro, :length => 1, :initial_value => '3', :pad_byte => '0'
 

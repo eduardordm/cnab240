@@ -75,11 +75,12 @@ describe Arquivo do
 	it "auto fill do arquivo - soma de registros" do
 		arquivo = Cnab240::Arquivo::Arquivo.new
 		(1..2).each do |n|
-			arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+			arquivo << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+			lote << :a
 		end
 		arquivo.auto_fill
 		arquivo.trailer.totais_qtde_lotes.should eq '000002'
-		arquivo.trailer.totais_qtde_registros.should eq '000010'
+		arquivo.trailer.totais_qtde_registros.should eq '000008'
 	end
 
 	it "deve carregar arquivo grande" do

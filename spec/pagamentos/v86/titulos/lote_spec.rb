@@ -10,18 +10,20 @@ describe Cnab240::Lote do
 
 	it "deve conter segmento a" do
 		lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
-		lote.segmento_a.should be_an_instance_of(Cnab240::V86::SegmentoA)
+		lote << :a
+		lote.segmentos[0].should be_an_instance_of(Cnab240::V86::SegmentoA)
 	end
 
 	it "deve conter segmento b" do
 		lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
-		lote.segmento_b.should be_an_instance_of(Cnab240::V86::SegmentoB)
+		lote << :b
+		lote.segmentos[0].should be_an_instance_of(Cnab240::V86::SegmentoB)
 	end
 
 	it "pode conter segmento c" do
 		lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 		lote << :c
-		lote.should respond_to(:segmento_c)
+		lote.segmentos[0].should be_an_instance_of(Cnab240::V86::SegmentoC)
 	end
 
 	it "linhas devem ter 240" do

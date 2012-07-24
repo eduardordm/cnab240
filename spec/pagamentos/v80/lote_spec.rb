@@ -10,7 +10,8 @@ describe Cnab240::Lote do
 
 	it "deve conter segmento a" do
 		lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
-		lote.segmento_a.should be_an_instance_of(Cnab240::V80::SegmentoA)
+		lote << :a
+		lote.segmentos[0].should be_an_instance_of(Cnab240::V80::SegmentoA)
 	end
 
 	it "linhas devem ter 240" do

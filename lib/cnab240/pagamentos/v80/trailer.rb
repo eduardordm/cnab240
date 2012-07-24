@@ -3,7 +3,7 @@ module Cnab240::V80::Pagamentos
 		
 		include Cnab240::DefaultMixin
 
-		lstring :controle_banco, :length => 3, :pad_byte => '0'
+		lstring :controle_banco, :length => 3, :pad_byte => '0' 
 		lstring :controle_lote, :length => 4, :pad_byte => '0'
 		lstring :controle_registro, :length => 1, :initial_value => '5', :pad_byte => '0'
 

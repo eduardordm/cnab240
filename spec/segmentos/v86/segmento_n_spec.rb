@@ -40,9 +40,10 @@ describe SegmentoN do
 		lote = Cnab240::Lote.new(:operacao => :pagamento_titulo_tributos, :tipo => :remessa) do |l|
 			l.header.servico_forma = '25'
 		end
-		lote.segmento_n.should be_an_instance_of(SegmentoN)
+		lote << :n
+		lote.segmentos[0].should be_an_instance_of(SegmentoN)
 		
-		segmento = lote.segmento_n.n_complemento
+		segmento = lote.segmentos[0].n_complemento
 
 		segmento.should respond_to(:receita)
 		segmento.should respond_to(:tipo_identificacao_contribuinte)
