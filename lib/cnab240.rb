@@ -59,7 +59,6 @@ require "cnab240/pagamentos/v40/trailer"
 require "cnab240/arquivo/estrutura"
 require "cnab240/arquivo/builder"
 
-require "cnab240/helper/debito_itau"
 require "cnab240/helper/pagamento_itau"
 
 
