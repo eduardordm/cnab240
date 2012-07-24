@@ -7,6 +7,15 @@ Esta é uma implementação do Layout Padrão Febraban 240 posições, e algumas
 
 Os padrões da febraban são fruto de incompêtencia que ultrapassa os limites do patético. Espero que essa implementação lhe poupe algumas horas de sofrimento. 
 
+Cada banco tem uma visão particular sobre o padrão, os bancos:
+
+- Subdividem os campos em outros menores;
+- Trocam o nome e utilidade de campos;
+
+Tudo isso para que eu sumisse do Rio de Janeiro e não fizesse a descoberta de seu King Size.
+
+Dê um git clone no master do repositório para que voce tenha acesso aos modelos (sem RDoc ainda).
+
 
 Adicionar mais implementações é simples. Leia os testes. Aos poucos vou adicionando alguma documentação.
 
@@ -36,7 +45,7 @@ Ou adicione no seu chiqueiro:
 
 ## Como usar
 
-Por enquanto sem muita documentação (veja os testes). Voce vai precisar ler os documentos da pasta docs para se situar, sao muitos campos com nomes bem parecidos. Utilize a documentação dos bancos/febraban como referência.
+Por enquanto sem muita documentação (veja os testes). Você vai precisar ler os documentos da pasta docs para se situar, são muitos campos com nomes bem parecidos. Utilize a documentação dos bancos/febraban como referência.
 
 
 Em algum lugar voce pode criar um arquivo de inicialização (não é obrigatório):
