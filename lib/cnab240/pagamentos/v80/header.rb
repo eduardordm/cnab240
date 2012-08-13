@@ -22,7 +22,7 @@ module Cnab240::V80::Pagamentos
 		string :brancos_2, :length => 1, :pad_byte => ' '
 		lstring :empresa_conta_numero, :length => 12, :pad_byte => '0'
 		string :brancos_3, :length => 1, :pad_byte => ' '
-		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => ' '
+		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => '0'
 		string :empresa_nome, :length => 30, :pad_byte => ' '
 
 		string :finalidade_lote, :length => 30, :pad_byte => ' '

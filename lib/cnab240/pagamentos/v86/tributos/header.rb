@@ -18,10 +18,10 @@ module Cnab240::V86::PagamentosTributos
 		lstring :empresa_numero, :length => 14, :pad_byte => '0'
 		string :empresa_convenio, :length => 20, :pad_byte => ' '
 		lstring :empresa_agencia_codigo, :length => 5, :pad_byte => '0'
-		string :empresa_agencia_dv, :length => 1, :pad_byte => ' '
+		string :empresa_agencia_dv, :length => 1, :pad_byte => '0'
 		lstring :empresa_conta_numero, :length => 12, :pad_byte => '0'
-		string :empresa_conta_dv, :length => 1, :pad_byte => ' '
-		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => ' '
+		string :empresa_conta_dv, :length => 1, :pad_byte => '0'
+		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => '0'
 		string :empresa_nome, :length => 30, :pad_byte => ' '
 
 		string :informacao_1, :length => 40, :pad_byte => ' '

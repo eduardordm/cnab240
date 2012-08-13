@@ -19,7 +19,7 @@ module Cnab240::V80::Arquivo
 		string :brancos_3, :length => 1, :initial_value => ' ', :pad_byte => ' '
 		lstring :empresa_conta_numero, :length => 12, :pad_byte => '0'
 		string :brancos_4, :length => 1, :initial_value => ' ', :pad_byte => ' '
-		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => ' '
+		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => '0'
 		string :empresa_nome, :length => 30, :pad_byte => ' '
 		string :banco_nome, :length => 30, :pad_byte => ' '
 		string :brancos_5, :length => 10, :initial_value => ' ', :pad_byte => ' '

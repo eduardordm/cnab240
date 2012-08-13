@@ -31,6 +31,8 @@ require "cnab240/segmentos/v86/segmento_w1"
 require "cnab240/segmentos/v86/segmento_w"
 require "cnab240/segmentos/v86/segmento_z"
 
+require "cnab240/segmentos/v80/agencia_itau"
+require "cnab240/segmentos/v80/agencia_outros"
 require "cnab240/segmentos/v40/segmento_a"
 require "cnab240/segmentos/v80/segmento_a"
 

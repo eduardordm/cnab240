@@ -8,6 +8,7 @@ module Cnab240
 					self.send("#{k}=", v)
 				end
 			end 
+			yield self if block_given?
 		end
 
 

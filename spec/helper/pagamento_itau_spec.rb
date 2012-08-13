@@ -27,7 +27,8 @@ describe PagamentoItau do
 		})
 
 		pagamento << { :favorecido_banco => '001',
-				:favorecido_agencia_conta => '2290124',
+				:favorecido_agencia => '2290',
+				:favorecido_conta => '335959',
 				:credito_seu_numero => '1234',
 				:credito_data_pagamento => '31122012',
 				:credito_valor_pagamento => '100',
@@ -39,7 +40,8 @@ describe PagamentoItau do
 			}
 
 		pagamento << { :favorecido_banco => '001',
-				:favorecido_agencia_conta => '2290124',
+				:favorecido_agencia => '2290',
+				:favorecido_conta => '335959',
 				:credito_seu_numero => '1234',
 				:credito_data_pagamento => '31122012',
 				:credito_valor_pagamento => '100',

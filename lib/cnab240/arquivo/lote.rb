@@ -34,8 +34,12 @@ module Cnab240
 		def <<(s)
 			versao = arquivo.versao unless arquivo.nil?
 			versao ||= @versao
-
-			segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")
+			case s 
+			when Symbol, String
+				segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")	
+			else
+				segmentos << seg = s
+			end
 			seg.lote = self
 			seg
 		end
@@ -52,7 +56,7 @@ module Cnab240
 		end
 
 		def string
-			linhas.join("\n")
+			linhas.join("\r\n")
 		end
 
 	end

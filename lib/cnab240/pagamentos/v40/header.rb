@@ -31,7 +31,7 @@ module Cnab240::V40::Pagamentos
 
 		string :brancos_5, :length => 1, :pad_byte => ' '
 
-		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => ' '
+		string :empresa_agencia_conta_dv, :length => 1, :pad_byte => '0'
 		string :empresa_nome, :length => 30, :pad_byte => ' '
 
 		string :informacao_1, :length => 40, :pad_byte => ' '
