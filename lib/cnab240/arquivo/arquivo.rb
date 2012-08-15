@@ -32,7 +32,7 @@ module Cnab240::Arquivo
 		end
 
 		def string
-			linhas.join("\r\n")
+			linhas.join("\r\n") << "\r\n" 
 		end
 
 		def save_to_file(filename)

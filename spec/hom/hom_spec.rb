@@ -10,9 +10,9 @@ describe "HomSpec" do
 			:empresa_tipo => '2',
 			:empresa_numero => '05946982000122',
 			:empresa_nome => 'REDE DE CONVENIOS DO BRASIL',
-			:empresa_agencia_codigo => '0663',
-			:empresa_conta_numero => '015402',
-		#	:empresa_agencia_conta_dv => '',
+			:empresa_agencia_codigo => '663',
+			:empresa_conta_numero => '01540',
+			:empresa_agencia_conta_dv => '0',
 			:arquivo_sequencia => '1',
 
 			:endereco_logradouro => 'RUA GETULIO VARGAS',
@@ -28,6 +28,7 @@ describe "HomSpec" do
 			:favorecido_banco => '001',
 			:favorecido_agencia => '2290',
 			:favorecido_conta => '335959',
+			:favorecido_agencia_conta_dv => '9',
 			:credito_seu_numero => '1',
 			:credito_data_pagamento => '03082012',
 			:credito_valor_pagamento => '500000',
@@ -35,7 +36,7 @@ describe "HomSpec" do
 			:favorecido_nome => 'JOSE EDUARDO MOURAO'
 		}
 
-		pagamento.save_to_file("spec/tmp/itau07.rem")
+		pagamento.save_to_file("spec/tmp/itau24.rem")
 	end
 
 end

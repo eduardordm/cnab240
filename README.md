@@ -12,7 +12,7 @@ Cada banco tem uma visão particular sobre o padrão, os bancos:
 - Subdividem os campos em outros menores;
 - Trocam o nome e utilidade de campos;
 
-Tudo isso para que eu sumisse do Rio de Janeiro e não fizesse a descoberta de seu King Size.
+Tudo isso para que eu sumisse do Rio de Janeiro e não fizesse a descoberta de ser King Size.
 
 Dê um git clone no master do repositório para que voce tenha acesso aos modelos (sem RDoc ainda).
 
@@ -25,8 +25,7 @@ Adicionar mais implementações é simples. Leia os testes. Aos poucos vou adici
 Somente pagamentos. Veja pasta docs/ 
 
 - Layout Padrão FEBRABAN 240 posições V8.6 
-- Layout FEBRABAN 240 posições V4.0 (Itaú - SISDEB)
-- Layout FEBRABAN 240 posições V8.0 (Itaú - SISPAG)
+- Layout FEBRABAN 240 posições V80 (Itaú - SISPAG)
 
 
 ## Instalação
@@ -94,35 +93,33 @@ Voce pode usar os helpers que vao preencher os campos automaticamente, se possiv
 ```ruby
 	pagamento = PagamentoItau.new({ 
 		:empresa_tipo => '2',
-		:empresa_convenio => '1234',
-		:empresa_tipo => '2',
-		:empresa_numero => '01234567891234',
-		:empresa_nome => 'EMPRESA FULANA',
-		:empresa_agencia_codigo => '',
-		:empresa_conta_numero => '',
-		:empresa_agencia_conta_dv => '',
+		:empresa_numero => '07946982000133',
+		:empresa_nome => 'LOJA DO BRASIL LTDA',
+		:empresa_agencia_codigo => '663',
+		:empresa_conta_numero => '01540',
+		:empresa_agencia_conta_dv => '0',
 		:arquivo_sequencia => '1',
 
-		:endereco_logradouro => 'AV BRASIL',
-		:endereco_numero => '123',
-		:endereco_cidade => 'RIO DE JANEIRO',
-		:endereco_cep => '12123412',
-		:endereco_estado => 'RJ',
+		:endereco_logradouro => 'RUA GETULIO VARGAS',
+		:endereco_numero => '3646',
+		:endereco_cidade => 'PORTO VELHO',
+		:endereco_cep => '76000000',
+		:endereco_estado => 'RO',
 		:servico_tipo => '98', # pagamentos - diversos
-		:servico_forma => '03', # doc, ted, etc
+		:servico_forma => '41', # doc, ted, etc
 	})
 
-	pagamento << { :favorecido_banco => '001',
-			:favorecido_agencia_conta => '2290124',
-			:credito_seu_numero => '1234',
-			:credito_data_pagamento => '31122012',
-			:credito_valor_pagamento => '100',
-			:numero_inscricao => '12312312312312',
-			:favorecido_nome => 'EMPRESA X', 
-			:credito_seu_numero => '1234',
-			:credito_data_pagamento => '30122012',
-			:credito_valor_pagamento => '100'
-		}
+	pagamento << { 
+		:favorecido_banco => '001',
+		:favorecido_agencia => '2280',
+		:favorecido_conta => '335959',
+		:favorecido_agencia_conta_dv => '9',
+		:credito_seu_numero => '1',
+		:credito_data_pagamento => '03082012',
+		:credito_valor_pagamento => '500000',
+		:numero_inscricao => '19375208168',
+		:favorecido_nome => 'EDUARDO MOURAO'
+	}
 
 	pagamento.string
 ```
