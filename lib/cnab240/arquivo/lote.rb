@@ -45,7 +45,8 @@ module Cnab240
 		end
 
 		def linhas
-			seg_array = Array.new
+			self.auto_fill if Cnab240.auto_fill_enabled
+			seg_array = []
 			estrutura = ESTRUTURA[@versao][operacao]
 			seg_array << @header.linha
 			segmentos.each do |s|
@@ -57,6 +58,11 @@ module Cnab240
 
 		def string
 			linhas.join("\r\n")
+		end
+
+		def auto_fill
+			# totais_qtde_registros
+			
 		end
 
 	end

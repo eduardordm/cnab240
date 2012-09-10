@@ -47,6 +47,7 @@ module Cnab240::Arquivo
 			Cnab240::Builder.new(filename).arquivos
 		end
 
+
 		def auto_fill
 			trailer.totais_qtde_lotes = lotes.length.to_s
 			qtd_registros = lotes.length * 2 # header e trailer de cada lote
