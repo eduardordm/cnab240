@@ -25,6 +25,14 @@ module Cnab240
 
 		end
 
+		def add_lote(campos = {})
+			@arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+
+			campos[:servico_operacao] ||= 'C'
+			campos[:controle_lote] ||= '0001'
+
+			fill campos, lote.header	
+		end
 
 		def <<(campos)
 			lote = @arquivo.lotes.last
@@ -32,11 +40,6 @@ module Cnab240
 			campos[:controle_banco] ||= '341'
 			campos[:controle_lote] ||= @arquivo.lotes.length.to_s
 			campos[:servico_numero_registro] ||= (lote.segmentos.length+1).to_s
-			puts "lote #{campos[:servico_numero_registro]}"
-			puts "lote #{campos[:servico_numero_registro]}"
-			puts "lote #{campos[:servico_numero_registro]}"
-			puts "lote #{campos[:servico_numero_registro]}"
-			puts "lote #{campos[:servico_numero_registro]}"
 			campos[:servico_tipo_movimento] ||= '000'
 			campos[:credito_moeda_tipo] ||= 'REA'
 			campos[:totais_qtde_registros] ||= (lote.segmentos.length + 2).to_s
