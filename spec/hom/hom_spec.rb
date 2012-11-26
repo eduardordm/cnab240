@@ -42,4 +42,24 @@ describe "HomSpec" do
 		pagamento.save_to_file("spec/tmp/itau46.rem")
 	end
 
+	it "deve carregar arquivo de retorno" do
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/hom/retorno/SB22112A IT.ret")[0]
+
+		arquivo_read.lotes.length.should be 1
+
+		arquivo_read.lotes.each_with_index do |lote_read, i| 
+			lote_read.header.empresa_nome.equal? 'REDE DE CONVENIOS DO BRASIL   '
+		end
+
+
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/hom/retorno/SB23112A IT.ret")[0]
+
+		arquivo_read.lotes.length.should be 1
+
+		arquivo_read.lotes.each_with_index do |lote_read, i| 
+			lote_read.header.empresa_nome.equal? 'REDE DE CONVENIOS DO BRASIL   '
+		end
+
+	end
+
 end

@@ -68,9 +68,9 @@ module Cnab240
 		def find_header_arquivo(line, line_number = -1)
 			arquivos << Cnab240::Arquivo::Arquivo.new
 			case line[RANGE_LAYOUT_ARQUIVO]
-		#	when '080'
-		#		arquivos.last.versao = 'V80'
-		#		arquivos.last.header = Cnab240::V80::Arquivo::Header.read(line)	
+			# when '080'
+			# 	arquivos.last.versao = 'V80'
+			# 	arquivos.last.header = Cnab240::V80::Arquivo::Header.read(line)	
 			when '085'
 				arquivos.last.versao = 'V86'
 				arquivos.last.header = Cnab240::V86::Arquivo::Header.read(line)
@@ -95,6 +95,10 @@ module Cnab240
 
 		def find_header_lote(line, line_number = -1)
 			case line[RANGE_HEADER_LOTE]
+			when '080'
+				arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none, :versao => 'V80') do |l|
+					l.header = Cnab240::V80::Pagamentos::Header.read(line)
+				end		
 			when '030'
 				case arquivos.last.versao
 				when 'V80'

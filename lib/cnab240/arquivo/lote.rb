@@ -27,9 +27,11 @@ module Cnab240
 			yield self if block_given?
 		end
 
-		def read_segmento(s, line)
-			segmentos << segmento.read(line)
-		end
+		 def read_segmento(s, line)
+		 	versao = arquivo.versao unless arquivo.nil?
+			versao ||= @versao
+		 	segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.read(line)")
+		 end
 
 		def <<(s)
 			versao = arquivo.versao unless arquivo.nil?
