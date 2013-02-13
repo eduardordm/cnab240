@@ -43,7 +43,7 @@ describe "HomSpec" do
 	end
 
 	it "deve carregar arquivo de retorno" do
-		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/hom/retorno/SB22112AIT.ret")[0]
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/hom/retorno/SB22112AIT.RET")[0]
 
 		arquivo_read.lotes.length.should be 1
 
@@ -52,7 +52,7 @@ describe "HomSpec" do
 		end
 
 
-		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/hom/retorno/SB23112AIT.ret")[0]
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/hom/retorno/SB23112AIT.RET")[0]
 
 		arquivo_read.lotes.length.should be 1
 
