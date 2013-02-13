@@ -42,7 +42,7 @@ describe Arquivo do
 		(1..10).each do |n|
 			arquivo  << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 		end
-		arquivo.save_to_file("spec/tmp/arquivo.test")
+		arquivo.save_to_file("./spec/tmp/arquivo.test")
 
 		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/tmp/arquivo.test")[0]
 
@@ -60,7 +60,7 @@ describe Arquivo do
 		(1..10).each do |n|
 			arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
 		end
-		arquivo.save_to_file("spec/tmp/arquivo.test")
+		arquivo.save_to_file("./spec/tmp/arquivo.test")
 
 		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/tmp/arquivo.test")[0]
 		
