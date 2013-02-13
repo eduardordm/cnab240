@@ -62,7 +62,7 @@ describe Arquivo do
 		end
 		arquivo.save_to_file("spec/tmp/arquivo.test")
 
-		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0]
+		arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/tmp/arquivo.test")[0]
 		
 		header_r = arquivo_read.header
 		header = arquivo.header
