@@ -7,7 +7,7 @@ module Cnab240::V80
 		lstring :favorecido_agencia, :length => 5, :pad_byte => '0'
 		string :brancos_1, :length => 1, :pad_byte => ' '
 		lstring :favorecido_conta, :length => 12, :pad_byte => '0'
-		string :brancos_2, :length => 1, :pad_byte => ' '
+		string :agencia_conta_complemento, :length => 1, :pad_byte => ' '
 		lstring :favorecido_agencia_conta_dv, :length => 1, :pad_byte => '0'
 		
 	end
