@@ -1,5 +1,5 @@
 module Cnab240
-	class Lote 
+	class Lote
 
 		attr_accessor :header
 		attr_accessor :segmentos
@@ -10,7 +10,7 @@ module Cnab240
 
 		def initialize(options = {})
 			@segmentos = []
-			
+
 			@operacao ||= options[:operacao]
 			@tipo ||= options[:tipo]
 			@versao ||= options[:versao]
@@ -21,7 +21,7 @@ module Cnab240
 
 			estrutura = ESTRUTURA[@versao][operacao]
 
-			@header = estrutura[:header].new 
+			@header = estrutura[:header].new
 			@trailer = estrutura[:trailer].new
 
 			yield self if block_given?
@@ -36,9 +36,9 @@ module Cnab240
 		def <<(s)
 			versao = arquivo.versao unless arquivo.nil?
 			versao ||= @versao
-			case s 
+			case s
 			when Symbol, String
-				segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")	
+				segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")
 			else
 				segmentos << seg = s
 			end
@@ -52,7 +52,7 @@ module Cnab240
 			estrutura = ESTRUTURA[@versao][operacao]
 			seg_array << @header.linha
 			segmentos.each do |s|
-				seg_array << s.linha 
+				seg_array << s.linha
 			end
 			seg_array << @trailer.linha
 			seg_array
@@ -63,8 +63,8 @@ module Cnab240
 		end
 
 		def auto_fill
-			# totais_qtde_registros
-			
+      number_of_registration = segmentos.length + 2
+			trailer.totais_qtde_registros = number_of_registration.to_s
 		end
 
 	end
