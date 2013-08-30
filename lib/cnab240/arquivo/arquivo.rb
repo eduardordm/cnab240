@@ -43,8 +43,8 @@ module Cnab240::Arquivo
 			File.open(filename, 'w') {|f| f.write(string) }
 		end
 
-		def self.load_from_file(filename, version)
-			Cnab240::Builder.new(filename, version).arquivos
+		def self.load_from_file(file, version)
+			Cnab240::Builder.new(file, version).arquivos
 		end
 
 
