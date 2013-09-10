@@ -27,7 +27,7 @@ module Cnab240
 	}
 
   ESTRUTURA_V83 =  {
-      :segmentos_implementados => [:a, :b],
+      :segmentos_implementados => [:a, :b, :z, :j],
       :pagamento => {
 
           :header => Cnab240::V83::Pagamentos::Header,

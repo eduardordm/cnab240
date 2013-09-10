@@ -14,6 +14,8 @@ require "cnab240/arquivo/lote"
 
 require "cnab240/segmentos/v83/segmento_a"
 require "cnab240/segmentos/v83/segmento_b"
+require "cnab240/segmentos/v83/segmento_z"
+require "cnab240/segmentos/v83/segmento_j"
 require "cnab240/segmentos/v86/segmento_a"
 require "cnab240/segmentos/v86/segmento_b"
 require "cnab240/segmentos/v86/segmento_c"
