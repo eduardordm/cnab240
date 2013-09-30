@@ -16,22 +16,23 @@ module Cnab240
 
 		attr_accessor :arquivos
 
-		def initialize(filename = nil)
-			load_from_file(filename) unless filename.nil?
+		def initialize(file = nil, version = nil)
+			load_from_file(file, version) unless file.nil?
 		end
 
-		def load_from_file(filename) 
+		def load_from_file(file, version = nil)
 			@arquivos = []
 			line_number = 0
-			File.open(filename, "r").each_line do |line|
+      source = file.is_a?(File) ? file : File.open(file, "r")
+      source.each_line do |line|
 				check_line_encoding line, ++line_number
 				case line[RANGE_TIPO_REGISTRO]
 
 				when HEADER_ARQUIVO
-					find_header_arquivo line, line_number
+					find_header_arquivo line, line_number, version
 
 				when HEADER_LOTE
-					find_header_lote line, line_number
+					find_header_lote line, line_number, version
 
 				when INICIAIS_LOTE
 					raise NotImplementedError.new("Tipo de registro nao suportado")
@@ -46,7 +47,7 @@ module Cnab240
 					arquivos.last.lotes.last.trailer.read(line) 
 
 				when TRAILER_ARQUIVO
-					arquivos.last.trailer = Trailer.read(line)
+          arquivos.last.trailer.read(line)
 
 				else
 					raise "Invalid tipo de registro: #{line[RANGE_TIPO_REGISTRO]} at line #{line_number} \n\t Line: [#{line}]"
@@ -65,8 +66,13 @@ module Cnab240
 			line
 		end
 
-		def find_header_arquivo(line, line_number = -1)
+		def find_header_arquivo(line, line_number = -1, version = nil)
 			arquivos << Cnab240::Arquivo::Arquivo.new
+      if version
+        arquivos.last.versao = version
+        arquivos.last.header = eval("Cnab240::#{version}::Arquivo::Header").read(line)
+        return
+      end
 			case line[RANGE_LAYOUT_ARQUIVO]
 			# when '080'
 			# 	arquivos.last.versao = 'V80'
@@ -85,7 +91,7 @@ module Cnab240
 					raise "Versao de arquivo nao suportado: #{line[RANGE_LAYOUT_ARQUIVO]} na linha #{line_number}" if Cnab240.fallback == false
 					arquivos.last.versao = 'V86'
 					arquivos.last.header = Cnab240::V86::Arquivo::Header.read(line)
-				end
+        end
 			else
 				raise "Versao de arquivo nao suportado: #{line[RANGE_LAYOUT_ARQUIVO]} na linha #{line_number}" if Cnab240.fallback == false
 				arquivos.last.versao = 'V86'
@@ -93,7 +99,13 @@ module Cnab240
 			end
 		end
 
-		def find_header_lote(line, line_number = -1)
+		def find_header_lote(line, line_number = -1, version = nil)
+      if version
+        arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none, :versao => version) do |l|
+          l.header = eval("Cnab240::#{version}::Pagamentos::Header").read(line)
+        end
+        return
+      end
 			case line[RANGE_HEADER_LOTE]
 			when '080'
 				arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none, :versao => 'V80') do |l|
