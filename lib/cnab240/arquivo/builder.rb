@@ -151,7 +151,9 @@ module Cnab240
 		end
 
 		def find_segmento(line, line_number = -1)
-			raise "Invalid segmento de lote: #{line[RANGE_TIPO_OPERACAO_DETALHE]} at line #{line_number}" unless ESTRUTURA[arquivos.last.versao][:segmentos_implementados].include? line[RANGE_TIPO_OPERACAO_DETALHE].downcase.intern
+      # skip unknown segments instead of raising an error
+			# raise "Invalid segmento de lote: #{line[RANGE_TIPO_OPERACAO_DETALHE]} at line #{line_number}" unless ESTRUTURA[arquivos.last.versao][:segmentos_implementados].include? line[RANGE_TIPO_OPERACAO_DETALHE].downcase.intern
+      return unless ESTRUTURA[arquivos.last.versao][:segmentos_implementados].include? line[RANGE_TIPO_OPERACAO_DETALHE].downcase.intern
 			case line[RANGE_TIPO_OPERACAO_DETALHE]
 			when 'J'
 				if line[17..18] == '52'
