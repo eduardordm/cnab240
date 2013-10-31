@@ -26,6 +26,25 @@ module Cnab240
 		}
 	}
 
+  ESTRUTURA_V83 =  {
+      :segmentos_implementados => [:a, :b, :z, :j],
+      :pagamento => {
+
+          :header => Cnab240::V83::Pagamentos::Header,
+          :trailer => Cnab240::V83::Pagamentos::Trailer,
+
+          :segmentos => [:a, :b],
+          :a => {
+              :remessa => true,
+              :retorno => true
+          },
+          :b => {
+              :remessa => true,
+              :retorno => true
+          }
+      }
+  }
+
 	ESTRUTURA_V86 =  { 
 			:segmentos_implementados => [:a, :b, :c, :j, :j52, :o, :n, :w, :z],
 			:pagamento => {
@@ -92,6 +111,7 @@ module Cnab240
 	ESTRUTURA = {
 		'V40' => ESTRUTURA_V40,
 		'V80' => ESTRUTURA_V80,
+    'V83' => ESTRUTURA_V83,
 		'V86' => ESTRUTURA_V86
 	}
 	
