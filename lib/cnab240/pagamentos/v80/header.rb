@@ -35,7 +35,7 @@ module Cnab240::V80::Pagamentos
 		lstring :endereco_cep, :length => 8, :pad_byte => '0'
 		string :endereco_estado, :length => 2, :pad_byte => ' '
 
-		lstring :brancos_4, :length => 8, :pad_byte => '0'
+		string :brancos_4, :length => 8, :pad_byte => ' '
 		string :ocorrencias, :length => 10, :pad_byte => ' '
 
 		private 

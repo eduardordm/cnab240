@@ -30,7 +30,8 @@ describe Cnab240::V80::Arquivo::Header do
 		header.should respond_to(:arquivo_data_geracao)
 		header.should respond_to(:arquivo_hora_geracao)
 		
-		header.should respond_to(:brancos_6)
+		#header.should respond_to(:brancos_6)
+		header.should respond_to(:zeros_6)
 
 		header.should respond_to(:arquivo_densidade)
 
