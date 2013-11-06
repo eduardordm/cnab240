@@ -29,7 +29,6 @@ module Cnab240::V80
 		string :credito_moeda_tipo, :length => 3, :pad_byte => ' '
 
 		lstring :zeros_2, :length => 15, :pad_byte => '0'
-		lstring :zeros_3, :length => 6, :pad_byte => '0' # Numero do Documento
 		lstring :credito_valor_pagamento, :length => 15, :pad_byte => '0'
 		string :credito_nosso_numero, :length => 15, :pad_byte => ' '
 		string :brancos_1, :length => 5, :pad_byte => ' '
@@ -40,7 +39,7 @@ module Cnab240::V80
 		string :finalidade_detalhe, :length => 18, :pad_byte => ' '
 		string :brancos_2, :length => 2, :pad_byte => ' '
 
-		string :numero_documento, :length => 6, :pad_byte => ' '
+		lstring :numero_documento, :length => 6, :pad_byte => '0'
 		string :numero_inscricao, :length => 14, :pad_byte => ' '
 		string :codigo_finalidade_complementar, :length => 2, :pad_byte => ' '
 		string :finalidade_ted, :length => 5, :pad_byte => ' '

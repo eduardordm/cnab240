@@ -47,8 +47,7 @@ describe Cnab240::V80::SegmentoA do
 		segmento.should respond_to(:numero_inscricao)
 		segmento.should respond_to(:codigo_finalidade_complementar)
 		segmento.should respond_to(:finalidade_ted)
-		segmento.should respond_to(:zeros_3)
-		#segmento.should respond_to(:brancos_3)
+		segmento.should respond_to(:brancos_3)
 		segmento.should respond_to(:aviso)
 		segmento.should respond_to(:ocorrencias)
 
