@@ -9,7 +9,7 @@ describe Cnab240::V80::Pagamentos::Trailer do
 		trailer.should respond_to(:controle_lote)
 		trailer.should respond_to(:controle_registro)
 
-		trailer.should respond_to(:registro_trailer)
+		trailer.should respond_to(:cnab_g004_1)
 
 		trailer.should respond_to(:totais_qtde_registros)
 		trailer.should respond_to(:totais_valor)

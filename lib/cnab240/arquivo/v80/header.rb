@@ -28,7 +28,7 @@ module Cnab240::V80::Arquivo
 		lstring :arquivo_data_geracao, :length => 8, :pad_byte => '0'
 		lstring :arquivo_hora_geracao,:length => 6, :pad_byte => '0'
 		
-		string :brancos_6, :length => 9, :initial_value => ' ', :pad_byte => '0'
+		#string :brancos_6, :length => 9, :initial_value => ' ', :pad_byte => '0'
 		lstring :zeros_6, :length => 9, :pad_byte => '0'
 
 		lstring :arquivo_densidade, :length => 5, :pad_byte => '0'
