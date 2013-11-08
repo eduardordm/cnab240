@@ -1,6 +1,8 @@
-# CNAB 240
+# CNAB PAN
 
-[![Build Status](https://secure.travis-ci.org/eduardordm/cnab240.png)](http://travis-ci.org/eduardordm/cnab240)
+Uma extensão do CNAB240, com algumas correções para o Itaú.
+=======================================================
+
 
 Esta é uma implementação do Layout Padrão Febraban 240 posições, e algumas variações. Provavelmente vou adicionar o CNAB 400 na mesma gem. Talvez adicione também um puxadinho para voce poder usar o ActiveRecord.
 
