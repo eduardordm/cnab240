@@ -46,7 +46,7 @@ module Cnab240
 					arquivos.last.lotes.last.trailer.read(line) 
 
 				when TRAILER_ARQUIVO
-					arquivos.last.trailer = Cnab240::V86::Arquivo::Trailer.read(line)
+					arquivos.last.trailer = eval("Cnab240::#{arquivos.last.versao}::Arquivo::Trailer").read(line)
 
 				else
 					raise "Invalid tipo de registro: #{line[RANGE_TIPO_REGISTRO]} at line #{line_number} \n\t Line: [#{line}]"
