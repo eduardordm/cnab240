@@ -63,6 +63,7 @@ require "cnab240/arquivo/builder"
 
 require "cnab240/helper/pagamento_itau"
 require "cnab240/helper/pagamento_bradesco"
+require "cnab240/helper/pagamento_bb"
 
 module Cnab240
 
