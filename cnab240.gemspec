@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.rubyforge_project = "cnab240"
 
-  gem.files         = `git ls-files`.split($\)
+  gem.files         = Dir.glob('lib/**/*') + ['Rakefile'] + ['cnab240.gemspec']
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "cnab240"
