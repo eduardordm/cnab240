@@ -67,26 +67,23 @@ require "cnab240/helper/pagamento_bb"
 
 module Cnab240
 
-	mod_attr_accessor :defaults
-	@@defaults = {}
+  mod_attr_accessor :defaults
+  @@defaults = {}
 
-	mod_attr_accessor :fallback
-	@@fallback = "V86"
+  mod_attr_accessor :fallback
+  @@fallback = "V86"
 
-	mod_attr_accessor :auto_fill_enabled
-	@@auto_fill_enabled = true
+  mod_attr_accessor :auto_fill_enabled
+  @@auto_fill_enabled = true
 
-	# Yield self for configuration block:
-	#
-	#   Cnab240.setup do |config|
-	#     config.banco = "001"
-	#   end
-	#
-	def self.setup
-		yield self
-	end
+  # Yield self for configuration block:
+  #
+  #   Cnab240.setup do |config|
+  #     config.banco = "001"
+  #   end
+  #
+  def self.setup
+    yield self
+  end
 
 end
-
-
-

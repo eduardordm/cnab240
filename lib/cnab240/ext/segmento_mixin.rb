@@ -1,7 +1,7 @@
 module Cnab240
-	module SegmentoMixin
-		
-		attr_accessor :lote
+  module SegmentoMixin
 
-	end
+    attr_accessor :lote
+
+  end
 end
