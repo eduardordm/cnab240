@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-include Cnab240::V86
+include Cnab240::V83
 
-describe Cnab240::V86::SegmentoW do
+describe Cnab240::V83::SegmentoZ do
 
   it "deve instanciar segmento" do
-    segmento = Cnab240::V86::SegmentoW.new
-    segmento.should be_an_instance_of(Cnab240::V86::SegmentoW)
+    segmento = Cnab240::V83::SegmentoZ.new
+    segmento.should be_an_instance_of(Cnab240::V83::SegmentoZ)
   end
 
   it "deve conter campos" do
-    segmento = Cnab240::V86::SegmentoW.new
+    segmento = Cnab240::V83::SegmentoZ.new
 
     segmento.should respond_to(:controle_banco)
     segmento.should respond_to(:controle_lote)
@@ -19,25 +19,19 @@ describe Cnab240::V86::SegmentoW do
     segmento.should respond_to(:servico_numero_registro)
     segmento.should respond_to(:servico_codigo_segmento)
 
-    segmento.should respond_to(:complemento)
-
-    segmento.should respond_to(:uso_informacoes_1_e_2)
-    segmento.should respond_to(:informacao_1)
-    segmento.should respond_to(:informacao_2)
-
-    segmento.should respond_to(:w1)
-
-    segmento.should respond_to(:reservado)
+    segmento.should respond_to(:autenticacao)
+    segmento.should respond_to(:controle_bancario)
+    segmento.should respond_to(:cnab_g004_1)
     segmento.should respond_to(:ocorrencias)
   end
 
   it "deve ter 240 caracteres" do
-    segmento = Cnab240::V86::SegmentoW.new
+    segmento = Cnab240::V83::SegmentoZ.new
     segmento.linha.length.should be(240)
   end
 
   it "deve manter coesao" do
-    c = Cnab240::V86::SegmentoW
+    c = Cnab240::V83::SegmentoZ
     obj = c.new
     linha1 = obj.linha
     obj2 = c.read(linha1)

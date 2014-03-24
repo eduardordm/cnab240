@@ -2,15 +2,15 @@ require 'spec_helper'
 
 include Cnab240::V86
 
-describe SegmentoO do
+describe Cnab240::V86::SegmentoO do
 
   it "deve instanciar segmento" do
-    segmento = SegmentoO.new
-    segmento.should be_an_instance_of(SegmentoO)
+    segmento = Cnab240::V86::SegmentoO.new
+    segmento.should be_an_instance_of(Cnab240::V86::SegmentoO)
   end
 
   it "deve conter campos" do
-    segmento = SegmentoO.new
+    segmento = Cnab240::V86::SegmentoO.new
 
     segmento.should respond_to(:controle_banco)
     segmento.should respond_to(:controle_lote)
@@ -34,12 +34,12 @@ describe SegmentoO do
   end
 
   it "deve ter 240 caracteres" do
-    segmento = SegmentoO.new
+    segmento = Cnab240::V86::SegmentoO.new
     segmento.linha.length.should be(240)
   end
 
   it "deve manter coesao" do
-    c = SegmentoO
+    c = Cnab240::V86::SegmentoO
     obj = c.new
     linha1 = obj.linha
     obj2 = c.read(linha1)

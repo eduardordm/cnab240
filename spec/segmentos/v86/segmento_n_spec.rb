@@ -2,15 +2,15 @@ require 'spec_helper'
 
 include Cnab240::V86
 
-describe SegmentoN do
+describe Cnab240::V86::SegmentoN do
 
   it "deve instanciar segmento" do
-    segmento = SegmentoN.new
-    segmento.should be_an_instance_of(SegmentoN)
+    segmento = Cnab240::V86::SegmentoN.new
+    segmento.should be_an_instance_of(Cnab240::V86::SegmentoN)
   end
 
   it "deve conter campos" do
-    segmento = SegmentoN.new
+    segmento = Cnab240::V86::SegmentoN.new
 
     segmento.should respond_to(:controle_banco)
     segmento.should respond_to(:controle_lote)
@@ -32,7 +32,7 @@ describe SegmentoN do
   end
 
   it "deve ter 240 caracteres" do
-    segmento = SegmentoN.new
+    segmento = Cnab240::V86::SegmentoN.new
     segmento.linha.length.should be(240)
   end
 
@@ -41,7 +41,7 @@ describe SegmentoN do
       l.header.servico_forma = '25'
     end
     lote << :n
-    lote.segmentos[0].should be_an_instance_of(SegmentoN)
+    lote.segmentos[0].should be_an_instance_of(Cnab240::V86::SegmentoN)
 
     segmento = lote.segmentos[0].n_complemento
 
@@ -61,7 +61,7 @@ describe SegmentoN do
   end
 
   it "deve manter coesao" do
-    c = SegmentoN
+    c = Cnab240::V86::SegmentoN
     obj = c.new
     linha1 = obj.linha
     obj2 = c.read(linha1)

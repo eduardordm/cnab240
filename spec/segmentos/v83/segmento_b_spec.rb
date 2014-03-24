@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-include Cnab240::V86
+include Cnab240::V83
 
-describe Cnab240::V86::SegmentoB do
+describe Cnab240::V83::SegmentoB do
 
   it "deve instanciar segmento" do
-    segmento = Cnab240::V86::SegmentoB.new
-    segmento.should be_an_instance_of(Cnab240::V86::SegmentoB)
+    segmento = Cnab240::V83::SegmentoB.new
+    segmento.should be_an_instance_of(Cnab240::V83::SegmentoB)
   end
 
   it "deve conter campos" do
-    segmento = Cnab240::V86::SegmentoB.new
+    segmento = Cnab240::V83::SegmentoB.new
 
     segmento.should respond_to(:controle_banco)
     segmento.should respond_to(:controle_lote)
@@ -29,7 +29,6 @@ describe Cnab240::V86::SegmentoB do
     segmento.should respond_to(:favorecido_endereco_bairro)
     segmento.should respond_to(:favorecido_endereco_cidade)
     segmento.should respond_to(:favorecido_endereco_cep)
-    segmento.should respond_to(:favorecido_endereco_cep_complemento)
     segmento.should respond_to(:favorecido_endereco_estado)
 
     segmento.should respond_to(:pagamento_data_vencimento)
@@ -39,22 +38,20 @@ describe Cnab240::V86::SegmentoB do
     segmento.should respond_to(:pagamento_valor_mora)
     segmento.should respond_to(:pagamento_valor_multa)
 
-    segmento.should respond_to(:codigo_documento_favorecido)
-
+    segmento.should respond_to(:time_of_ted_remittence)
+    segmento.should respond_to(:filler)
+    segmento.should respond_to(:historic_code)
     segmento.should respond_to(:aviso)
-
-    segmento.should respond_to(:codigo_ug)
-
-    segmento.should respond_to(:cnab_g004_2)
+    segmento.should respond_to(:accurence_of_return)
   end
 
   it "deve ter 240 caracteres" do
-    segmento = Cnab240::V86::SegmentoB.new
+    segmento = Cnab240::V83::SegmentoB.new
     segmento.linha.length.should be(240)
   end
 
   it "deve manter coesao" do
-    c = Cnab240::V86::SegmentoB
+    c = Cnab240::V83::SegmentoB
     obj = c.new
     linha1 = obj.linha
     obj2 = c.read(linha1)
