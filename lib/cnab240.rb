@@ -2,7 +2,6 @@ require "cnab240/version"
 
 require 'bindata'
 
-
 require "cnab240/ext/attribute_accessors"
 require "cnab240/ext/bindata"
 require "cnab240/ext/lstring"
