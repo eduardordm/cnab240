@@ -18,7 +18,7 @@ class Module
       EOS
     end
   end
-  
+
   def mod_attr_writer(*syms)
     options = syms
     syms.each do |sym|
@@ -39,7 +39,7 @@ class Module
       EOS
     end
   end
-  
+
   def mod_attr_accessor(*syms)
     mod_attr_reader(*syms)
     mod_attr_writer(*syms)

@@ -1,12 +1,12 @@
 require "bindata/base_primitive"
 
 module BinData
-  
+
   # I didn't want to monkey patch bindata's String primitive.
   class Lstring < BinData::BasePrimitive
 
     optional_parameters :read_length, :length, :trim_padding
-    default_parameters  :pad_byte => "\0"
+    default_parameters :pad_byte => "\0"
     mutually_exclusive_parameters :read_length, :length
     mutually_exclusive_parameters :length, :value
 
@@ -36,7 +36,7 @@ module BinData
 
       def byte_string(str)
         if RUBY_VERSION >= "1.9"
-          str.force_encoding(Encoding::BINARY) 
+          str.force_encoding(Encoding::BINARY)
         else
           str
         end
@@ -63,7 +63,7 @@ module BinData
 
     def byte_string(str)
       if RUBY_VERSION >= "1.9"
-        str.force_encoding(Encoding::BINARY) 
+        str.force_encoding(Encoding::BINARY)
       else
         str
       end
@@ -78,7 +78,7 @@ module BinData
       elsif str.length > len
         str.slice(0, len)
       else
-        (eval_parameter(:pad_byte) * (len - str.length)) + str 
+        (eval_parameter(:pad_byte) * (len - str.length)) + str
       end
     end
 

@@ -1,16 +1,15 @@
 module Cnab240
-	module DefaultMixin
+  module DefaultMixin
 
-		def initialize_instance
-			super
-			Cnab240.defaults.each do |k, v|
-				if self.respond_to?("#{k}=") 
-					self.send("#{k}=", v)
-				end
-			end 
-			yield self if block_given?
-		end
+    def initialize_instance
+      super
+      Cnab240.defaults.each do |k, v|
+        if self.respond_to?("#{k}=")
+          self.send("#{k}=", v)
+        end
+      end
+      yield self if block_given?
+    end
 
-
-	end
+  end
 end
