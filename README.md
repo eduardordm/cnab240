@@ -1,4 +1,4 @@
-# CNAB PAN
+# CNAB 240
 
 Uma extensão do CNAB240, com algumas correções para o Itaú.
 =======================================================
