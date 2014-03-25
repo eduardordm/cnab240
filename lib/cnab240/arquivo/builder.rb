@@ -46,7 +46,7 @@ module Cnab240
             arquivos.last.lotes.last.trailer.read(line)
 
           when TRAILER_ARQUIVO
-            arquivos.last.trailer = Trailer.read(line)
+            arquivos.last.trailer.read(line)
 
           else
             raise "Invalid tipo de registro: #{line[RANGE_TIPO_REGISTRO]} at line #{line_number} \n\t Line: [#{line}]"
@@ -68,9 +68,9 @@ module Cnab240
     def find_header_arquivo(line, line_number = -1)
       arquivos << Cnab240::Arquivo::Arquivo.new
       case line[RANGE_LAYOUT_ARQUIVO]
-        # when '080'
-        # 	arquivos.last.versao = 'V80'
-        # 	arquivos.last.header = Cnab240::V80::Arquivo::Header.read(line)
+        when '087'
+          arquivos.last.versao = 'V87'
+          arquivos.last.header = Cnab240::V87::Arquivo::Header.read(line)
         when '085'
           arquivos.last.versao = 'V86'
           arquivos.last.header = Cnab240::V86::Arquivo::Header.read(line)
@@ -112,6 +112,10 @@ module Cnab240
             else
               raise "Header de lote nao suportado para a versao de arquivo."
           end
+        when '045'
+          arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
+            l.header = Cnab240::V87::Pagamentos::Header.read(line)
+          end
         when '044'
           arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
             l.header = Cnab240::V86::Pagamentos::Header.read(line)
@@ -125,6 +129,10 @@ module Cnab240
             when 'V86'
               arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento_titulo_cobranca, :tipo => :none) do |l|
                 l.header = Cnab240::V86::PagamentosTitulos::Header.read(line)
+              end
+            when 'V87'
+              arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento_titulo_cobranca, :tipo => :none) do |l|
+                l.header = Cnab240::V87::PagamentosTitulos::Header.read(line)
               end
             else
               raise "Header de lote nao suportado para a versao de arquivo."

@@ -42,9 +42,9 @@ describe Arquivo do
     (1..10).each do |n|
       arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
-    arquivo.save_to_file("./spec/tmp/arquivo.test")
+    arquivo.save_to_file("./spec/fixtures/arquivo.test")
 
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/tmp/arquivo.test")[0]
+    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/arquivo.test")[0]
 
     arquivo_read.lotes.length.should be 10
 
@@ -60,9 +60,9 @@ describe Arquivo do
     (1..10).each do |n|
       arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
-    arquivo.save_to_file("./spec/tmp/arquivo.test")
+    arquivo.save_to_file("./spec/fixtures/arquivo.test")
 
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/tmp/arquivo.test")[0]
+    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/arquivo.test")[0]
 
     arquivo_read.header.linha.should eq arquivo.header.linha
     arquivo_read.trailer.linha.should eq arquivo.trailer.linha
@@ -80,9 +80,9 @@ describe Arquivo do
   end
 
   it "deve carregar arquivo grande" do
-    #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/B330002984PSL.REM")[0]
-    #		arquivo_read.save_to_file("spec/tmp/arquivo.test")
-    #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test")[0]
+    #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
+    #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
+    #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]
     #		arquivo_read.string.should eq arquivo_read2.string
   end
 end

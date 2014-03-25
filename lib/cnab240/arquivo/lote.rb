@@ -49,7 +49,6 @@ module Cnab240
     def linhas
       self.auto_fill if Cnab240.auto_fill_enabled
       seg_array = []
-      estrutura = ESTRUTURA[@versao][operacao]
       seg_array << @header.linha
       segmentos.each do |s|
         seg_array << s.linha
@@ -63,9 +62,10 @@ module Cnab240
     end
 
     def auto_fill
-      # totais_qtde_registros
-
+      trailer.totais_qtde_registros = (segmentos.length + 2).to_s
+      _total = 0
+      segmentos.each { |seg| _total += seg[:credito_valor_pagamento].to_i }
+      trailer.totais_valor =_total.to_s
     end
-
   end
 end

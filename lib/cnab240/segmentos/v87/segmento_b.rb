@@ -1,4 +1,4 @@
-module Cnab240::V86
+module Cnab240::V87
   class SegmentoB < BinData::Record
 
     include Cnab240::DefaultMixin

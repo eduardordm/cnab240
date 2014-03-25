@@ -1,4 +1,4 @@
-module Cnab240::V86::Arquivo
+module Cnab240::V87::Arquivo
   class Header < BinData::Record
 
     include Cnab240::DefaultMixin
@@ -27,7 +27,7 @@ module Cnab240::V86::Arquivo
     lstring :arquivo_data_geracao, :length => 8, :pad_byte => '0'
     lstring :arquivo_hora_geracao, :length => 6, :pad_byte => '0'
     lstring :arquivo_sequencia, :length => 6, :pad_byte => '0'
-    string :arquivo_layout, :length => 3, :initial_value => '085'
+    string :arquivo_layout, :length => 3, :initial_value => '087'
     lstring :arquivo_densidade, :length => 5, :pad_byte => '0'
 
     string :reservado_banco, :length => 20, :pad_byte => ' '

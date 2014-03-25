@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-include Cnab240::V86
+include Cnab240::V87
 
-describe Cnab240::V86::SegmentoJ52 do
+describe Cnab240::V87::SegmentoJ52 do
 
   it "deve instanciar segmento" do
-    segmento = Cnab240::V86::SegmentoJ52.new
-    segmento.should be_an_instance_of(Cnab240::V86::SegmentoJ52)
+    segmento = Cnab240::V87::SegmentoJ52.new
+    segmento.should be_an_instance_of(SegmentoJ52)
   end
 
   it "deve conter campos" do
-    segmento = Cnab240::V86::SegmentoJ52.new
+    segmento = Cnab240::V87::SegmentoJ52.new
 
     segmento.should respond_to(:controle_banco)
     segmento.should respond_to(:controle_lote)
@@ -39,12 +39,12 @@ describe Cnab240::V86::SegmentoJ52 do
   end
 
   it "deve ter 240 caracteres" do
-    segmento = Cnab240::V86::SegmentoJ52.new
+    segmento = Cnab240::V87::SegmentoJ52.new
     segmento.linha.length.should be(240)
   end
 
   it "deve manter coesao" do
-    c = Cnab240::V86::SegmentoJ52
+    c = Cnab240::V87::SegmentoJ52
     obj = c.new
     linha1 = obj.linha
     obj2 = c.read(linha1)
