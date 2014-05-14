@@ -67,7 +67,8 @@ Voce pode criar arquivos, e adicionar lotes. A versão é automaticamente a 8.6,
 	lote = Lote.new(:operacao => :pagamento, :tipo => :remessa)
 	# preencha os zilhoes de campos
 	arquivo << lote
-	arquivo.save_to_file("arquivo.test")
+  file = File.open("arquivo.test", "w+")
+  arquivo.save_to_file(file)
 ```
 Para adicionar segmentos utilize o operador << do lote.
 
@@ -78,14 +79,16 @@ Para adicionar segmentos utilize o operador << do lote.
 	# preencha os zilhoes de campos
 	lote.segmentos[0].favorecido_banco = '1'
 	arquivo << lote
-	arquivo.save_to_file("arquivo.test")
+  file = File.open("arquivo.test", "w+")
+  arquivo.save_to_file(file)
 ```
 
 Ler do arquivo:
 
 ```ruby
-	arquivos = Arquivo::Arquivo.load_from_file("spec/tmp/arquivo.test") # array de objetos Arquivo
-	puts arquivos[0].header
+  file = File.open("spec/tmp/arquivo.test", "r")
+  arquivos = Arquivo::Arquivo.load_from_file(file) # array de objetos Arquivo
+  puts arquivos[0].header
 ```
 
 ### Usando Helpers
