@@ -31,9 +31,13 @@ describe Cnab240::Arquivo::Arquivo do
     (1..10).each do |n|
       subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
-    subject.save_to_file("./spec/fixtures/arquivo.test")
+    # Simulando escrita em arquivo
+    file = StringIO.new("", "w+")
+    subject.save_to_file(file)
+    # Rebobinando arquivo escrito para leitura
+    file.rewind
 
-    arquivo_read = described_class.load_from_file("./spec/fixtures/arquivo.test")[0]
+    arquivo_read = described_class.load_from_file(file)[0]
 
     arquivo_read.lotes.length.should be 10
 
@@ -48,9 +52,13 @@ describe Cnab240::Arquivo::Arquivo do
     (1..10).each do |n|
       subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
-    subject.save_to_file("./spec/fixtures/arquivo.test")
+    # Simulando escrita em arquivo
+    file = StringIO.new("", "w+")
+    subject.save_to_file(file)
+    # Rebobinando arquivo escrito para leitura
+    file.rewind
 
-    arquivo_read = described_class.load_from_file("./spec/fixtures/arquivo.test")[0]
+    arquivo_read = described_class.load_from_file(file)[0]
 
     arquivo_read.header.linha.should eq subject.header.linha
     arquivo_read.trailer.linha.should eq subject.trailer.linha
@@ -66,7 +74,8 @@ describe Cnab240::Arquivo::Arquivo do
     subject.trailer.totais_qtde_registros.should eq '000008'
   end
 
-  xit "deve carregar arquivo grande" do
+  it "deve carregar arquivo grande" do
+    pending("Falta escrever esse teste, provavelmente gerando um arquivo grande em memória")
     #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
     #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
     #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]

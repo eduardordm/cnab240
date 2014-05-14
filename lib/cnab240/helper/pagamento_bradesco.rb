@@ -53,8 +53,8 @@ module Cnab240
       arquivo.string
     end
 
-    def save_to_file(filename)
-      arquivo.save_to_file(filename)
+    def save_to_file(file)
+      arquivo.save_to_file(file)
     end
   end
 end

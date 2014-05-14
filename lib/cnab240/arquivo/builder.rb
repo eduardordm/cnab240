@@ -20,10 +20,10 @@ module Cnab240
       load_from_file(filename) unless filename.nil?
     end
 
-    def load_from_file(filename)
+    def load_from_file(file)
       @arquivos = []
       line_number = 0
-      File.open(filename, "r").each_line do |line|
+      file.each_line do |line|
         check_line_encoding line, ++line_number
         case line[RANGE_TIPO_REGISTRO]
 

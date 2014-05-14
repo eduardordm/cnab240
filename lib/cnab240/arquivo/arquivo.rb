@@ -35,16 +35,32 @@ module Cnab240::Arquivo
       linhas.join("\r\n") << "\r\n"
     end
 
-    def save_to_file(filename)
-      begin
-        File.delete(filename) # LoL
-      rescue
-      end
-      File.open(filename, 'w') { |f| f.write(string) }
+    # Writes +Cnab240::Arquivo::Arquivo+ contents into an object that implements the +IO+ interface.
+    #
+    # @example Save contents to a file.
+    #   Cnab240::Arquivo::Arquivo.new.save_to_file(File.open('/tmp/cnab240.txt', 'w+'))
+    #
+    # @param [ IO ] file The file to which the contents will be saved to.
+    #
+    # @return [ Integer ] The number of bytes written to the file.
+    #
+    # @since 0.0.20
+    def save_to_file(file)
+      file.write(string)
     end
 
-    def self.load_from_file(filename)
-      Cnab240::Builder.new(filename).arquivos
+    # Loads contents from an object that implements the +IO+ interface into +Cnab240::Arquivo::Arquivo+ instances.
+    #
+    # @example Load contents from a file.
+    #   Cnab240::Arquivo::Arquivo.load_from_file(File.open('/tmp/cnab240.txt', 'r'))
+    #
+    # @param [ IO ] file The file from which the contents will be read.
+    #
+    # @return [ Array<Cnab240::Arquivo::Arquivo> ] A list of +Cnab240::Arquivo::Arquivo+ instances representing the contents of the file.
+    #
+    # @since 0.0.20
+    def self.load_from_file(file)
+      Cnab240::Builder.new(file).arquivos
     end
 
     def auto_fill

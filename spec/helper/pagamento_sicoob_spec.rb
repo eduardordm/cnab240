@@ -51,18 +51,23 @@ describe PagamentoSicoob do
 
     pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO COOPERATIVO DO BRASIL S.'
 
-    pagamento.save_to_file("spec/fixtures/remessa/sicoob.test")
+    # Simulando arquivo de escrita
+    file = StringIO.new("", "w+")
+    pagamento.save_to_file(file)
 
     pagamento.string
   end
 
-  it "deve carregar arquivo de retorno do SICCOB" do
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/remessa/sicoob.test")[0]
+  it "deve carregar arquivo de retorno do SICOOB" do
+    pending("Falta adicionar um exemplo de arquivo de retorno dessa instituição") do
+      file = File.open("./spec/fixtures/retorno/SICOOB.RET", "r")
+      arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file(file)[0]
 
-    arquivo_read.lotes.length.should be 2
+      arquivo_read.lotes.length.should be 2
 
-    arquivo_read.lotes.each_with_index do |lote_read, i|
-      expect(lote_read.header.empresa_nome).to eq 'BALLTEC LTDA                  '
+      arquivo_read.lotes.each_with_index do |lote_read, i|
+        expect(lote_read.header.empresa_nome).to eq 'BALLTEC LTDA                  '
+      end
     end
   end
 end
