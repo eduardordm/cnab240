@@ -1,85 +1,72 @@
 require 'spec_helper'
 
-include Cnab240::V86::Pagamentos
-include Cnab240::Arquivo
-
-describe Arquivo do
+describe Cnab240::Arquivo::Arquivo do
 
   it "deve instanciar" do
-    arquivo = Cnab240::Arquivo::Arquivo.new
-    arquivo.should be_an_instance_of(Cnab240::Arquivo::Arquivo)
+    subject.should be_an_instance_of(described_class)
   end
 
   it "deve aceitar lotes" do
-    arquivo = Cnab240::Arquivo::Arquivo.new
-    arquivo.should respond_to(:lotes)
+    subject.should respond_to(:lotes)
 
     (1..10).each do |n|
-      lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
-      lote.should be_an_instance_of(Cnab240::Lote)
-      arquivo << lote
-      arquivo.lotes.length.should be(n)
+      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+      subject.lotes.length.should be(n)
     end
   end
 
   it "deve manter 240 em todo o arquivo" do
-    arquivo = Cnab240::Arquivo::Arquivo.new
-    arquivo.should respond_to(:lotes)
+    subject.should respond_to(:lotes)
 
     (1..10).each do |n|
-      lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
-      lote.should be_an_instance_of(Cnab240::Lote)
-      arquivo << lote
+      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
 
-    arquivo.linhas do |linha|
+    subject.linhas do |linha|
       linha.length.should be(240)
     end
   end
 
   it "deve ler e escrever, mantendo classe de lote" do
-    arquivo = Cnab240::Arquivo::Arquivo.new
     (1..10).each do |n|
-      arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
-    arquivo.save_to_file("./spec/fixtures/arquivo.test")
+    subject.save_to_file("./spec/fixtures/arquivo.test")
 
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/arquivo.test")[0]
+    arquivo_read = described_class.load_from_file("./spec/fixtures/arquivo.test")[0]
 
     arquivo_read.lotes.length.should be 10
 
     arquivo_read.lotes.each_with_index do |lote_read, i|
-      lote_read.header.servico_operacao.should eq arquivo.lotes[i].header.servico_operacao
-      lote_read.should be_an_instance_of(arquivo.lotes[i].class)
-      lote_read.segmentos.length.should be arquivo.lotes[i].segmentos.length
+      lote_read.header.servico_operacao.should eq subject.lotes[i].header.servico_operacao
+      lote_read.should be_an_instance_of(subject.lotes[i].class)
+      lote_read.segmentos.length.should be subject.lotes[i].segmentos.length
     end
   end
 
   it "arquivos devem ser identicos" do
-    arquivo = Cnab240::Arquivo::Arquivo.new
     (1..10).each do |n|
-      arquivo << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
-    arquivo.save_to_file("./spec/fixtures/arquivo.test")
+    subject.save_to_file("./spec/fixtures/arquivo.test")
 
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/arquivo.test")[0]
+    arquivo_read = described_class.load_from_file("./spec/fixtures/arquivo.test")[0]
 
-    arquivo_read.header.linha.should eq arquivo.header.linha
-    arquivo_read.trailer.linha.should eq arquivo.trailer.linha
+    arquivo_read.header.linha.should eq subject.header.linha
+    arquivo_read.trailer.linha.should eq subject.trailer.linha
   end
 
   it "auto fill do arquivo - soma de registros" do
-    arquivo = Cnab240::Arquivo::Arquivo.new
     (1..2).each do |n|
-      arquivo << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+      subject << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
       lote << :a
     end
-    arquivo.auto_fill
-    arquivo.trailer.totais_qtde_lotes.should eq '000002'
-    arquivo.trailer.totais_qtde_registros.should eq '000008'
+    subject.auto_fill
+    subject.trailer.totais_qtde_lotes.should eq '000002'
+    subject.trailer.totais_qtde_registros.should eq '000008'
   end
 
-  it "deve carregar arquivo grande" do
+  xit "deve carregar arquivo grande" do
     #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
     #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
     #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]
