@@ -33,12 +33,12 @@ describe Cnab240::Arquivo::Arquivo do
       subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
     # Simulando escrita em arquivo
-    file = StringIO.new("", "w+")
-    subject.save_to_file(file)
+    io = StringIO.new("", "w+")
+    io.write(subject.string)
     # Rebobinando arquivo escrito para leitura
-    file.rewind
+    io.rewind
 
-    arquivo_read = described_class.load_from_file(file)[0]
+    arquivo_read = described_class.load(io)[0]
 
     arquivo_read.lotes.length.should be 10
 
@@ -54,12 +54,12 @@ describe Cnab240::Arquivo::Arquivo do
       subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
     end
     # Simulando escrita em arquivo
-    file = StringIO.new("", "w+")
-    subject.save_to_file(file)
+    io = StringIO.new("", "w+")
+    io.write(subject.string)
     # Rebobinando arquivo escrito para leitura
-    file.rewind
+    io.rewind
 
-    arquivo_read = described_class.load_from_file(file)[0]
+    arquivo_read = described_class.load(io)[0]
 
     arquivo_read.header.linha.should eq subject.header.linha
     arquivo_read.trailer.linha.should eq subject.trailer.linha

@@ -70,15 +70,14 @@ describe PagamentoItau do
     pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO ITAU'
 
     # Simulando arquivo de escrita
-    file = StringIO.new("", "w+")
-    pagamento.save_to_file(file)
+    io = StringIO.new("", "w+")
+    io.write(pagamento.string)
 
     pagamento.string
   end
 
   it "deve carregar arquivo de retorno do ITAU" do
-    file = File.open("./spec/fixtures/retorno/SB22112AIT.RET", "r")
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file(file)[0]
+    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SB22112AIT.RET")[0]
 
     arquivo_read.lotes.length.should be 1
 
@@ -88,8 +87,7 @@ describe PagamentoItau do
   end
 
   it "deve carregar arquivo de retorno do ITAU" do
-    file = File.open("./spec/fixtures/retorno/SB23112AIT.RET", "r")
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file(file)[0]
+    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SB23112AIT.RET")[0]
 
     arquivo_read.lotes.length.should be 1
 

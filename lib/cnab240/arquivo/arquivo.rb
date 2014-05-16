@@ -34,19 +34,33 @@ module Cnab240::Arquivo
     def string
       linhas.join("\r\n") << "\r\n"
     end
-
-    # Writes +Cnab240::Arquivo::Arquivo+ contents into an object that implements the +IO+ interface.
+    
+    # Writes +Cnab240::Arquivo::Arquivo+ contents into a +File+, overwriting its current contents.
     #
     # @example Save contents to a file.
-    #   Cnab240::Arquivo::Arquivo.new.save_to_file(File.open('/tmp/cnab240.txt', 'w+'))
+    #   Cnab240::Arquivo::Arquivo.new.save_to_file('/tmp/cnab240.txt')
     #
-    # @param [ IO ] file The file to which the contents will be saved to.
+    # @param [ String ] filename The file name to which the contents will be saved to.
     #
     # @return [ Integer ] The number of bytes written to the file.
     #
     # @since 0.0.20
-    def save_to_file(file)
-      file.write(string)
+    def save_to_file(filename)
+      File.open(filename, 'w').write(string)
+    end
+    
+    # Loads contents from a +File+ into +Cnab240::Arquivo::Arquivo+ instances.
+    #
+    # @example Load contents from a file.
+    #   Cnab240::Arquivo::Arquivo.load_from_file('/tmp/cnab240.txt')
+    #
+    # @param [ String ] filename The file name from which the contents will be read.
+    #
+    # @return [ Array<Cnab240::Arquivo::Arquivo> ] A list of +Cnab240::Arquivo::Arquivo+ instances representing the contents read.
+    #
+    # @since 0.0.20
+    def self.load_from_file(filename)
+      load(File.open(filename, 'r'))
     end
 
     # Loads contents from an object that implements the +IO+ interface into +Cnab240::Arquivo::Arquivo+ instances.
@@ -54,13 +68,13 @@ module Cnab240::Arquivo
     # @example Load contents from a file.
     #   Cnab240::Arquivo::Arquivo.load_from_file(File.open('/tmp/cnab240.txt', 'r'))
     #
-    # @param [ IO ] file The file from which the contents will be read.
+    # @param [ IO ] file The I/O interface from which the contents will be read.
     #
-    # @return [ Array<Cnab240::Arquivo::Arquivo> ] A list of +Cnab240::Arquivo::Arquivo+ instances representing the contents of the file.
+    # @return [ Array<Cnab240::Arquivo::Arquivo> ] A list of +Cnab240::Arquivo::Arquivo+ instances representing the contents read.
     #
     # @since 0.0.20
-    def self.load_from_file(file)
-      Cnab240::Builder.new(file).arquivos
+    def self.load(io)
+      Cnab240::Builder.new(io).arquivos
     end
 
     def auto_fill

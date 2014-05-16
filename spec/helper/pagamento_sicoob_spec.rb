@@ -53,16 +53,15 @@ describe PagamentoSicoob do
     pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO COOPERATIVO DO BRASIL S.'
 
     # Simulando arquivo de escrita
-    file = StringIO.new("", "w+")
-    pagamento.save_to_file(file)
+    io = StringIO.new("", "w+")
+    io.write(pagamento.string)
 
     pagamento.string
   end
 
   it "deve carregar arquivo de retorno do SICOOB" do
     pending("Falta adicionar um exemplo de arquivo de retorno dessa instituição") do
-      file = File.open("./spec/fixtures/retorno/SICOOB.RET", "r")
-      arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file(file)[0]
+      arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SICOOB.RET")[0]
 
       arquivo_read.lotes.length.should be 2
 
