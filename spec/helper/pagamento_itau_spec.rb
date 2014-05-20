@@ -69,7 +69,9 @@ describe PagamentoItau do
 
     pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO ITAU'
 
-    pagamento.save_to_file("spec/fixtures/remessa/arquivo_itau.test")
+    # Simulando arquivo de escrita
+    io = StringIO.new("", "w+")
+    io.write(pagamento.string)
 
     pagamento.string
   end

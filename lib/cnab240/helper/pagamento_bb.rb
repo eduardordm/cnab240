@@ -1,9 +1,5 @@
 module Cnab240
-  class PagamentoBb
-
-    include Cnab240::Filler
-
-    attr_accessor :arquivo
+  class PagamentoBb < Helper
 
     def initialize(campos = {})
       campos[:controle_banco] ||= '001'
@@ -51,12 +47,5 @@ module Cnab240
       lote << segmento_a
     end
 
-    def string
-      arquivo.string
-    end
-
-    def save_to_file(filename)
-      arquivo.save_to_file(filename)
-    end
   end
 end

@@ -16,14 +16,14 @@ module Cnab240
 
     attr_accessor :arquivos
 
-    def initialize(filename = nil)
-      load_from_file(filename) unless filename.nil?
+    def initialize(io = nil)
+      load(io) unless io.nil?
     end
 
-    def load_from_file(filename)
+    def load(io)
       @arquivos = []
       line_number = 0
-      File.open(filename, "r").each_line do |line|
+      io.each_line do |line|
         check_line_encoding line, ++line_number
         case line[RANGE_TIPO_REGISTRO]
 
