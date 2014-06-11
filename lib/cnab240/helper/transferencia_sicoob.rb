@@ -17,6 +17,7 @@ module Cnab240
     def add_lote(campos = {})
       @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V87')
 
+      campos[:controle_banco] ||= '756'
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] = (@arquivo.lotes.length).to_s
 
