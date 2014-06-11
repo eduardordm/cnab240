@@ -58,7 +58,7 @@ module Cnab240
     end
 
     def string
-      linhas.join("\r\n")
+      linhas.join("\n")
     end
 
     def auto_fill
