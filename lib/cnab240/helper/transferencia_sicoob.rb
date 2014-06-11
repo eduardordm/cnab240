@@ -1,5 +1,5 @@
 module Cnab240
-  class PagamentoSicoob < Helper
+  class TransferenciaSicoob < Helper
 
     def initialize(campos = {})
       campos[:controle_banco] ||= '756'

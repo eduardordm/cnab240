@@ -3,7 +3,7 @@ require 'spec_helper'
 
 include Cnab240
 
-describe PagamentoSicoob do
+describe TransferenciaSicoob do
 
   it "deve criar pagamento" do
 
@@ -39,7 +39,7 @@ describe PagamentoSicoob do
     }
 
     # Cria pagamento já com 1 lote criado
-    pagamento = PagamentoSicoob.new(beneficiario)
+    pagamento = TransferenciaSicoob.new(beneficiario)
 
     # Adiciona primeiro lote
     pagamento.add_lote(beneficiario)
