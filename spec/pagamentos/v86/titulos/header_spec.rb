@@ -5,46 +5,46 @@ describe Cnab240::V86::PagamentosTitulos::Header do
   it "deve conter campos header" do
     header = Cnab240::V86::PagamentosTitulos::Header.new
 
-    header.should respond_to(:controle_banco)
-    header.should respond_to(:controle_lote)
-    header.should respond_to(:controle_registro)
+    expect(header).to respond_to(:controle_banco)
+    expect(header).to respond_to(:controle_lote)
+    expect(header).to respond_to(:controle_registro)
 
-    header.should respond_to(:servico_operacao)
-    header.should respond_to(:servico_tipo)
-    header.should respond_to(:servico_forma)
-    header.should respond_to(:servico_layout)
+    expect(header).to respond_to(:servico_operacao)
+    expect(header).to respond_to(:servico_tipo)
+    expect(header).to respond_to(:servico_forma)
+    expect(header).to respond_to(:servico_layout)
 
-    header.should respond_to(:cnab_g004_1)
+    expect(header).to respond_to(:cnab_g004_1)
 
-    header.should respond_to(:empresa_tipo)
-    header.should respond_to(:empresa_numero)
-    header.should respond_to(:empresa_convenio)
-    header.should respond_to(:empresa_agencia_codigo)
-    header.should respond_to(:empresa_agencia_dv)
-    header.should respond_to(:empresa_conta_numero)
-    header.should respond_to(:empresa_conta_dv)
-    header.should respond_to(:empresa_agencia_conta_dv)
-    header.should respond_to(:empresa_nome)
+    expect(header).to respond_to(:empresa_tipo)
+    expect(header).to respond_to(:empresa_numero)
+    expect(header).to respond_to(:empresa_convenio)
+    expect(header).to respond_to(:empresa_agencia_codigo)
+    expect(header).to respond_to(:empresa_agencia_dv)
+    expect(header).to respond_to(:empresa_conta_numero)
+    expect(header).to respond_to(:empresa_conta_dv)
+    expect(header).to respond_to(:empresa_agencia_conta_dv)
+    expect(header).to respond_to(:empresa_nome)
 
-    header.should respond_to(:informacao_1)
+    expect(header).to respond_to(:informacao_1)
 
-    header.should respond_to(:endereco_logradouro)
-    header.should respond_to(:endereco_numero)
-    header.should respond_to(:endereco_complemento)
-    header.should respond_to(:endereco_cidade)
-    header.should respond_to(:endereco_cep)
-    header.should respond_to(:endereco_complemento_cep)
-    header.should respond_to(:endereco_estado)
+    expect(header).to respond_to(:endereco_logradouro)
+    expect(header).to respond_to(:endereco_numero)
+    expect(header).to respond_to(:endereco_complemento)
+    expect(header).to respond_to(:endereco_cidade)
+    expect(header).to respond_to(:endereco_cep)
+    expect(header).to respond_to(:endereco_complemento_cep)
+    expect(header).to respond_to(:endereco_estado)
 
-    header.should respond_to(:cnab_g004_2)
+    expect(header).to respond_to(:cnab_g004_2)
 
-    header.should respond_to(:ocorrencias)
+    expect(header).to respond_to(:ocorrencias)
 
   end
 
   it "header deve ter 240 caracteres" do
     header = Cnab240::V86::PagamentosTitulos::Header.new
-    header.linha.length.should be(240)
+    expect(header.linha.length).to be(240)
   end
 
 end

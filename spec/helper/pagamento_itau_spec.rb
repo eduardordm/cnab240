@@ -67,7 +67,7 @@ describe PagamentoItau do
       :credito_valor_pagamento => '100'
     }
 
-    pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO ITAU'
+    expect(pagamento.arquivo.header.banco_nome.strip).to eq 'BANCO ITAU'
 
     # Simulando arquivo de escrita
     io = StringIO.new("", "w+")
@@ -79,7 +79,7 @@ describe PagamentoItau do
   it "deve carregar arquivo de retorno do ITAU" do
     arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SB22112AIT.RET")[0]
 
-    arquivo_read.lotes.length.should be 1
+    expect(arquivo_read.lotes.length).to be 1
 
     arquivo_read.lotes.each_with_index do |lote_read, i|
       expect(lote_read.header.empresa_nome).to eq 'REDE DE CONVENIOS DO BRASIL   '
@@ -89,7 +89,7 @@ describe PagamentoItau do
   it "deve carregar arquivo de retorno do ITAU" do
     arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SB23112AIT.RET")[0]
 
-    arquivo_read.lotes.length.should be 1
+    expect(arquivo_read.lotes.length).to be 1
 
     arquivo_read.lotes.each_with_index do |lote_read, i|
       expect(lote_read.header.empresa_nome).to eq 'REDE DE CONVENIOS DO BRASIL   '

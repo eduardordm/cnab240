@@ -17,7 +17,7 @@ describe "Bindata" do
     s2 = StringIO.new
     d2.write(s2)
 
-    s1.string.should eq s2.string
+    expect(s1.string).to eq s2.string
 
     class Dummy2 < BinData::Record
       string :f1, :length => 3, :pad_byte => '1'
@@ -33,7 +33,7 @@ describe "Bindata" do
     s2 = StringIO.new
     d2.write(s2)
 
-    s1.string.should eq s2.string
+    expect(s1.string).to eq s2.string
   end
 
   it "should pad left" do
@@ -47,6 +47,6 @@ describe "Bindata" do
     d1.write(s1)
 
     d2 = Dummy3.read(s1.string)
-    d2.f2.should eq('0001')
+    expect(d2.f2).to eq('0001')
   end
 end
