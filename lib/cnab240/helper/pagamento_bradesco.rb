@@ -5,8 +5,8 @@ module Cnab240
       campos[:controle_banco] ||= '237'
       campos[:arquivo_codigo] ||= '1'
       campos[:banco_nome] ||= 'BANCO BRADESCO'
-      campos[:arquivo_data_geracao] ||= Time.now.strftime("%d%m%Y")
-      campos[:arquivo_hora_geracao] ||= Time.now.strftime("%H%M")
+      campos[:arquivo_data_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
+      campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M')
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V80')
       @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')

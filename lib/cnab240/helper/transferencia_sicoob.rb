@@ -5,8 +5,8 @@ module Cnab240
       campos[:controle_banco] ||= '756'
       campos[:banco_nome] ||= 'BANCO COOPERATIVO DO BRASIL S.A.'
       campos[:empresa_tipo] ||= '2'
-      campos[:arquivo_data_geracao] ||= Time.now.strftime("%d%m%Y")
-      campos[:arquivo_hora_geracao] ||= Time.now.strftime("%H%M")
+      campos[:arquivo_data_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
+      campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M')
       campos[:arquivo_codigo] ||= '1'
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V87')
