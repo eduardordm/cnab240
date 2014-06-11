@@ -41,6 +41,9 @@ describe PagamentoSicoob do
     # Cria pagamento já com 1 lote criado
     pagamento = PagamentoSicoob.new(beneficiario)
 
+    # Adiciona primeiro lote
+    pagamento.add_lote(beneficiario)
+
     # adiciona pagamentos no último lote criado
     pagamento << favorecido # primeiro pagamento
     pagamento << favorecido # segundo pagamento
@@ -48,6 +51,7 @@ describe PagamentoSicoob do
     # Adiciona segundo lote
     pagamento.add_lote(beneficiario)
 
+    # adiciona pagamentos no último lote criado
     pagamento << favorecido
 
     expect(pagamento.arquivo.header.banco_nome.strip).to eq 'BANCO COOPERATIVO DO BRASIL S.'

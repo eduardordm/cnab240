@@ -10,14 +10,8 @@ module Cnab240
       campos[:arquivo_codigo] ||= '1'
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V87')
-      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V87')
 
       fill campos, arquivo.header, arquivo.trailer
-
-      campos[:servico_operacao] ||= 'C'
-      campos[:controle_lote] ||= '0001'
-
-      fill campos, lote.header, lote.trailer
     end
 
     def add_lote(campos = {})
