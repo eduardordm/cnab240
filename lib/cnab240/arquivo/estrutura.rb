@@ -1,10 +1,10 @@
 module Cnab240
-
-  ESTRUTURA_V80 = {
+  
+  ESTRUTURA_V40 = {
     :segmentos_implementados => [:a],
     :pagamento => {
-      :header => Cnab240::V80::Pagamentos::Header,
-      :trailer => Cnab240::V80::Pagamentos::Trailer,
+      :header => Cnab240::V40::Pagamentos::Header,
+      :trailer => Cnab240::V40::Pagamentos::Trailer,
       :segmentos => [:a],
       :a => {
         :remessa => true,
@@ -12,12 +12,31 @@ module Cnab240
       }
     }
   }
+  
+  ESTRUTURA_V60 = {
+    :segmentos_implementados => [:a, :b],
+    :pagamento => {
 
-  ESTRUTURA_V40 = {
+      :header => Cnab240::V60::Pagamentos::Header,
+      :trailer => Cnab240::V60::Pagamentos::Trailer,
+
+      :segmentos => [:a, :b],
+      :a => {
+        :remessa => true,
+        :retorno => true
+      },
+      :b => {
+        :remessa => true,
+        :retorno => true
+      }
+    }
+  }
+  
+  ESTRUTURA_V80 = {
     :segmentos_implementados => [:a],
     :pagamento => {
-      :header => Cnab240::V40::Pagamentos::Header,
-      :trailer => Cnab240::V40::Pagamentos::Trailer,
+      :header => Cnab240::V80::Pagamentos::Header,
+      :trailer => Cnab240::V80::Pagamentos::Trailer,
       :segmentos => [:a],
       :a => {
         :remessa => true,
@@ -154,6 +173,7 @@ module Cnab240
 
   ESTRUTURA = {
     'V40' => ESTRUTURA_V40,
+    'V60' => ESTRUTURA_V60,
     'V80' => ESTRUTURA_V80,
     'V86' => ESTRUTURA_V86,
     'V87' => ESTRUTURA_V87
