@@ -104,6 +104,7 @@ require "cnab240/helper/pagamento_bradesco"
 require "cnab240/helper/pagamento_bb"
 
 require "cnab240/helper/transferencia_sicoob"
+require "cnab240/helper/transferencia_citibank"
 
 module Cnab240
 

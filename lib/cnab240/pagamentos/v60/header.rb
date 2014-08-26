@@ -19,13 +19,13 @@ module Cnab240::V60::Pagamentos
 
     lstring :empresa_agencia_codigo, :length => 5, :pad_byte => '0'
     string :empresa_agencia_dv, :length => 1, :pad_byte => ' '
-    lstring :empresa_conta_numero, :length => 12, :pad_byte => '0'
+    lstring :empresa_conta_numero, :length => 12, :pad_byte => ' '
     string :empresa_conta_dv, :length => 1, :pad_byte => ' '
-    string :empresa_agencia_conta_dv, :length => 1, :pad_byte => '0'
+    string :empresa_agencia_conta_dv, :length => 1, :pad_byte => ' '
     string :empresa_nome, :length => 30, :pad_byte => ' '
 
     string :mensagem, :length => 40, :pad_byte => ' '
-    
+
     string :endereco_logradouro, :length => 30, :pad_byte => ' '
     lstring :endereco_numero, :length => 5, :pad_byte => '0'
     string :endereco_complemento, :length => 15, :pad_byte => ' '
