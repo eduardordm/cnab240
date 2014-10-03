@@ -46,7 +46,7 @@ module Cnab240::Arquivo
     #
     # @since 0.0.20
     def save_to_file(filename)
-      File.open(filename, 'w').write(string)
+      File.open(filename, 'w'){|f| f.write(string)}
     end
     
     # Loads contents from a +File+ into +Cnab240::Arquivo::Arquivo+ instances.
