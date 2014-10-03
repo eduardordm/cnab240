@@ -77,9 +77,10 @@ describe Cnab240::Arquivo::Arquivo do
 
   it "deve carregar arquivo grande" do
     pending("Falta escrever esse teste, provavelmente gerando um arquivo grande em memória")
-    #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
-    #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
-    #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]
-    #		arquivo_read.string.should eq arquivo_read2.string
+  #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
+  #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
+  #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]
+  #		arquivo_read.string.should eq arquivo_read2.string
+    fail
   end
 end

@@ -60,14 +60,13 @@ describe PagamentoSicoob do
   end
 
   it "deve carregar arquivo de retorno do SICOOB" do
-    pending("Falta adicionar um exemplo de arquivo de retorno dessa instituição") do
-      arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SICOOB.RET")[0]
+    pending("Falta adicionar um exemplo de arquivo de retorno dessa instituição")
+    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SICOOB.RET")[0]
 
-      arquivo_read.lotes.length.should be 2
+    arquivo_read.lotes.length.should be 2
 
-      arquivo_read.lotes.each_with_index do |lote_read, i|
-        expect(lote_read.header.empresa_nome).to eq 'BALLTEC LTDA                  '
-      end
+    arquivo_read.lotes.each_with_index do |lote_read, i|
+      expect(lote_read.header.empresa_nome).to eq 'BALLTEC LTDA                  '
     end
   end
 end
