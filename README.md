@@ -4,6 +4,8 @@ Uma extensão do CNAB240, com algumas correções para o Itaú.
 =======================================================
 
 [![Build Status](https://travis-ci.org/eduardordm/cnab240.svg?branch=master)](https://travis-ci.org/eduardordm/cnab240)
+[![Code Climate](https://codeclimate.com/github/eduardordm/cnab240/badges/gpa.svg)](https://codeclimate.com/github/eduardordm/cnab240)
+[![Test Coverage](https://codeclimate.com/github/eduardordm/cnab240/badges/coverage.svg)](https://codeclimate.com/github/eduardordm/cnab240)
 
 Esta é uma implementação do Layout Padrão Febraban 240 posições, e algumas variações. Provavelmente vou adicionar o CNAB 400 na mesma gem. Talvez adicione também um puxadinho para voce poder usar o ActiveRecord.
 
