@@ -2,7 +2,7 @@ require 'spec_helper'
 
 include Cnab240::V87
 
-describe Cnab240::V87::SegmentoA do
+RSpec.describe Cnab240::V87::SegmentoA do
 
   it "deve instanciar segmento" do
     segmento = Cnab240::V87::SegmentoA.new

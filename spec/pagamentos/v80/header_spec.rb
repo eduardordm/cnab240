@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cnab240::V80::Pagamentos::Header do
+RSpec.describe Cnab240::V80::Pagamentos::Header do
 
   it "deve conter campos header" do
     header = Cnab240::V80::Pagamentos::Header.new

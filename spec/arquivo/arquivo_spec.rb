@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 require 'spec_helper'
 
-describe Cnab240::Arquivo::Arquivo do
+RSpec.describe Cnab240::Arquivo::Arquivo do
 
   it "deve instanciar" do
     expect(subject).to be_an_instance_of(described_class)

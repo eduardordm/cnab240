@@ -2,7 +2,7 @@ require 'spec_helper'
 
 include Cnab240
 
-describe PagamentoItau do
+RSpec.describe PagamentoItau do
 
   it "deve criar pagamento" do
     pagamento = PagamentoItau.new({

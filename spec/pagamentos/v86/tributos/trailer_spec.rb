@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cnab240::V86::PagamentosTributos::Trailer do
+RSpec.describe Cnab240::V86::PagamentosTributos::Trailer do
 
   it "deve conter campos trailer" do
     trailer = Cnab240::V86::PagamentosTributos::Trailer.new

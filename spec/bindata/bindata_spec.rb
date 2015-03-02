@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Bindata" do
+RSpec.describe "Bindata" do
 
   it "should work" do
     class Dummy < BinData::Record

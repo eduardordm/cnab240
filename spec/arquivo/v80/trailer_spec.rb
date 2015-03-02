@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cnab240::V80::Arquivo::Trailer do
+RSpec.describe Cnab240::V80::Arquivo::Trailer do
 
   it "deve conter campos trailer" do
     header = Cnab240::V80::Arquivo::Trailer.new

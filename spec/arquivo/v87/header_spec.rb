@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cnab240::V87::Arquivo::Header do
+RSpec.describe Cnab240::V87::Arquivo::Header do
 
   it "deve ter campos de header" do
     header = Cnab240::V87::Arquivo::Header.new

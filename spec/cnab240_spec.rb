@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cnab240 do
+RSpec.describe Cnab240 do
 
   it "deve ter campos de configuracao" do
     Cnab240.setup do |c|

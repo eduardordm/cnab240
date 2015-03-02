@@ -3,7 +3,7 @@ require 'spec_helper'
 
 include Cnab240
 
-describe TransferenciaSicoob do
+RSpec.describe TransferenciaSicoob do
 
   it "deve criar pagamento" do
 

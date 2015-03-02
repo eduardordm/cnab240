@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Cnab240::Lote do
+RSpec.describe Cnab240::Lote do
 
   it "deve conter trailer e header" do
     lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
