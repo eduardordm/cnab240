@@ -32,7 +32,7 @@ module Cnab240::Arquivo
     end
 
     def string
-      linhas.join("\r\n") << "\r\n"
+      linhas.join("\n") << "\n"
     end
     
     # Writes +Cnab240::Arquivo::Arquivo+ contents into a +File+, overwriting its current contents.

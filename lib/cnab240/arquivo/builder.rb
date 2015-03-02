@@ -73,10 +73,13 @@ module Cnab240
           arquivos.last.header = Cnab240::V87::Arquivo::Header.read(line)
         when '085'
           arquivos.last.versao = 'V86'
-          arquivos.last.header = Cnab240::V86::Arquivo::Header.read(line)
+          arquivos.last.header = Cnab240::V86::Arquivo::Header.read(line)       
         when '040'
           arquivos.last.versao = 'V40'
           arquivos.last.header = Cnab240::V40::Arquivo::Header.read(line)
+        when '060'
+          arquivos.last.versao = 'V60'
+          arquivos.last.header = Cnab240::V60::Arquivo::Header.read(line)
         when '000' # possivelmente V80 do itau
           if line[14..16] == '080'
             arquivos.last.versao = 'V80'
@@ -108,6 +111,19 @@ module Cnab240
             when 'V40'
               arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
                 l.header = Cnab240::V40::Pagamentos::Header.read(line)
+              end
+            else
+              raise "Header de lote nao suportado para a versao de arquivo."
+          end
+        when '031'
+          case arquivos.last.versao
+            when 'V60'
+              arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
+                l.header = Cnab240::V60::Pagamentos::Header.read(line)
+              end
+            when 'V83'
+              arquivos.last.lotes << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :none) do |l|
+                l.header = Cnab240::V83::Pagamentos::Header.read(line)
               end
             else
               raise "Header de lote nao suportado para a versao de arquivo."

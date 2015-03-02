@@ -6,51 +6,51 @@ describe Cnab240::V87::SegmentoB do
 
   it "deve instanciar segmento" do
     segmento = Cnab240::V87::SegmentoB.new
-    segmento.should be_an_instance_of(Cnab240::V87::SegmentoB)
+    expect(segmento).to be_an_instance_of(Cnab240::V87::SegmentoB)
   end
 
   it "deve conter campos" do
     segmento = Cnab240::V87::SegmentoB.new
 
-    segmento.should respond_to(:controle_banco)
-    segmento.should respond_to(:controle_lote)
-    segmento.should respond_to(:controle_registro)
+    expect(segmento).to respond_to(:controle_banco)
+    expect(segmento).to respond_to(:controle_lote)
+    expect(segmento).to respond_to(:controle_registro)
 
-    segmento.should respond_to(:servico_numero_registro)
-    segmento.should respond_to(:servico_codigo_segmento)
+    expect(segmento).to respond_to(:servico_numero_registro)
+    expect(segmento).to respond_to(:servico_codigo_segmento)
 
-    segmento.should respond_to(:cnab240_g004_1)
+    expect(segmento).to respond_to(:cnab240_g004_1)
 
-    segmento.should respond_to(:favorecido_inscricao_tipo)
-    segmento.should respond_to(:favorecido_inscricao_numero)
-    segmento.should respond_to(:favorecido_endereco_logradouro)
-    segmento.should respond_to(:favorecido_endereco_numero)
-    segmento.should respond_to(:favorecido_endereco_complemento)
-    segmento.should respond_to(:favorecido_endereco_bairro)
-    segmento.should respond_to(:favorecido_endereco_cidade)
-    segmento.should respond_to(:favorecido_endereco_cep)
-    segmento.should respond_to(:favorecido_endereco_cep_complemento)
-    segmento.should respond_to(:favorecido_endereco_estado)
+    expect(segmento).to respond_to(:favorecido_inscricao_tipo)
+    expect(segmento).to respond_to(:favorecido_inscricao_numero)
+    expect(segmento).to respond_to(:favorecido_endereco_logradouro)
+    expect(segmento).to respond_to(:favorecido_endereco_numero)
+    expect(segmento).to respond_to(:favorecido_endereco_complemento)
+    expect(segmento).to respond_to(:favorecido_endereco_bairro)
+    expect(segmento).to respond_to(:favorecido_endereco_cidade)
+    expect(segmento).to respond_to(:favorecido_endereco_cep)
+    expect(segmento).to respond_to(:favorecido_endereco_cep_complemento)
+    expect(segmento).to respond_to(:favorecido_endereco_estado)
 
-    segmento.should respond_to(:pagamento_data_vencimento)
-    segmento.should respond_to(:pagamento_valor_documento)
-    segmento.should respond_to(:pagamento_valor_abatimento)
-    segmento.should respond_to(:pagamento_valor_desconto)
-    segmento.should respond_to(:pagamento_valor_mora)
-    segmento.should respond_to(:pagamento_valor_multa)
+    expect(segmento).to respond_to(:pagamento_data_vencimento)
+    expect(segmento).to respond_to(:pagamento_valor_documento)
+    expect(segmento).to respond_to(:pagamento_valor_abatimento)
+    expect(segmento).to respond_to(:pagamento_valor_desconto)
+    expect(segmento).to respond_to(:pagamento_valor_mora)
+    expect(segmento).to respond_to(:pagamento_valor_multa)
 
-    segmento.should respond_to(:codigo_documento_favorecido)
+    expect(segmento).to respond_to(:codigo_documento_favorecido)
 
-    segmento.should respond_to(:aviso)
+    expect(segmento).to respond_to(:aviso)
 
-    segmento.should respond_to(:codigo_ug)
+    expect(segmento).to respond_to(:codigo_ug)
 
-    segmento.should respond_to(:cnab_g004_2)
+    expect(segmento).to respond_to(:cnab_g004_2)
   end
 
   it "deve ter 240 caracteres" do
     segmento = Cnab240::V87::SegmentoB.new
-    segmento.linha.length.should be(240)
+    expect(segmento.linha.length).to be(240)
   end
 
   it "deve manter coesao" do
@@ -59,6 +59,6 @@ describe Cnab240::V87::SegmentoB do
     linha1 = obj.linha
     obj2 = c.read(linha1)
     linha2 = obj2.linha
-    linha1.should eq linha2
+    expect(linha1).to eq linha2
   end
 end

@@ -6,41 +6,41 @@ describe Cnab240::V86::SegmentoJ do
 
   it "deve instanciar segmento" do
     segmento = Cnab240::V86::SegmentoJ.new
-    segmento.should be_an_instance_of(Cnab240::V86::SegmentoJ)
+    expect(segmento).to be_an_instance_of(Cnab240::V86::SegmentoJ)
   end
 
   it "deve conter campos" do
     segmento = Cnab240::V86::SegmentoJ.new
 
-    segmento.should respond_to(:controle_banco)
-    segmento.should respond_to(:controle_lote)
-    segmento.should respond_to(:controle_registro)
+    expect(segmento).to respond_to(:controle_banco)
+    expect(segmento).to respond_to(:controle_lote)
+    expect(segmento).to respond_to(:controle_registro)
 
-    segmento.should respond_to(:servico_numero_registro)
-    segmento.should respond_to(:servico_codigo_segmento)
-    segmento.should respond_to(:servico_tipo_movimento)
-    segmento.should respond_to(:servico_codigo_movimento)
+    expect(segmento).to respond_to(:servico_numero_registro)
+    expect(segmento).to respond_to(:servico_codigo_segmento)
+    expect(segmento).to respond_to(:servico_tipo_movimento)
+    expect(segmento).to respond_to(:servico_codigo_movimento)
 
-    segmento.should respond_to(:codigo_barras)
-    segmento.should respond_to(:nome_cedente)
-    segmento.should respond_to(:data_vencimento)
-    segmento.should respond_to(:valor_titulo)
-    segmento.should respond_to(:valor_desconto_abatimento)
-    segmento.should respond_to(:valor_mora_juros)
-    segmento.should respond_to(:data_pagamento)
-    segmento.should respond_to(:quantidade_moeda)
-    segmento.should respond_to(:referencia_sacado)
+    expect(segmento).to respond_to(:codigo_barras)
+    expect(segmento).to respond_to(:nome_cedente)
+    expect(segmento).to respond_to(:data_vencimento)
+    expect(segmento).to respond_to(:valor_titulo)
+    expect(segmento).to respond_to(:valor_desconto_abatimento)
+    expect(segmento).to respond_to(:valor_mora_juros)
+    expect(segmento).to respond_to(:data_pagamento)
+    expect(segmento).to respond_to(:quantidade_moeda)
+    expect(segmento).to respond_to(:referencia_sacado)
 
-    segmento.should respond_to(:nosso_numero)
-    segmento.should respond_to(:codigo_moeda)
+    expect(segmento).to respond_to(:nosso_numero)
+    expect(segmento).to respond_to(:codigo_moeda)
 
-    segmento.should respond_to(:cnab_g004_1)
-    segmento.should respond_to(:ocorrencias)
+    expect(segmento).to respond_to(:cnab_g004_1)
+    expect(segmento).to respond_to(:ocorrencias)
   end
 
   it "deve ter 240 caracteres" do
     segmento = Cnab240::V86::SegmentoJ.new
-    segmento.linha.length.should be(240)
+    expect(segmento.linha.length).to be(240)
   end
 
   it "deve manter coesao" do
@@ -49,7 +49,7 @@ describe Cnab240::V86::SegmentoJ do
     linha1 = obj.linha
     obj2 = c.read(linha1)
     linha2 = obj2.linha
-    linha1.should eq linha2
+    expect(linha1).to eq linha2
   end
 
 end
