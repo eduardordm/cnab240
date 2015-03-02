@@ -2,8 +2,7 @@
 require File.expand_path('../lib/cnab240/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.add_development_dependency "rspec", '~> 3.0.0'
-  gem.add_development_dependency "debugger", '~> 1.6.8'
+  gem.add_development_dependency "rspec", '~> 3.2.0'
   gem.add_dependency "bindata", '~> 2.1.0'
 
   gem.authors       = ["Eduardo Mourao"]
