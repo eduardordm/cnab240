@@ -6,34 +6,34 @@ describe Cnab240::V86::SegmentoN do
 
   it "deve instanciar segmento" do
     segmento = Cnab240::V86::SegmentoN.new
-    segmento.should be_an_instance_of(Cnab240::V86::SegmentoN)
+    expect(segmento).to be_an_instance_of(Cnab240::V86::SegmentoN)
   end
 
   it "deve conter campos" do
     segmento = Cnab240::V86::SegmentoN.new
 
-    segmento.should respond_to(:controle_banco)
-    segmento.should respond_to(:controle_lote)
-    segmento.should respond_to(:controle_registro)
+    expect(segmento).to respond_to(:controle_banco)
+    expect(segmento).to respond_to(:controle_lote)
+    expect(segmento).to respond_to(:controle_registro)
 
-    segmento.should respond_to(:servico_numero_registro)
-    segmento.should respond_to(:servico_codigo_segmento)
-    segmento.should respond_to(:servico_tipo_movimento)
-    segmento.should respond_to(:servico_codigo_movimento)
+    expect(segmento).to respond_to(:servico_numero_registro)
+    expect(segmento).to respond_to(:servico_codigo_segmento)
+    expect(segmento).to respond_to(:servico_tipo_movimento)
+    expect(segmento).to respond_to(:servico_codigo_movimento)
 
-    segmento.should respond_to(:nosso_numero)
-    segmento.should respond_to(:contribuinte)
-    segmento.should respond_to(:data_pagamento)
-    segmento.should respond_to(:valor_pagamento)
+    expect(segmento).to respond_to(:nosso_numero)
+    expect(segmento).to respond_to(:contribuinte)
+    expect(segmento).to respond_to(:data_pagamento)
+    expect(segmento).to respond_to(:valor_pagamento)
 
-    segmento.should respond_to(:n_complemento)
+    expect(segmento).to respond_to(:n_complemento)
 
-    segmento.should respond_to(:ocorrencias)
+    expect(segmento).to respond_to(:ocorrencias)
   end
 
   it "deve ter 240 caracteres" do
     segmento = Cnab240::V86::SegmentoN.new
-    segmento.linha.length.should be(240)
+    expect(segmento.linha.length).to be(240)
   end
 
   it "n_complemento deve respeitar choice header (N5)" do
@@ -41,23 +41,23 @@ describe Cnab240::V86::SegmentoN do
       l.header.servico_forma = '25'
     end
     lote << :n
-    lote.segmentos[0].should be_an_instance_of(Cnab240::V86::SegmentoN)
+    expect(lote.segmentos[0]).to be_an_instance_of(Cnab240::V86::SegmentoN)
 
     segmento = lote.segmentos[0].n_complemento
 
-    segmento.should respond_to(:receita)
-    segmento.should respond_to(:tipo_identificacao_contribuinte)
-    segmento.should respond_to(:identificacao_contribuinte)
-    segmento.should respond_to(:identificacao_tributo)
+    expect(segmento).to respond_to(:receita)
+    expect(segmento).to respond_to(:tipo_identificacao_contribuinte)
+    expect(segmento).to respond_to(:identificacao_contribuinte)
+    expect(segmento).to respond_to(:identificacao_tributo)
 
-    segmento.should respond_to(:exercicio)
-    segmento.should respond_to(:renavam)
-    segmento.should respond_to(:uf)
-    segmento.should respond_to(:municipio)
-    segmento.should respond_to(:placa)
-    segmento.should respond_to(:opcao_pagamento)
+    expect(segmento).to respond_to(:exercicio)
+    expect(segmento).to respond_to(:renavam)
+    expect(segmento).to respond_to(:uf)
+    expect(segmento).to respond_to(:municipio)
+    expect(segmento).to respond_to(:placa)
+    expect(segmento).to respond_to(:opcao_pagamento)
 
-    segmento.should respond_to(:cnab)
+    expect(segmento).to respond_to(:cnab)
   end
 
   it "deve manter coesao" do
@@ -66,7 +66,7 @@ describe Cnab240::V86::SegmentoN do
     linha1 = obj.linha
     obj2 = c.read(linha1)
     linha2 = obj2.linha
-    linha1.should eq linha2
+    expect(linha1).to eq linha2
   end
 
 end

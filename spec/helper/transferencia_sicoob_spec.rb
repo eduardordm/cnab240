@@ -3,7 +3,7 @@ require 'spec_helper'
 
 include Cnab240
 
-describe PagamentoSicoob do
+describe TransferenciaSicoob do
 
   it "deve criar pagamento" do
 
@@ -39,7 +39,10 @@ describe PagamentoSicoob do
     }
 
     # Cria pagamento já com 1 lote criado
-    pagamento = PagamentoSicoob.new(beneficiario)
+    pagamento = TransferenciaSicoob.new(beneficiario)
+
+    # Adiciona primeiro lote
+    pagamento.add_lote(beneficiario)
 
     # adiciona pagamentos no último lote criado
     pagamento << favorecido # primeiro pagamento
@@ -48,25 +51,15 @@ describe PagamentoSicoob do
     # Adiciona segundo lote
     pagamento.add_lote(beneficiario)
 
+    # adiciona pagamentos no último lote criado
     pagamento << favorecido
 
-    pagamento.arquivo.header.banco_nome.strip.should eq 'BANCO COOPERATIVO DO BRASIL S.'
+    expect(pagamento.arquivo.header.banco_nome.strip).to eq 'BANCO COOPERATIVO DO BRASIL S.'
 
     # Simulando arquivo de escrita
     io = StringIO.new("", "w+")
     io.write(pagamento.string)
 
     pagamento.string
-  end
-
-  it "deve carregar arquivo de retorno do SICOOB" do
-    pending("Falta adicionar um exemplo de arquivo de retorno dessa instituição")
-    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("./spec/fixtures/retorno/SICOOB.RET")[0]
-
-    arquivo_read.lotes.length.should be 2
-
-    arquivo_read.lotes.each_with_index do |lote_read, i|
-      expect(lote_read.header.empresa_nome).to eq 'BALLTEC LTDA                  '
-    end
   end
 end

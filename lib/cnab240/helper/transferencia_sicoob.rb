@@ -1,28 +1,23 @@
 module Cnab240
-  class PagamentoSicoob < Helper
+  class TransferenciaSicoob < Helper
 
     def initialize(campos = {})
       campos[:controle_banco] ||= '756'
       campos[:banco_nome] ||= 'BANCO COOPERATIVO DO BRASIL S.A.'
       campos[:empresa_tipo] ||= '2'
-      campos[:arquivo_data_geracao] ||= Time.now.strftime("%d%m%Y")
-      campos[:arquivo_hora_geracao] ||= Time.now.strftime("%H%M")
+      campos[:arquivo_data_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
+      campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M%S')
       campos[:arquivo_codigo] ||= '1'
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V87')
-      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V87')
 
       fill campos, arquivo.header, arquivo.trailer
-
-      campos[:servico_operacao] ||= 'C'
-      campos[:controle_lote] ||= '0001'
-
-      fill campos, lote.header, lote.trailer
     end
 
     def add_lote(campos = {})
       @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V87')
 
+      campos[:controle_banco] ||= '756'
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] = (@arquivo.lotes.length).to_s
 
