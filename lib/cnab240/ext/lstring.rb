@@ -1,17 +1,14 @@
-require "bindata/base_primitive"
+require 'bindata/base_primitive'
 
 module BinData
-
   # I didn't want to monkey patch bindata's String primitive.
   class Lstring < BinData::BasePrimitive
-
     optional_parameters :read_length, :length, :trim_padding
-    default_parameters :pad_byte => "\0"
+    default_parameters pad_byte: "\0"
     mutually_exclusive_parameters :read_length, :length
     mutually_exclusive_parameters :length, :value
 
     class << self
-
       def sanitize_parameters!(params) #:nodoc:
         params.warn_replacement_parameter(:initial_length, :read_length)
 
@@ -24,18 +21,19 @@ module BinData
       end
 
       #-------------
+
       private
 
       def sanitized_pad_byte(byte)
         result = byte.is_a?(Integer) ? byte.chr : byte_string(byte.to_s.dup)
         if result.length > 1
-          raise ArgumentError, ":pad_byte must not contain more than 1 byte"
+          fail ArgumentError, ':pad_byte must not contain more than 1 byte'
         end
         result
       end
 
       def byte_string(str)
-        if RUBY_VERSION >= "1.9"
+        if RUBY_VERSION >= '1.9'
           str.force_encoding(Encoding::BINARY)
         else
           str
@@ -59,10 +57,11 @@ module BinData
     end
 
     #---------------
+
     private
 
     def byte_string(str)
-      if RUBY_VERSION >= "1.9"
+      if RUBY_VERSION >= '1.9'
         str.force_encoding(Encoding::BINARY)
       else
         str
@@ -83,7 +82,7 @@ module BinData
     end
 
     def trim_padding(str)
-      str.sub(/#{eval_parameter(:pad_byte)}*$/, "")
+      str.sub(/#{eval_parameter(:pad_byte)}*$/, '')
     end
 
     def value_to_binary_string(val)
@@ -96,7 +95,7 @@ module BinData
     end
 
     def sensible_default
-      ""
+      ''
     end
   end
 end

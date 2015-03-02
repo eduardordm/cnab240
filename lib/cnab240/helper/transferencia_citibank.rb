@@ -1,6 +1,5 @@
 module Cnab240
   class TransferenciaCitibank < Helper
-
     def initialize(campos = {})
       campos[:controle_banco] ||= '745'
       campos[:banco_nome] ||= 'BANCO CITIBANK S/A'
@@ -15,7 +14,7 @@ module Cnab240
     end
 
     def add_lote(campos = {})
-      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V60')
+      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: 'V60')
 
       campos[:controle_banco] ||= '745'
       campos[:servico_operacao] ||= 'C'
@@ -29,7 +28,7 @@ module Cnab240
 
       campos[:controle_banco] ||= '745'
       campos[:controle_lote] = @arquivo.lotes.length.to_s
-      campos[:servico_numero_registro] = (lote.segmentos.length+1).to_s
+      campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
       # 000 para inclusao e 999 para exclusao
       campos[:servico_tipo_movimento] ||= '000'
       campos[:credito_moeda_tipo] ||= 'BRL'
@@ -41,7 +40,7 @@ module Cnab240
       lote << segmento_a
 
       campos[:controle_lote] = @arquivo.lotes.length.to_s
-      campos[:servico_numero_registro] = (lote.segmentos.length+1).to_s
+      campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
       campos[:pagamento_data_vencimento] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
 
       segmento_b = Cnab240::V60::SegmentoB.new
@@ -53,6 +52,5 @@ module Cnab240
     def favorecido_camara(lote, campos)
       lote.header[:servico_forma] == '01' ? '000' : (campos[:credito_valor_pagamento].to_i < 749) ? '700' : '018'
     end
-
   end
 end

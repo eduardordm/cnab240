@@ -3,13 +3,12 @@ require 'spec_helper'
 include Cnab240::V87
 
 RSpec.describe Cnab240::V87::SegmentoN do
-
-  it "deve instanciar segmento" do
+  it 'deve instanciar segmento' do
     segmento = Cnab240::V87::SegmentoN.new
     expect(segmento).to be_an_instance_of(Cnab240::V87::SegmentoN)
   end
 
-  it "deve conter campos" do
+  it 'deve conter campos' do
     segmento = Cnab240::V87::SegmentoN.new
 
     expect(segmento).to respond_to(:controle_banco)
@@ -31,13 +30,13 @@ RSpec.describe Cnab240::V87::SegmentoN do
     expect(segmento).to respond_to(:ocorrencias)
   end
 
-  it "deve ter 240 caracteres" do
+  it 'deve ter 240 caracteres' do
     segmento = Cnab240::V87::SegmentoN.new
     expect(segmento.linha.length).to be(240)
   end
 
-  it "n_complemento deve respeitar choice header (N5)" do
-    lote = Cnab240::Lote.new(:operacao => :pagamento_titulo_tributos, :tipo => :remessa, :versao => 'V87') do |l|
+  it 'n_complemento deve respeitar choice header (N5)' do
+    lote = Cnab240::Lote.new(operacao: :pagamento_titulo_tributos, tipo: :remessa, versao: 'V87') do |l|
       l.header.servico_forma = '25'
     end
     lote << :n
@@ -60,7 +59,7 @@ RSpec.describe Cnab240::V87::SegmentoN do
     expect(segmento).to respond_to(:cnab)
   end
 
-  it "deve manter coesao" do
+  it 'deve manter coesao' do
     c = Cnab240::V87::SegmentoN
     obj = c.new
     linha1 = obj.linha
@@ -68,5 +67,4 @@ RSpec.describe Cnab240::V87::SegmentoN do
     linha2 = obj2.linha
     expect(linha1).to eq linha2
   end
-
 end

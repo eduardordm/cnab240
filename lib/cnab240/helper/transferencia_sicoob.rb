@@ -1,6 +1,5 @@
 module Cnab240
   class TransferenciaSicoob < Helper
-
     def initialize(campos = {})
       campos[:controle_banco] ||= '756'
       campos[:banco_nome] ||= 'BANCO COOPERATIVO DO BRASIL S.A.'
@@ -15,7 +14,7 @@ module Cnab240
     end
 
     def add_lote(campos = {})
-      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V87')
+      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: 'V87')
 
       campos[:controle_banco] ||= '756'
       campos[:servico_operacao] ||= 'C'
@@ -29,7 +28,7 @@ module Cnab240
 
       campos[:controle_banco] ||= '756'
       campos[:controle_lote] = @arquivo.lotes.length.to_s
-      campos[:servico_numero_registro] = (lote.segmentos.length+1).to_s
+      campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
       # 000 para inclusao e 999 para exclusao
       campos[:servico_tipo_movimento] ||= '000'
       campos[:credito_moeda_tipo] ||= 'BRL'
@@ -39,12 +38,11 @@ module Cnab240
       lote << segmento_a
 
       campos[:controle_lote] = @arquivo.lotes.length.to_s
-      campos[:servico_numero_registro] = (lote.segmentos.length+1).to_s
+      campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
 
       segmento_b = Cnab240::V87::SegmentoB.new
       fill campos, segmento_b
       lote << segmento_b
     end
-
   end
 end

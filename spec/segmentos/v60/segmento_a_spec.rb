@@ -3,13 +3,12 @@ require 'spec_helper'
 include Cnab240::V60
 
 RSpec.describe Cnab240::V60::SegmentoA do
-
-  it "deve instanciar segmento" do
+  it 'deve instanciar segmento' do
     segmento = Cnab240::V60::SegmentoA.new
     expect(segmento).to be_an_instance_of(Cnab240::V60::SegmentoA)
   end
 
-  it "deve conter campos" do
+  it 'deve conter campos' do
     segmento = Cnab240::V60::SegmentoA.new
 
     expect(segmento).to respond_to(:controle_banco)
@@ -46,12 +45,12 @@ RSpec.describe Cnab240::V60::SegmentoA do
     expect(segmento).to respond_to(:ocorrencias)
   end
 
-  it "deve ter 240 caracteres" do
+  it 'deve ter 240 caracteres' do
     segmento = Cnab240::V60::SegmentoA.new
     expect(segmento.linha.length).to be(240)
   end
 
-  it "deve manter coesao" do
+  it 'deve manter coesao' do
     c = Cnab240::V60::SegmentoA
     obj = c.new
     linha1 = obj.linha

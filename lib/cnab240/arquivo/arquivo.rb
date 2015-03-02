@@ -1,12 +1,11 @@
 module Cnab240::Arquivo
   class Arquivo
-
     attr_accessor :header
     attr_accessor :lotes
     attr_accessor :trailer
     attr_accessor :versao
 
-    def initialize(versao = "V86")
+    def initialize(versao = 'V86')
       @versao = versao
       @header = eval("Cnab240::#{versao}::Arquivo::Header").new
       @trailer = eval("Cnab240::#{versao}::Arquivo::Trailer").new
@@ -14,7 +13,7 @@ module Cnab240::Arquivo
     end
 
     def linhas
-      self.auto_fill if Cnab240.auto_fill_enabled
+      auto_fill if Cnab240.auto_fill_enabled
       a = []
       a << @header.linha
       @lotes.each do |lote|
@@ -34,7 +33,7 @@ module Cnab240::Arquivo
     def string
       linhas.join("\n") << "\n"
     end
-    
+
     # Writes +Cnab240::Arquivo::Arquivo+ contents into a +File+, overwriting its current contents.
     #
     # @example Save contents to a file.
@@ -46,9 +45,9 @@ module Cnab240::Arquivo
     #
     # @since 0.0.20
     def save_to_file(filename)
-      File.open(filename, 'w'){|f| f.write(string)}
+      File.open(filename, 'w') { |f| f.write(string) }
     end
-    
+
     # Loads contents from a +File+ into +Cnab240::Arquivo::Arquivo+ instances.
     #
     # @example Load contents from a file.
@@ -84,7 +83,5 @@ module Cnab240::Arquivo
       qtd_registros += 2 # header e trailer de arquivo
       trailer.totais_qtde_registros = qtd_registros.to_s
     end
-
   end
-
 end

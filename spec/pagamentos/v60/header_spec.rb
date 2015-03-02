@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Cnab240::V60::Pagamentos::Header do
-
-  it "deve conter campos header" do
+  it 'deve conter campos header' do
     header = Cnab240::V60::Pagamentos::Header.new
 
     expect(header).to respond_to(:controle_banco)
@@ -18,14 +17,14 @@ RSpec.describe Cnab240::V60::Pagamentos::Header do
     expect(header).to respond_to(:empresa_tipo)
     expect(header).to respond_to(:empresa_numero)
     expect(header).to respond_to(:empresa_convenio)
-    
+
     expect(header).to respond_to(:empresa_agencia_codigo)
     expect(header).to respond_to(:empresa_agencia_dv)
     expect(header).to respond_to(:empresa_conta_numero)
     expect(header).to respond_to(:empresa_conta_dv)
     expect(header).to respond_to(:empresa_agencia_conta_dv)
     expect(header).to respond_to(:empresa_nome)
-    
+
     expect(header).to respond_to(:mensagem)
 
     expect(header).to respond_to(:endereco_logradouro)
@@ -39,7 +38,7 @@ RSpec.describe Cnab240::V60::Pagamentos::Header do
     expect(header).to respond_to(:ocorrencias)
   end
 
-  it "header deve ter 240 caracteres" do
+  it 'header deve ter 240 caracteres' do
     header = Cnab240::V60::Pagamentos::Header.new
     expect(header.linha.length).to be(240)
   end

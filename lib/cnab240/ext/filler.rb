@@ -1,6 +1,5 @@
 module Cnab240
   module Filler
-
     def fill(hash, *objects)
       objects.each do |object|
         hash.each do |k, v|
@@ -16,6 +15,5 @@ module Cnab240
         end
       end
     end
-
   end
 end

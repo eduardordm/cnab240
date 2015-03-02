@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Cnab240::V87::PagamentosTitulos::Trailer do
-
-  it "deve conter campos trailer" do
+  it 'deve conter campos trailer' do
     trailer = Cnab240::V87::PagamentosTitulos::Trailer.new
 
     expect(trailer).to respond_to(:controle_banco)
@@ -22,9 +21,8 @@ RSpec.describe Cnab240::V87::PagamentosTitulos::Trailer do
     expect(trailer).to respond_to(:ocorrencias)
   end
 
-  it "trailer deve ter 240 caracteres" do
+  it 'trailer deve ter 240 caracteres' do
     trailer = Cnab240::V87::PagamentosTitulos::Trailer.new
     expect(trailer.linha.length).to be(240)
   end
-
 end

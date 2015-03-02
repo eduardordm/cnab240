@@ -1,6 +1,5 @@
 module Cnab240
   class Lote
-
     attr_accessor :header
     attr_accessor :segmentos
     attr_accessor :trailer
@@ -17,7 +16,7 @@ module Cnab240
       @fallback ||= options[:fallback]
       @versao ||= 'V86'
 
-      raise "Operacao nao suportada: #{operacao}" if ESTRUTURA[@versao][operacao].nil?
+      fail "Operacao nao suportada: #{operacao}" if ESTRUTURA[@versao][operacao].nil?
 
       estrutura = ESTRUTURA[@versao][operacao]
 
@@ -27,10 +26,10 @@ module Cnab240
       yield self if block_given?
     end
 
-    def read_segmento(s, line)
+    def read_segmento(s, _line)
       versao = arquivo.versao unless arquivo.nil?
       versao ||= @versao
-      segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.read(line)")
+      segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.read(_line)")
     end
 
     def <<(s)
@@ -47,7 +46,7 @@ module Cnab240
     end
 
     def linhas
-      self.auto_fill if Cnab240.auto_fill_enabled
+      auto_fill if Cnab240.auto_fill_enabled
       seg_array = []
       seg_array << @header.linha
       segmentos.each do |s|
@@ -65,7 +64,7 @@ module Cnab240
       trailer.totais_qtde_registros = (segmentos.length + 2).to_s
       _total = 0
       segmentos.each { |seg| _total += seg[:credito_valor_pagamento].to_i }
-      trailer.totais_valor =_total.to_s
+      trailer.totais_valor = _total.to_s
     end
   end
 end

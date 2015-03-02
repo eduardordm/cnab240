@@ -7,7 +7,7 @@ class Module
         unless defined? @@#{sym}
           @@#{sym} = nil
         end
-        
+
         def self.#{sym}
           @@#{sym}
         end
@@ -26,11 +26,11 @@ class Module
         unless defined? @@#{sym}
           @@#{sym} = nil
         end
-        
+
         def self.#{sym}=(obj)
           @@#{sym} = obj
         end
-        
+
         #{"
         def #{sym}=(obj)
           @@#{sym} = obj

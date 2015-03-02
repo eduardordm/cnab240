@@ -2,25 +2,24 @@
 require 'spec_helper'
 
 RSpec.describe Cnab240::Arquivo::Arquivo do
-
-  it "deve instanciar" do
+  it 'deve instanciar' do
     expect(subject).to be_an_instance_of(described_class)
   end
 
-  it "deve aceitar lotes" do
+  it 'deve aceitar lotes' do
     expect(subject).to respond_to(:lotes)
 
     (1..10).each do |n|
-      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+      subject << Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa)
       expect(subject.lotes.length).to be(n)
     end
   end
 
-  it "deve manter 240 em todo o arquivo" do
+  it 'deve manter 240 em todo o arquivo' do
     expect(subject).to respond_to(:lotes)
 
-    (1..10).each do |n|
-      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+    (1..10).each do |_n|
+      subject << Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa)
     end
 
     subject.linhas do |linha|
@@ -28,12 +27,12 @@ RSpec.describe Cnab240::Arquivo::Arquivo do
     end
   end
 
-  it "deve ler e escrever, mantendo classe de lote" do
-    (1..10).each do |n|
-      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+  it 'deve ler e escrever, mantendo classe de lote' do
+    (1..10).each do |_n|
+      subject << Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa)
     end
     # Simulando escrita em arquivo
-    io = StringIO.new("", "w+")
+    io = StringIO.new('', 'w+')
     io.write(subject.string)
     # Rebobinando arquivo escrito para leitura
     io.rewind
@@ -49,12 +48,12 @@ RSpec.describe Cnab240::Arquivo::Arquivo do
     end
   end
 
-  it "arquivos devem ser identicos" do
-    (1..10).each do |n|
-      subject << Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+  it 'arquivos devem ser identicos' do
+    (1..10).each do |_n|
+      subject << Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa)
     end
     # Simulando escrita em arquivo
-    io = StringIO.new("", "w+")
+    io = StringIO.new('', 'w+')
     io.write(subject.string)
     # Rebobinando arquivo escrito para leitura
     io.rewind
@@ -65,9 +64,9 @@ RSpec.describe Cnab240::Arquivo::Arquivo do
     expect(arquivo_read.trailer.linha).to eq subject.trailer.linha
   end
 
-  it "auto fill do arquivo - soma de registros" do
-    (1..2).each do |n|
-      subject << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa)
+  it 'auto fill do arquivo - soma de registros' do
+    (1..2).each do |_n|
+      subject << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa)
       lote << :a
     end
     subject.auto_fill
@@ -75,12 +74,12 @@ RSpec.describe Cnab240::Arquivo::Arquivo do
     expect(subject.trailer.totais_qtde_registros).to eq '000008'
   end
 
-  xit "deve carregar arquivo grande" do
-    pending("Falta escrever esse teste, provavelmente gerando um arquivo grande em memória")
-  #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
-  #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
-  #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]
-  #		arquivo_read.string.should eq arquivo_read2.string
+  xit 'deve carregar arquivo grande' do
+    pending('Falta escrever esse teste, provavelmente gerando um arquivo grande em memória')
+    #	arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/B330002984PSL.REM")[0]
+    #		arquivo_read.save_to_file("spec/fixtures/arquivo.test")
+    #		arquivo_read2 = Cnab240::Arquivo::Arquivo.load_from_file("spec/fixtures/arquivo.test")[0]
+    #		arquivo_read.string.should eq arquivo_read2.string
     fail
   end
 end

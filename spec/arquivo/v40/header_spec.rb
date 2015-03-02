@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Cnab240::V40::Arquivo::Header do
-
-  it "deve ter campos de header" do
+  it 'deve ter campos de header' do
     header = Cnab240::V40::Arquivo::Header.new
 
     expect(header).to respond_to(:controle_banco)
@@ -45,17 +44,17 @@ RSpec.describe Cnab240::V40::Arquivo::Header do
     expect(header).to respond_to(:cnab_g004_3)
   end
 
-  it "header deve ter 240 caracteres" do
+  it 'header deve ter 240 caracteres' do
     header = Cnab240::V40::Arquivo::Header.new
     expect(header.linha.length).to be(240)
   end
 
-  it "conversao deve manter consistencia" do
+  it 'conversao deve manter consistencia' do
     header = Cnab240::V40::Arquivo::Header.new
 
-    header.controle_banco= "8"
-    header.controle_lote= "8"
-    header.controle_registro= "8"
+    header.controle_banco = '8'
+    header.controle_lote = '8'
+    header.controle_registro = '8'
 
     linha1 = header.linha
 

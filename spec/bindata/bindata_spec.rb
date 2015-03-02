@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-RSpec.describe "Bindata" do
-
-  it "should work" do
+RSpec.describe 'Bindata' do
+  it 'should work' do
     class Dummy < BinData::Record
-      string :f1, :length => 3, :pad_byte => '1'
-      string :f2, :length => 4, :initial_value => '0000', :pad_byte => '0'
-      string :f3, :length => 9, :pad_byte => 'X'
+      string :f1, length: 3, pad_byte: '1'
+      string :f2, length: 4, initial_value: '0000', pad_byte: '0'
+      string :f3, length: 9, pad_byte: 'X'
     end
 
     d1 = Dummy.new
@@ -20,9 +19,9 @@ RSpec.describe "Bindata" do
     expect(s1.string).to eq s2.string
 
     class Dummy2 < BinData::Record
-      string :f1, :length => 3, :pad_byte => '1'
-      string :f2, :value => '0000', :pad_byte => '0', :read_length => 4
-      string :f3, :length => 9, :pad_byte => 'X'
+      string :f1, length: 3, pad_byte: '1'
+      string :f2, value: '0000', pad_byte: '0', read_length: 4
+      string :f3, length: 9, pad_byte: 'X'
     end
 
     d1 = Dummy2.new
@@ -36,9 +35,9 @@ RSpec.describe "Bindata" do
     expect(s1.string).to eq s2.string
   end
 
-  it "should pad left" do
+  it 'should pad left' do
     class Dummy3 < BinData::Record
-      lstring :f2, :length => 4, :pad_byte => '0'
+      lstring :f2, length: 4, pad_byte: '0'
     end
 
     d1 = Dummy3.new

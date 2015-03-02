@@ -1,6 +1,5 @@
 module Cnab240
   class PagamentoItau < Helper
-
     def initialize(campos = {})
       campos[:controle_banco] ||= '341'
       campos[:arquivo_codigo] ||= '1'
@@ -9,7 +8,7 @@ module Cnab240
       campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M%S')
 
       @arquivo = Cnab240::Arquivo::Arquivo.new('V80')
-      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: 'V80')
 
       fill campos, arquivo.header, arquivo.trailer
 
@@ -20,7 +19,7 @@ module Cnab240
     end
 
     def add_lote(campos = {})
-      @arquivo.lotes << lote = Cnab240::Lote.new(:operacao => :pagamento, :tipo => :remessa, :versao => 'V80')
+      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: 'V80')
 
       campos[:servico_operacao] ||= 'C'
       campos[:controle_lote] ||= '0001'
@@ -33,7 +32,7 @@ module Cnab240
 
       campos[:controle_banco] ||= '341'
       campos[:controle_lote] ||= @arquivo.lotes.length.to_s
-      campos[:servico_numero_registro] ||= (lote.segmentos.length+1).to_s
+      campos[:servico_numero_registro] ||= (lote.segmentos.length + 1).to_s
       campos[:servico_tipo_movimento] ||= '000'
       campos[:credito_moeda_tipo] ||= 'REA'
       campos[:totais_qtde_registros] ||= (lote.segmentos.length + 2).to_s
@@ -44,6 +43,5 @@ module Cnab240
 
       lote << segmento_a
     end
-
   end
 end
