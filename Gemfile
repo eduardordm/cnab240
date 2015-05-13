@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in cnab240.gemspec
 gemspec
 
 group :development do
   gem 'pry', '~> 0.10.1'
-  gem 'rubocop', '~> 0.29.1'
-  gem 'rubocop-rspec', '~> 1.2.2'
+  gem 'rubocop', '~> 0.31.0'
+  gem 'rubocop-rspec', '~> 1.3.0'
 end
 
 group :test do
