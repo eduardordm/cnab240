@@ -62,7 +62,7 @@ module Cnab240
       lstring :codigo_protesto, length: 1, initial_value: '1', pad_byte: '0'
       lstring :dias_protesto, length: 2, pad_byte: ' '
       lstring :codigo_baixa, length: 1, initial_value: '0', pad_byte: '0'
-      lstring :dias_baixa, length: 2, pad_byte: ' '
+      lstring :dias_baixa, length: 3, pad_byte: ' '
 
       lstring :moeda, length: 2, initial_value: '09', pad_byte: '0' #'02' = Dólar, '09' = Real
       lstring :contrato_operacao_credito, length: 10, pad_byte: '0'
