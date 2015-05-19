@@ -16,7 +16,7 @@ module Cnab240
       @fallback ||= options[:fallback]
       @versao ||= 'V86'
 
-      fail "Operacao nao suportada: #{operacao}" if ESTRUTURA[@versao][operacao].nil?
+      fail "Operacao '#{operacao}' nao suportada na versao #{@versao}" if ESTRUTURA[@versao][operacao].nil?
 
       estrutura = ESTRUTURA[@versao][operacao]
 

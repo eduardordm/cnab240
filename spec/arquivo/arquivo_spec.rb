@@ -82,4 +82,15 @@ RSpec.describe Cnab240::Arquivo::Arquivo do
     #		arquivo_read.string.should eq arquivo_read2.string
     fail
   end
+
+  it 'deve carregar arquivo de remessa de boletos do SICOOB' do
+    arquivo_read = Cnab240::Arquivo::Arquivo.load_from_file('./spec/fixtures/remessa/sicoob_240_boletos.CED')[0]
+
+    expect(arquivo_read.lotes.length).to be 1
+    expect(arquivo_read.lotes.first.segmentos.size).to be 4
+
+    arquivo_read.lotes.each_with_index do |lote_read, _i|
+      expect(lote_read.header.empresa_nome).to eq 'BIELSYSTEMS TECNOLOGIA LTDA - '
+    end
+  end
 end

@@ -44,6 +44,48 @@ module Cnab240
     }
   }
 
+  ESTRUTURA_V81 = {
+    segmentos_implementados: [:p, :q, :r, :s],
+    boleto: {
+
+      header: Cnab240::Lote::V40::Boletos::Header,
+      trailer: Cnab240::Lote::V40::Boletos::Trailer,
+
+      segmentos: [:p, :q, :r, :s],
+      p: {
+        remessa: true
+      },
+      q: {
+        remessa: true
+      },
+      r: {
+        remessa: false
+      },
+      s: {
+        remessa: false
+      }
+    }
+  }
+
+  ESTRUTURA_V83 = {
+    segmentos_implementados: [:a, :b, :j, :z],
+    pagamento: {
+
+      header: Cnab240::V83::Pagamentos::Header,
+      trailer: Cnab240::V83::Pagamentos::Trailer,
+
+      segmentos: [:a, :b],
+      a: {
+        remessa: true,
+        retorno: true
+      },
+      b: {
+        remessa: true,
+        retorno: true
+      }
+    }
+  }
+
   ESTRUTURA_V86 = {
     segmentos_implementados: [:a, :b, :c, :j, :j52, :o, :n, :w, :z],
     pagamento: {
@@ -174,6 +216,8 @@ module Cnab240
     'V40' => ESTRUTURA_V40,
     'V60' => ESTRUTURA_V60,
     'V80' => ESTRUTURA_V80,
+    'V81' => ESTRUTURA_V81,
+    'V83' => ESTRUTURA_V83,
     'V86' => ESTRUTURA_V86,
     'V87' => ESTRUTURA_V87
   }
