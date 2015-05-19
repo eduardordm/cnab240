@@ -5,7 +5,6 @@ include Cnab240
 RSpec.describe PagamentoItau do
   it 'deve criar pagamento' do
     pagamento = PagamentoItau.new(
-      empresa_tipo: '2',
       empresa_convenio: '1234',
       empresa_tipo: '2',
       empresa_numero: '01234567891234',
@@ -31,10 +30,7 @@ RSpec.describe PagamentoItau do
       credito_data_pagamento: '31122012',
       credito_valor_pagamento: '100',
       numero_inscricao: '12312312312312',
-      favorecido_nome: 'EMPRESA X',
-      credito_seu_numero: '1234',
-      credito_data_pagamento: '30122012',
-      credito_valor_pagamento: '100'
+      favorecido_nome: 'EMPRESA X'
     }
 
     pagamento << {
@@ -45,10 +41,7 @@ RSpec.describe PagamentoItau do
       credito_data_pagamento: '31122012',
       credito_valor_pagamento: '100',
       numero_inscricao: '12312312312312',
-      favorecido_nome: 'EMPRESA X',
-      credito_seu_numero: '1234',
-      credito_data_pagamento: '30122012',
-      credito_valor_pagamento: '100'
+      favorecido_nome: 'EMPRESA X'
     }
 
     pagamento.add_lote(
@@ -64,10 +57,7 @@ RSpec.describe PagamentoItau do
       credito_data_pagamento: '31122012',
       credito_valor_pagamento: '100',
       numero_inscricao: '12312312312312',
-      favorecido_nome: 'EMPRESA X',
-      credito_seu_numero: '1234',
-      credito_data_pagamento: '30122012',
-      credito_valor_pagamento: '100'
+      favorecido_nome: 'EMPRESA X'
     }
 
     expect(pagamento.arquivo.header.banco_nome.strip).to eq 'BANCO ITAU'
