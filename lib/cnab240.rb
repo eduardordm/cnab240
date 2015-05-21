@@ -114,6 +114,8 @@ require 'cnab240/helper/pagamento_bb'
 require 'cnab240/helper/transferencia_sicoob'
 require 'cnab240/helper/transferencia_citibank'
 
+require 'cnab240/helper/boleto_bancoob'
+
 module Cnab240
   mod_attr_accessor :defaults
   @@defaults = {}
