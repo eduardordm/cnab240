@@ -10,7 +10,8 @@ module Cnab240::V81::Arquivo
 
     lstring :totais_qtde_lotes, length: 6, pad_byte: '0'
     lstring :totais_qtde_registros, length: 6, pad_byte: '0'
+    lstring :totais_qtde_contas_concil, length: 6, pad_byte: '0'
 
-    string :cnab_g004_2, length: 211, pad_byte: ' '
+    string :cnab_g004_2, length: 205, pad_byte: ' '
   end
 end
