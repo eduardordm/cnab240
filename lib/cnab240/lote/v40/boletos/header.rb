@@ -29,7 +29,7 @@ module Cnab240
           string :informacao_1, length: 40, pad_byte: ' '
           string :informacao_2, length: 40, pad_byte: ' '
 
-          string :controle_cobranca, length: 8, pad_byte: '0'
+          lstring :controle_cobranca, length: 8, pad_byte: '0'
           lstring :data_geracao, length: 8, pad_byte: '0'
           lstring :data_credito, length: 8, pad_byte: '0'
 
