@@ -47,6 +47,7 @@ RSpec.describe Cnab240::V40::Arquivo::Header do
   it 'header deve ter 240 caracteres' do
     header = Cnab240::V40::Arquivo::Header.new
     expect(header.linha.length).to be(240)
+    expect(header.arquivo_layout).to eq('040')
   end
 
   it 'conversao deve manter consistencia' do
