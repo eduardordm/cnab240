@@ -3,7 +3,7 @@ require 'spec_helper'
 
 include Cnab240
 
-RSpec.describe BoletoSicoob do
+RSpec.describe BoletoBancoob do
 
   let(:arquivo_read) { File.read('./spec/fixtures/remessa/sicoob_240_boletos.CED') }
 
@@ -71,7 +71,7 @@ RSpec.describe BoletoSicoob do
     }
 
     # Cria boleto já com 1 lote criado
-    arquivo = BoletoSicoob.new(boleto)
+    arquivo = BoletoBancoob.new(boleto)
 
     # Adiciona primeiro lote
     arquivo.add_lote(boleto)

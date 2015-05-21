@@ -1,5 +1,5 @@
 module Cnab240
-  class BoletoSicoob < Helper
+  class BoletoBancoob < Helper
     def initialize(campos = {})
       campos[:controle_banco] ||= '756'
       campos[:banco_nome] ||= 'BANCO COOPERATIVO DO BRASIL S/A.'
