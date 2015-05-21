@@ -64,7 +64,7 @@ module Cnab240
       trailer.totais_qtde_registros = (segmentos.length + 2).to_s
       _total = 0
       segmentos.each { |seg| _total += seg[:credito_valor_pagamento].to_i }
-      trailer.totais_valor = _total.to_s
+      trailer.totais_valor = _total.to_s if trailer.respond_to?(:totais_valor)
     end
   end
 end
