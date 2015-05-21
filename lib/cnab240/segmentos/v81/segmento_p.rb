@@ -21,6 +21,8 @@ module Cnab240
 
       # Nosso Número:
       # - Se emissão a cargo do Sicoob: Brancos
+      # lstring :nosso_numero, length: 20, pad_byte: ' '
+
       # - Se emissão a cargo do Cedente:
       #   NumTitulo - 10 posições (1 a 10)
       #   Parcela - 02 posições (11 a 12) - "01" se parcela única
@@ -31,9 +33,14 @@ module Cnab240
       #      "4" -A4 sem envelopamento
       #      "6" -A4 sem envelopamento 3 vias
       #   Em branco - 05 posições (16 a 20)
-      string :nosso_numero, length: 20, pad_byte: ' '
-      string :codigo_carteira, length: 1, pad_byte: '0'
-      string :forma_cadastro, length: 1, initial_value: '0', pad_byte: '0'
+      lstring :nosso_numero, length: 10, pad_byte: '0'
+      lstring :parcela, length: 2, pad_byte: '0'
+      lstring :modalidade, length: 2, pad_byte: '0'
+      lstring :tipo_formulario, length: 1, pad_byte: '0'
+      lstring :brancos, length: 5, pad_byte: ' '
+
+      lstring :codigo_carteira, length: 1, pad_byte: '0'
+      lstring :forma_cadastro, length: 1, initial_value: '0', pad_byte: '0'
       string :tipo_documento, length: 1, pad_byte: ' '
       string :emissao_boleto, length: 1, initial_value: '2', pad_byte: '0' #'1'= Sicoob Emite, '2' = Cedente Emite
       string :distribuicao_boleto, length: 1, initial_value: '2', pad_byte: '0' #'1' = Sicoob Distribui, '2' = Cedente Distribui
@@ -43,7 +50,7 @@ module Cnab240
       lstring :agencia_cobradora, length: 5, pad_byte: '0'
       string :agencia_cobradora_dv, length: 1, pad_byte: ' '
       lstring :especie_titulo, length: 2, pad_byte: '0'
-      string :aceite, length: 1, initial_value: 'N', pad_byte: '0' #'A' = Aceite, 'N' = Não Aceite
+      string :aceite, length: 1, initial_value: 'N' #'A' = Aceite, 'N' = Não Aceite
       lstring :data_emissao, length: 8, pad_byte: '0'
 
       lstring :juros_mora, length: 1, pad_byte: '0' #'1'= Valor por Dia, '2' = Taxa Mensal, '3' = Isento
@@ -60,7 +67,7 @@ module Cnab240
       lstring :identificacao_beneficiario, length: 25, pad_byte: ' '
 
       lstring :codigo_protesto, length: 1, initial_value: '1', pad_byte: '0'
-      lstring :dias_protesto, length: 2, pad_byte: ' '
+      lstring :dias_protesto, length: 2, pad_byte: '0'
       lstring :codigo_baixa, length: 1, initial_value: '0', pad_byte: '0'
       lstring :dias_baixa, length: 3, pad_byte: ' '
 

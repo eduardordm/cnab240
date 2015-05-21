@@ -36,10 +36,10 @@ module Cnab240
       versao = arquivo.versao unless arquivo.nil?
       versao ||= @versao
       case s
-        when Symbol, String
-          segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")
-        else
-          segmentos << seg = s
+      when Symbol, String
+        segmentos << seg = eval("Cnab240::#{versao}::Segmento#{s.to_s.upcase}.new")
+      else
+        segmentos << seg = s
       end
       seg.lote = self
       seg
@@ -62,9 +62,25 @@ module Cnab240
 
     def auto_fill
       trailer.totais_qtde_registros = (segmentos.length + 2).to_s
-      _total = 0
-      segmentos.each { |seg| _total += seg[:credito_valor_pagamento].to_i }
-      trailer.totais_valor = _total.to_s
+
+      if trailer.respond_to?(:totais_valor)
+        _total = 0
+        segmentos.each { |seg| _total += seg[:credito_valor_pagamento].to_i }
+        trailer.totais_valor = _total.to_s
+      end
+
+      # Quando o lote é de boletos
+      if trailer.respond_to?(:qtde_cobranca_simples)
+        _total = 0
+        _qtde = 0
+        segmentos.each do |seg|
+          next unless seg.class.to_s =~ /SegmentoP/
+          _qtde += 1
+          _total += seg[:valor].to_i
+        end
+        trailer.qtde_cobranca_simples = _qtde.to_s
+        trailer.total_cobranca_simples = _total.to_s
+      end
     end
   end
 end

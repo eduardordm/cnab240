@@ -26,7 +26,7 @@ module Cnab240::V83::Arquivo
     lstring :arquivo_data_geracao, length: 8, pad_byte: '0'
     lstring :arquivo_hora_geracao, length: 6, pad_byte: '0'
     lstring :arquivo_sequencia, length: 6, pad_byte: '0'
-    string :arquivo_layout, length: 3, initial_value: '060'
+    string :arquivo_layout, length: 3, initial_value: '083'
     lstring :arquivo_densidade, length: 5, pad_byte: '0'
 
     string :reservado_banco, length: 20, pad_byte: ' '

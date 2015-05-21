@@ -27,6 +27,11 @@ RSpec.describe Cnab240::V81::SegmentoP do
     expect(segmento).to respond_to(:beneficiario_agencia_conta_dv)
 
     expect(segmento).to respond_to(:nosso_numero)
+    expect(segmento).to respond_to(:parcela)
+    expect(segmento).to respond_to(:modalidade)
+    expect(segmento).to respond_to(:tipo_formulario)
+    expect(segmento).to respond_to(:brancos)
+    
     expect(segmento).to respond_to(:codigo_carteira)
     expect(segmento).to respond_to(:forma_cadastro)
     expect(segmento).to respond_to(:tipo_documento)
