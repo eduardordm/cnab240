@@ -2,13 +2,13 @@
 require File.expand_path('../lib/cnab240/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.add_dependency 'bindata', '~> 2.1.0'
+  gem.add_dependency 'bindata', '~> 2.2.0'
 
-  gem.authors       = ['Eduardo Mourao']
-  gem.email         = ['eduardo.a20@gmail.com']
+  gem.authors       = ['Eduardo Mourao (RIP)', 'Kivanio Barbosa']
+  gem.email         = ['kivanio@gmail.com']
   gem.description   = 'Formato CNAB 240.'
   gem.summary       = 'Formato CNAB 240.'
-  gem.homepage      = ''
+  gem.homepage      = 'https://github.com/eduardordm/cnab240'
 
   gem.rubyforge_project = 'cnab240'
 
