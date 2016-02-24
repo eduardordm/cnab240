@@ -4,11 +4,9 @@ Uma extensão do CNAB240, com algumas correções para o Itaú.
 =======================================================
 
 [![Build Status](https://travis-ci.org/eduardordm/cnab240.svg?branch=master)](https://travis-ci.org/eduardordm/cnab240)
-[![Code Climate](https://codeclimate.com/github/eduardordm/cnab240/badges/gpa.svg)](https://codeclimate.com/github/eduardordm/cnab240)
-[![Test Coverage](https://codeclimate.com/github/eduardordm/cnab240/badges/coverage.svg)](https://codeclimate.com/github/eduardordm/cnab240)
 
-Esta é uma implementação do Layout Padrão Febraban 240 posições, e algumas variações. Provavelmente vou adicionar o CNAB 400 na mesma gem. Talvez adicione também um puxadinho para voce poder usar o ActiveRecord.
-
+Esta é uma implementação do Layout Padrão Febraban 240 posições, e algumas variações. 
+Provavelmente vou adicionar o CNAB 400 na mesma gem. Talvez adicione também um puxadinho para voce poder usar o ActiveRecord.
 
 Os padrões da febraban são fruto de incompêtencia que ultrapassa os limites do patético. Espero que essa implementação lhe poupe algumas horas de sofrimento. 
 
@@ -57,33 +55,33 @@ Em algum lugar voce pode criar um arquivo de inicialização (não é obrigatór
 A única configuração suportada até o momento é a de valores-padrão para campos:
 
 ```ruby
-	Cnab240.setup do |config|
-		# configuracoes aqui
-		config.defaults[:empresa_tipo] = "1"
-	end
+ Cnab240.setup do |config|
+  # configuracoes aqui
+  config.defaults[:empresa_tipo] = "1"
+ end
 ```
 
 Voce pode criar arquivos, e adicionar lotes. A versão é automaticamente a 8.6, se preferir voce pode escolher outra versão. Utilize o operador << do arquivo para adicionar lotes.
 
 ```ruby
-	arquivo = Arquivo::Arquivo.new
-	lote = Lote.new(:operacao => :pagamento, :tipo => :remessa)
-	# preencha os zilhoes de campos
-	arquivo << lote
-  file = File.open("arquivo.test", "w+")
-  arquivo.save_to_file(file)
+ arquivo = Arquivo::Arquivo.new
+ lote = Lote.new(:operacao => :pagamento, :tipo => :remessa)
+ # preencha os zilhoes de campos
+ arquivo << lote
+ file = File.open("arquivo.test", "w+")
+ arquivo.save_to_file(file)
 ```
 Para adicionar segmentos utilize o operador << do lote.
 
 ```ruby
-	arquivo = Arquivo::Arquivo.new('V86')
-	lote = Lote.new(:operacao => :pagamento, :tipo => :remessa)
-	lote << :a
-	# preencha os zilhoes de campos
-	lote.segmentos[0].favorecido_banco = '1'
-	arquivo << lote
-  file = File.open("arquivo.test", "w+")
-  arquivo.save_to_file(file)
+ arquivo = Arquivo::Arquivo.new('V86')
+ lote = Lote.new(:operacao => :pagamento, :tipo => :remessa)
+ lote << :a
+ # preencha os zilhoes de campos
+ lote.segmentos[0].favorecido_banco = '1'
+ arquivo << lote
+ file = File.open("arquivo.test", "w+")
+ arquivo.save_to_file(file)
 ```
 
 Ler do arquivo:
@@ -99,39 +97,39 @@ Ler do arquivo:
 Voce pode usar os helpers que vao preencher os campos automaticamente, se possivel:
 
 ```ruby
-	pagamento = PagamentoItau.new({ 
-		:empresa_tipo => '2',
-		:empresa_numero => '07946982000133',
-		:empresa_nome => 'LOJA DO BRASIL LTDA',
-		:empresa_agencia_codigo => '663',
-		:empresa_conta_numero => '01540',
-		:empresa_agencia_conta_dv => '0',
-		:arquivo_sequencia => '1',
+ pagamento = PagamentoItau.new({ 
+  :empresa_tipo => '2',
+  :empresa_numero => '07946982000133',
+  :empresa_nome => 'LOJA DO BRASIL LTDA',
+  :empresa_agencia_codigo => '663',
+  :empresa_conta_numero => '01540',
+  :empresa_agencia_conta_dv => '0',
+  :arquivo_sequencia => '1',
 
-		:endereco_logradouro => 'RUA GETULIO VARGAS',
-		:endereco_numero => '3646',
-		:endereco_cidade => 'PORTO VELHO',
-		:endereco_cep => '76000000',
-		:endereco_estado => 'RO',
-		:servico_tipo => '98', # pagamentos - diversos
-		:servico_forma => '41', # doc, ted, etc
-	})
+  :endereco_logradouro => 'RUA GETULIO VARGAS',
+  :endereco_numero => '3646',
+  :endereco_cidade => 'PORTO VELHO',
+  :endereco_cep => '76000000',
+  :endereco_estado => 'RO',
+  :servico_tipo => '98', # pagamentos - diversos
+  :servico_forma => '41', # doc, ted, etc
+ })
 
-	pagamento << { 
-		:favorecido_banco => '001',
-		:favorecido_agencia => '2280',
-		:favorecido_conta => '335959',
-		:favorecido_agencia_conta_dv => '9',
-		:credito_seu_numero => '1',
-		:credito_data_pagamento => '03082012',
-		:credito_valor_pagamento => '500000',
-		:numero_inscricao => '19375208168',
-		:favorecido_nome => 'EDUARDO MOURAO'
-	}
+ pagamento << { 
+  :favorecido_banco => '001',
+  :favorecido_agencia => '2280',
+  :favorecido_conta => '335959',
+  :favorecido_agencia_conta_dv => '9',
+  :credito_seu_numero => '1',
+  :credito_data_pagamento => '03082012',
+  :credito_valor_pagamento => '500000',
+  :numero_inscricao => '19375208168',
+  :favorecido_nome => 'EDUARDO MOURAO'
+ }
 
-	pagamento.string
+ pagamento.string
 ```
-		
+  
 ## Considerações
 
 - Tudo string. O arquivo é de strings, a implementação também;
