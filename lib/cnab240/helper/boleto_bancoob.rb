@@ -7,14 +7,15 @@ module Cnab240
       campos[:arquivo_data_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
       campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M%S')
       campos[:arquivo_codigo] ||= '1'
+      campos[:versao] ||= 'V81'
 
-      @arquivo = Cnab240::Arquivo::Arquivo.new('V81')
+      @arquivo = Cnab240::Arquivo::Arquivo.new(campos[:versao])
 
       fill campos, arquivo.header, arquivo.trailer
     end
 
     def add_lote(campos = {})
-      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :boleto, tipo: :remessa, versao: 'V81')
+      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :boleto, tipo: :remessa, versao: campos[:versao])
 
       campos[:controle_banco] ||= '756'
       campos[:controle_lote] = (@arquivo.lotes.length).to_s
@@ -52,7 +53,7 @@ module Cnab240
       campos[:controle_lote] = @arquivo.lotes.length.to_s
       campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
 
-      segmento_s = Cnab240::V81::SegmentoS.new
+      segmento_s = Cnab240.const_get(campos[:versao])::SegmentoS.new
       fill campos, segmento_s
       lote << segmento_s
     end
