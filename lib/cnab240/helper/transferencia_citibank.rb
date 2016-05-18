@@ -7,14 +7,15 @@ module Cnab240
       campos[:arquivo_data_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%d%m%Y')
       campos[:arquivo_hora_geracao] ||= (Time.respond_to?(:current) ? Time.current : Time.now).strftime('%H%M%S')
       campos[:arquivo_codigo] ||= '1'
+      campos[:versao] ||= 'V60'
 
-      @arquivo = Cnab240::Arquivo::Arquivo.new('V60')
+      @arquivo = Cnab240::Arquivo::Arquivo.new(campos[:versao])
 
       fill campos, arquivo.header, arquivo.trailer
     end
 
     def add_lote(campos = {})
-      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: 'V60')
+      @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: campos[:versao])
 
       campos[:controle_banco] ||= '745'
       campos[:servico_operacao] ||= 'C'
