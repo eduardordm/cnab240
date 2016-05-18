@@ -41,7 +41,7 @@ module Cnab240
       campos[:controle_lote] = @arquivo.lotes.length.to_s
       campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
 
-      segmento_b = Cnab240::V87::SegmentoB.new
+      segmento_b = Cnab240.const_get(campos[:versao])::SegmentoB.new
       fill campos, segmento_b
       lote << segmento_b
     end

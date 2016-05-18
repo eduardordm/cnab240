@@ -40,7 +40,7 @@ module Cnab240
       campos[:credito_moeda_tipo] ||= 'BRL'
       campos[:totais_qtde_registros] ||= (lote.segmentos.length + 2).to_s
 
-      segmento_a = Cnab240::V86::SegmentoA.new
+      segmento_a = Cnab240.const_get(campos[:versao])::SegmentoA.new
       fill campos, segmento_a
       # fill campos, segmento_a.favorecido_agencia_conta
 

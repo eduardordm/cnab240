@@ -36,7 +36,7 @@ module Cnab240
       # [018] TED (STR,CIP) ou [700] DOC.
       campos[:favorecido_camara] = favorecido_camara(lote, campos)
 
-      segmento_a = Cnab240::V60::SegmentoA.new
+      segmento_a = Cnab240.const_get(campos[:versao])::SegmentoA.new
       fill campos, segmento_a
       lote << segmento_a
 
