@@ -15,6 +15,9 @@ module Cnab240
     end
 
     def add_lote(campos = {})
+
+      campos[:versao] ||= 'V81'
+
       @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :boleto, tipo: :remessa, versao: campos[:versao])
 
       campos[:controle_banco] ||= '756'
@@ -32,21 +35,23 @@ module Cnab240
       # 01 - Entrada de títulos
       campos[:servico_codigo_movimento] ||= '01'
 
-      segmento_p = Cnab240::V81::SegmentoP.new
+      campos[:versao] ||= 'V81'
+
+      segmento_p = Cnab240.const_get(campos[:versao])::SegmentoP.new
       fill campos, segmento_p
       lote << segmento_p
 
       campos[:controle_lote] = @arquivo.lotes.length.to_s
       campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
 
-      segmento_q = Cnab240::V81::SegmentoQ.new
+      segmento_q = Cnab240.const_get(campos[:versao])::SegmentoQ.new
       fill campos, segmento_q
       lote << segmento_q
 
       campos[:controle_lote] = @arquivo.lotes.length.to_s
       campos[:servico_numero_registro] = (lote.segmentos.length + 1).to_s
 
-      segmento_r = Cnab240::V81::SegmentoR.new
+      segmento_r = Cnab240.const_get(campos[:versao])::SegmentoR.new
       fill campos, segmento_r
       lote << segmento_r
 

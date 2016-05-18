@@ -15,6 +15,8 @@ module Cnab240
     end
 
     def add_lote(campos = {})
+      campos[:versao] ||= 'V60'
+
       @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: campos[:versao])
 
       campos[:controle_banco] ||= '745'
@@ -35,6 +37,8 @@ module Cnab240
       campos[:credito_moeda_tipo] ||= 'BRL'
       # [018] TED (STR,CIP) ou [700] DOC.
       campos[:favorecido_camara] = favorecido_camara(lote, campos)
+
+      campos[:versao] ||= 'V60'
 
       segmento_a = Cnab240.const_get(campos[:versao])::SegmentoA.new
       fill campos, segmento_a

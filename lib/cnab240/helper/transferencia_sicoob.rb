@@ -15,6 +15,8 @@ module Cnab240
     end
 
     def add_lote(campos = {})
+      campos[:versao] ||= 'V87'
+
       @arquivo.lotes << lote = Cnab240::Lote.new(operacao: :pagamento, tipo: :remessa, versao: campos[:versao])
 
       campos[:controle_banco] ||= '756'
@@ -33,6 +35,8 @@ module Cnab240
       # 000 para inclusao e 999 para exclusao
       campos[:servico_tipo_movimento] ||= '000'
       campos[:credito_moeda_tipo] ||= 'BRL'
+
+      campos[:versao] ||= 'V87'
 
       segmento_a = Cnab240::V87::SegmentoA.new
       fill campos, segmento_a
