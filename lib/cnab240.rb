@@ -109,6 +109,7 @@ require 'cnab240/arquivo/builder'
 require 'cnab240/helper/helper'
 require 'cnab240/helper/pagamento_itau'
 require 'cnab240/helper/pagamento_bradesco'
+require 'cnab240/helper/pagamento_multipag'
 require 'cnab240/helper/pagamento_bb'
 
 require 'cnab240/helper/transferencia_sicoob'
